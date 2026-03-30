@@ -92,6 +92,130 @@ let config = loadConfig();
 let adminOpen = false;
 let audioPlaying = false;
 
+
+const IMAGE_FALLBACK_BASES = [
+  '',
+  './',
+  'assets/images/',
+  './assets/images/',
+  'site_bundle/assets/images/',
+  './site_bundle/assets/images/',
+  'steamtemp/',
+  './steamtemp/'
+];
+
+const AUDIO_FALLBACK_BASES = [
+  '',
+  './',
+  'assets/music/',
+  './assets/music/',
+  'site_bundle/assets/music/',
+  './site_bundle/assets/music/',
+  'steamtemp/music/',
+  './steamtemp/music/'
+];
+
+function isDirectUrl(value) {
+  return /^(data:|blob:|https?:|\/)/i.test(value);
+}
+
+function uniqueList(values) {
+  return [...new Set(values.filter(Boolean))];
+}
+
+function fileNameOnly(path) {
+  return String(path).split('/').pop();
+}
+
+function makeImageCandidates(path) {
+  const input = String(path || '').trim();
+  if (!input) return [];
+  if (isDirectUrl(input)) return [input];
+
+  const name = fileNameOnly(input);
+  const converted = [];
+  if (input.includes('assets/images/')) {
+    converted.push(input.replace(/^\.\//, ''));
+    converted.push(input.replace('assets/images/', 'site_bundle/assets/images/'));
+    converted.push(input.replace('assets/images/', 'steamtemp/'));
+  } else if (input.includes('site_bundle/assets/images/')) {
+    converted.push(input.replace('site_bundle/assets/images/', 'assets/images/'));
+    converted.push(input.replace('site_bundle/assets/images/', 'steamtemp/'));
+  } else if (input.includes('steamtemp/')) {
+    converted.push(input.replace('steamtemp/', 'assets/images/'));
+    converted.push(input.replace('steamtemp/', 'site_bundle/assets/images/'));
+  }
+
+  return uniqueList([
+    input,
+    input.replace(/^\.\//, ''),
+    ...converted,
+    ...IMAGE_FALLBACK_BASES.map(base => `${base}${name}`)
+  ]);
+}
+
+function makeAudioCandidates(path) {
+  const input = String(path || '').trim();
+  if (!input) return [];
+  if (isDirectUrl(input)) return [input];
+
+  const name = fileNameOnly(input);
+  const converted = [];
+  if (input.includes('assets/music/')) {
+    converted.push(input.replace('assets/music/', 'site_bundle/assets/music/'));
+    converted.push(input.replace('assets/music/', 'steamtemp/music/'));
+  } else if (input.includes('site_bundle/assets/music/')) {
+    converted.push(input.replace('site_bundle/assets/music/', 'assets/music/'));
+    converted.push(input.replace('site_bundle/assets/music/', 'steamtemp/music/'));
+  } else if (input.includes('steamtemp/music/')) {
+    converted.push(input.replace('steamtemp/music/', 'assets/music/'));
+    converted.push(input.replace('steamtemp/music/', 'site_bundle/assets/music/'));
+  }
+
+  return uniqueList([
+    input,
+    input.replace(/^\.\//, ''),
+    ...converted,
+    ...AUDIO_FALLBACK_BASES.map(base => `${base}${name}`)
+  ]);
+}
+
+function applyResolvedSource(el, candidates) {
+  if (!el || !candidates.length) return;
+  let index = 0;
+  const tried = [];
+  const tryNext = () => {
+    if (index >= candidates.length) {
+      console.warn(`Asset not found for #${el.id || el.tagName.toLowerCase()}`, tried);
+      return;
+    }
+    const next = candidates[index++];
+    tried.push(next);
+    el.src = next;
+  };
+  el.onerror = tryNext;
+  tryNext();
+}
+
+function applyResolvedAudio(el, candidates) {
+  if (!el || !candidates.length) return;
+  let index = 0;
+  const tried = [];
+  const tryNext = () => {
+    if (index >= candidates.length) {
+      console.warn('Audio asset not found', tried);
+      return;
+    }
+    const next = candidates[index++];
+    tried.push(next);
+    el.src = next;
+    el.load();
+  };
+  el.onerror = tryNext;
+  tryNext();
+}
+
+
 function loadConfig() {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -194,15 +318,15 @@ function applyLinks() {
 }
 
 function applyImages() {
-  document.getElementById('heroLogo').src = config.images.heroLogo;
-  document.getElementById('heroHeaderImage').src = config.images.heroHeader;
-  document.getElementById('navLogo').src = config.images.navLogo;
-  document.getElementById('footerLogo').src = config.images.footerLogo;
-  document.getElementById('mediaMain').src = config.images.mediaMain;
-  document.getElementById('mediaAlt1').src = config.images.mediaAlt1;
-  document.getElementById('mediaAlt2').src = config.images.mediaAlt2;
-  document.getElementById('mediaAlt3').src = config.images.mediaAlt3;
-  document.getElementById('mediaAlt4').src = config.images.mediaAlt4;
+  applyResolvedSource(document.getElementById('heroLogo'), makeImageCandidates(config.images.heroLogo));
+  applyResolvedSource(document.getElementById('heroHeaderImage'), makeImageCandidates(config.images.heroHeader));
+  applyResolvedSource(document.getElementById('navLogo'), makeImageCandidates(config.images.navLogo));
+  applyResolvedSource(document.getElementById('footerLogo'), makeImageCandidates(config.images.footerLogo));
+  applyResolvedSource(document.getElementById('mediaMain'), makeImageCandidates(config.images.mediaMain));
+  applyResolvedSource(document.getElementById('mediaAlt1'), makeImageCandidates(config.images.mediaAlt1));
+  applyResolvedSource(document.getElementById('mediaAlt2'), makeImageCandidates(config.images.mediaAlt2));
+  applyResolvedSource(document.getElementById('mediaAlt3'), makeImageCandidates(config.images.mediaAlt3));
+  applyResolvedSource(document.getElementById('mediaAlt4'), makeImageCandidates(config.images.mediaAlt4));
 }
 
 function applyConfig() {
@@ -350,6 +474,7 @@ function escapeHtml(str) {
 function setupAudio() {
   const audio = document.getElementById('trailerAudio');
   const button = document.getElementById('soundToggle');
+  applyResolvedAudio(audio, makeAudioCandidates(audio.getAttribute('src') || 'assets/music/Trailer.mp3'));
   button.addEventListener('click', async () => {
     if (!audioPlaying) {
       try {
