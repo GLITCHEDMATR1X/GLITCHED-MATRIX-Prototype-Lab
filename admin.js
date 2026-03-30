@@ -1,66 +1,77 @@
+const ADMIN_PIN = '';
+const STORAGE_KEY = 'mxos-site-config-v2';
+const SESSION_KEY = 'mxos-site-admin-unlocked';
+
 const defaultConfig = {
-  microLabel: 'GLITCHED MATRIX',
+  assetVersion: '20260330c',
   heroEyebrow: 'Arcade Hub • Virtual Desktop • Creator Sandbox',
   heroTitle: 'Matrix OS: Arcade Evolution',
   heroLead: 'A dark operating surface for playable prototypes, creator tools, modular apps, and an expanding arcade ecosystem.',
-  heroTags: ['Early Access', 'Single-player', 'Workshop', 'Level Editor', 'LAN / Split-Screen Modes'],
+  heroTags: [
+    'Early Access',
+    'Virtual Desktop',
+    'Creator Sandbox',
+    'VR Support In Progress',
+    'Mod-Friendly Direction'
+  ],
   stat1Label: 'Status',
   stat1Value: 'Early Access',
   stat2Label: 'Library Size',
   stat2Value: '50+ Games & Apps',
-  stat3Label: 'Core Identity',
-  stat3Value: 'Creator Desktop + Arcade',
-  stat4Label: 'Focus',
-  stat4Value: 'Tools, Workflows, Modularity',
-  aboutLabel: 'About This Project',
-  aboutTitle: 'More than a game page',
+  stat3Label: 'Working On Now',
+  stat3Value: 'VR Support + Platform Polish',
+  stat4Label: 'Ultimate Goal',
+  stat4Value: 'Immersive Platform For Creators And Players',
+  aboutLabel: 'About Matrix OS',
+  aboutTitle: 'A site for the evolving platform, not just one page',
   aboutBody1: 'Matrix OS is positioned as a virtual desktop environment where games, tools, experiments, and creator workflows live inside one system-like world.',
-  aboutBody2: 'The site mirrors that identity with a dark control-surface look, teal neon accents, industrial silhouettes, and a media-first layout inspired by your Steam presentation.',
-  fictionLabel: 'Project Fiction',
+  aboutBody2: 'The long-term direction is bigger than a single release: an immersive platform for testers, modders, content creators of all types, publishers, and gamers to explore, build, evaluate, and share work.',
+  fictionLabel: 'Lore',
   fictionTitle: 'Rebuild the archive',
-  fictionBody1: 'The world framing should preserve the sense of a damaged hub, preserved systems, and a surviving archive trying to keep projects alive.',
-  fictionBody2: 'That gives the brand a stronger identity than a generic storefront and helps future services feel like part of the same platform.',
+  fictionBody1: 'The fiction should preserve the sense of a damaged hub, surviving systems, and an archive trying to keep projects alive after collapse.',
+  fictionBody2: 'That gives the platform a stronger identity than a generic storefront and ties future tools and services back into the same world.',
   featuresLabel: 'Current Build',
-  featuresTitle: 'What the Steam page is communicating',
+  featuresTitle: 'What the platform is communicating right now',
+  focusLabel: 'Current Focus',
+  focusBody: 'VR support, platform stability, clearer workflows, stronger customization, and a more immersive presentation layer.',
   features: [
-    { title: 'Large prototype library', body: 'An expanding collection of games and apps already framed as a major part of the platform.' },
-    { title: 'Desktop UI systems', body: 'Start menu organization, wallpapers, volume controls, pinning, and window modes reinforce the operating-system identity.' },
-    { title: 'Python launch workflow', body: 'Projects can be launched from folders through main.py, with descriptions and thumbnails fitting the arcade-desktop concept.' },
+    { title: 'Large prototype library', body: 'The Steam presentation establishes Matrix OS as a desktop-like hub with 50+ games and apps already in the environment.' },
+    { title: 'Desktop UI systems', body: 'Start menu categories, pinning, wallpaper control, music and volume handling, and windowed interaction reinforce the OS identity.' },
+    { title: 'Python launch workflow', body: 'Projects can launch from folders through main.py, which fits the platform’s tool-and-arcade structure.' },
     { title: 'Modular tools', body: 'Drop-in tools and separate entry points support the idea of Matrix OS as a creator platform rather than a single product.' },
-    { title: 'ChatSpace and agents', body: 'Multi-agent chat, DMs, logging, and creative interaction make the platform feel more alive and system-like.' },
+    { title: 'ChatSpace and agents', body: 'Multi-agent chat, DMs, logs, and creative interactions make the platform feel active and system-like.' },
     { title: 'Crash reporting focus', body: 'Logs and debugging surfaces fit the workstation angle and communicate an ongoing push toward stability.' }
   ],
-  roadmapLabel: 'Toward 1.0',
-  roadmapTitle: 'Planned expansion',
+  roadmapLabel: 'Near-Term Roadmap',
+  roadmapTitle: 'What is being pushed next',
   roadmap: [
-    'More built-in OS apps and creator utilities',
-    'Better setup, packaging, and asset organization helpers',
-    'Stronger Panda3D-oriented workflows and templates',
-    'More customization, themes, and desktop controls',
-    'Clearer onboarding, guidance, and user-facing polish',
-    'More stability and performance tuning across hardware'
+    'Continue integrating VR support and immersive interaction paths',
+    'Improve platform stability, crash handling, and clearer diagnostics',
+    'Refine creator workflow, packaging, and project organization tools',
+    'Expand customization, themes, widgets, and desktop control surfaces',
+    'Strengthen onboarding, UX readability, and presentational polish',
+    'Keep growing the ecosystem of apps, games, and experimental modules'
   ],
-  directionLabel: 'Development Direction',
-  directionTitle: 'How the project should mature',
-  directionBody1: 'Stability, UI readability, creator workflow, and performance should stay at the center of the presentation.',
-  directionBody2: 'This page is structured so you can evolve it from a Steam-adjacent landing page into a broader site for future services and custom tools.',
+  communityLabel: 'Ultimate Platform Vision',
+  communityTitle: 'Who this is being built for',
+  community: [
+    { title: 'Testers', body: 'A place to explore builds, evaluate features, report issues, and move through experiments with better visibility.' },
+    { title: 'Modders', body: 'A more immersive home for replaceable assets, extension points, custom content, and community iteration.' },
+    { title: 'Content creators', body: 'A broader platform for creators of all types to present projects, tools, media, and worlds inside a shared environment.' },
+    { title: 'Publishers and gamers', body: 'A system-like venue where finished releases, prototypes, communities, and discovery can coexist in one evolving platform.' }
+  ],
   mediaLabel: 'Media',
-  mediaTitle: 'Screenshots and brand visuals',
+  mediaTitle: 'Trailer, interface, and presentation materials',
   metaLabel: 'Modes, Tags, and Features',
   metaTitle: 'Store identity',
+  visualLabel: 'Visual Identity',
+  visualTitle: 'Presentable, dark, and system-like',
+  visualBody: 'The site should feel like an industrial control surface with teal neon, matte black panels, restrained logo usage, and enough media to show the platform clearly without overwhelming the page.',
   metaTags: [
     'Simulation', 'God Game', 'Pixel Graphics', 'Retro', 'Artificial Intelligence',
     'Single-player', 'Early Access', 'Racing', 'Sports', 'Strategy', 'Action',
     'Adventure', 'RPG', 'Indie', 'Casual', 'Arcade', 'Steam Workshop',
-    'Includes level editor', 'Remote Play Together', 'Family Sharing'
-  ],
-  communityLabel: 'Community Direction',
-  communityTitle: 'What feedback should shape',
-  community: [
-    { title: 'Stability', body: 'Crash reports, logs, and real testing feedback should drive fixes quickly.' },
-    { title: 'Creator workflow', body: 'How users discover, launch, patch, and organize projects should keep improving.' },
-    { title: 'UI and readability', body: 'Desktop clarity, window behavior, navigation, and accessibility should stay polished.' },
-    { title: 'Requested tools', body: 'The platform can grow through utility requests, templates, and integrated helpers.' }
+    'Includes Level Editor', 'Remote Play Together', 'Family Sharing'
   ],
   footerCopy: '© GLITCHED MATRIX — Matrix OS: Arcade Evolution',
   links: {
@@ -68,8 +79,10 @@ const defaultConfig = {
     primaryHref: 'https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/',
     secondaryText: 'Explore Project',
     secondaryHref: '#about',
-    trailerHref: 'https://www.youtube.com/watch?v=d78EOS1a1-8',
-    trailerText: 'Watch on YouTube'
+    trailerHref: 'https://youtu.be/d78EOS1a1-8?si=JSakLn7A1Jhj1Gm0',
+    trailerText: 'Watch on YouTube',
+    loreText: 'Read More',
+    loreHref: 'https://www.amazon.fr/-/en/GLITCHED-MATRIX-ebook/dp/B0CW1NMCK9?dib=eyJ2IjoiMSJ9.ShEoM8fvlVyl0lBCimWn7g.391iz7J7Q4lB5VWhg76Ejhc_X0fP6_H75N4bnJ76Wns&dib_tag=se&qid=1774876478&refinements=p_27%3AGLITCHED+MATRIX&s=digital-text&sr=1-1&text=GLITCHED+MATRIX'
   },
   images: {
     heroLogo: 'assets/images/logo.png',
@@ -78,151 +91,37 @@ const defaultConfig = {
     footerLogo: 'assets/images/library_header.png',
     mediaMain: 'assets/images/SCREENSHOT.png',
     mediaAlt1: 'assets/images/screenshot2.png',
-    mediaAlt2: 'assets/images/c1.png',
-    mediaAlt3: 'assets/images/c2.png',
-    mediaAlt4: 'assets/images/bg.png'
+    mediaAlt2: 'assets/images/matrixos_window.png',
+    mediaAlt3: 'assets/images/c1.png',
+    mediaAlt4: 'assets/images/c2.png'
   },
   theme: {
-    accent: '#67ba9a',
-    bg: '#040505',
+    accent: '#5ec6a0',
+    bg: '#050706',
     panel: '#101614'
   }
 };
 
-const STORAGE_KEY = 'mxos-site-config-v1';
 let config = loadConfig();
 let adminOpen = false;
-let audioPlaying = false;
 
-
-const IMAGE_FALLBACK_BASES = [
-  '',
-  './',
-  'assets/images/',
-  './assets/images/',
-  'site_bundle/assets/images/',
-  './site_bundle/assets/images/',
-  'steamtemp/',
-  './steamtemp/'
-];
-
-const AUDIO_FALLBACK_BASES = [
-  '',
-  './',
-  'assets/music/',
-  './assets/music/',
-  'site_bundle/assets/music/',
-  './site_bundle/assets/music/',
-  'steamtemp/music/',
-  './steamtemp/music/'
-];
-
-function isDirectUrl(value) {
-  return /^(data:|blob:|https?:|\/)/i.test(value);
-}
-
-function uniqueList(values) {
-  return [...new Set(values.filter(Boolean))];
-}
-
-function fileNameOnly(path) {
-  return String(path).split('/').pop();
-}
-
-function makeImageCandidates(path) {
-  const input = String(path || '').trim();
-  if (!input) return [];
-  if (isDirectUrl(input)) return [input];
-
-  const name = fileNameOnly(input);
-  const converted = [];
-  if (input.includes('assets/images/')) {
-    converted.push(input.replace(/^\.\//, ''));
-    converted.push(input.replace('assets/images/', 'site_bundle/assets/images/'));
-    converted.push(input.replace('assets/images/', 'steamtemp/'));
-  } else if (input.includes('site_bundle/assets/images/')) {
-    converted.push(input.replace('site_bundle/assets/images/', 'assets/images/'));
-    converted.push(input.replace('site_bundle/assets/images/', 'steamtemp/'));
-  } else if (input.includes('steamtemp/')) {
-    converted.push(input.replace('steamtemp/', 'assets/images/'));
-    converted.push(input.replace('steamtemp/', 'site_bundle/assets/images/'));
-  }
-
-  return uniqueList([
-    input,
-    input.replace(/^\.\//, ''),
-    ...converted,
-    ...IMAGE_FALLBACK_BASES.map(base => `${base}${name}`)
-  ]);
-}
-
-function makeAudioCandidates(path) {
-  const input = String(path || '').trim();
-  if (!input) return [];
-  if (isDirectUrl(input)) return [input];
-
-  const name = fileNameOnly(input);
-  const converted = [];
-  if (input.includes('assets/music/')) {
-    converted.push(input.replace('assets/music/', 'site_bundle/assets/music/'));
-    converted.push(input.replace('assets/music/', 'steamtemp/music/'));
-  } else if (input.includes('site_bundle/assets/music/')) {
-    converted.push(input.replace('site_bundle/assets/music/', 'assets/music/'));
-    converted.push(input.replace('site_bundle/assets/music/', 'steamtemp/music/'));
-  } else if (input.includes('steamtemp/music/')) {
-    converted.push(input.replace('steamtemp/music/', 'assets/music/'));
-    converted.push(input.replace('steamtemp/music/', 'site_bundle/assets/music/'));
-  }
-
-  return uniqueList([
-    input,
-    input.replace(/^\.\//, ''),
-    ...converted,
-    ...AUDIO_FALLBACK_BASES.map(base => `${base}${name}`)
-  ]);
-}
-
-function applyResolvedSource(el, candidates) {
-  if (!el || !candidates.length) return;
-  let index = 0;
-  const tried = [];
-  const tryNext = () => {
-    if (index >= candidates.length) {
-      console.warn(`Asset not found for #${el.id || el.tagName.toLowerCase()}`, tried);
-      return;
-    }
-    const next = candidates[index++];
-    tried.push(next);
-    el.src = next;
-  };
-  el.onerror = tryNext;
-  tryNext();
-}
-
-function applyResolvedAudio(el, candidates) {
-  if (!el || !candidates.length) return;
-  let index = 0;
-  const tried = [];
-  const tryNext = () => {
-    if (index >= candidates.length) {
-      console.warn('Audio asset not found', tried);
-      return;
-    }
-    const next = candidates[index++];
-    tried.push(next);
-    el.src = next;
-    el.load();
-  };
-  el.onerror = tryNext;
-  tryNext();
-}
-
+const IMAGE_FALLBACK_MAP = {
+  heroLogo: ['logo.png', 'capsule_small.png', 'bg.png'],
+  navLogo: ['logo.png', 'capsule_small.png', 'bg.png'],
+  footerLogo: ['library_header.png', 'capsule_header.png', 'capsule_main.png'],
+  heroHeader: ['library_hero.png', 'library_header.png', 'page_background.png'],
+  mediaMain: ['SCREENSHOT.png', 'screenshot2.png', 'matrixos_window.png'],
+  mediaAlt1: ['screenshot2.png', 'SCREENSHOT.png', 'matrixos_window.png'],
+  mediaAlt2: ['matrixos_window.png', 'capsule_main.png', 'library_capsule.png'],
+  mediaAlt3: ['c1.png', 'library_capsule.png', 'capsule_vertical.png'],
+  mediaAlt4: ['c2.png', 'capsule_vertical.png', 'capsule_main.png']
+};
 
 function loadConfig() {
   try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return structuredClone(defaultConfig);
-    return deepMerge(structuredClone(defaultConfig), JSON.parse(stored));
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return structuredClone(defaultConfig);
+    return deepMerge(structuredClone(defaultConfig), JSON.parse(raw));
   } catch {
     return structuredClone(defaultConfig);
   }
@@ -243,220 +142,283 @@ function saveConfig() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
 }
 
-function setRootTheme() {
+function $(id) {
+  return document.getElementById(id);
+}
+
+function safeSetText(id, value) {
+  const el = $(id);
+  if (el && value != null) el.textContent = value;
+}
+
+function setThemeVars() {
   document.documentElement.style.setProperty('--accent', config.theme.accent);
-  document.documentElement.style.setProperty('--accent-bright', lighten(config.theme.accent, 26));
+  document.documentElement.style.setProperty('--accent-bright', alterHex(config.theme.accent, 38));
   document.documentElement.style.setProperty('--bg-0', config.theme.bg);
-  document.documentElement.style.setProperty('--bg-1', darken(config.theme.bg, 10));
+  document.documentElement.style.setProperty('--bg-1', alterHex(config.theme.bg, -8));
   document.documentElement.style.setProperty('--bg-2', config.theme.panel);
   document.documentElement.style.setProperty('--panel-rgb', hexToRgb(config.theme.panel));
 }
 
 function hexToRgb(hex) {
-  const cleaned = hex.replace('#', '');
-  const bigint = parseInt(cleaned, 16);
-  const r = (bigint >> 16) & 255;
-  const g = (bigint >> 8) & 255;
-  const b = bigint & 255;
-  return `${r}, ${g}, ${b}`;
-}
-
-function lighten(hex, amount) {
-  return alterHex(hex, amount);
-}
-
-function darken(hex, amount) {
-  return alterHex(hex, -amount);
+  const v = (hex || '#000000').replace('#', '');
+  const n = parseInt(v, 16);
+  return `${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}`;
 }
 
 function alterHex(hex, amt) {
-  const clean = hex.replace('#', '');
+  const clean = (hex || '#000000').replace('#', '');
   const num = parseInt(clean, 16);
-  let r = Math.min(255, Math.max(0, (num >> 16) + amt));
-  let g = Math.min(255, Math.max(0, ((num >> 8) & 0x00ff) + amt));
-  let b = Math.min(255, Math.max(0, (num & 0x0000ff) + amt));
+  const r = Math.min(255, Math.max(0, (num >> 16) + amt));
+  const g = Math.min(255, Math.max(0, ((num >> 8) & 255) + amt));
+  const b = Math.min(255, Math.max(0, (num & 255) + amt));
   return `#${[r, g, b].map(v => v.toString(16).padStart(2, '0')).join('')}`;
 }
 
-function renderList(targetId, items, formatter) {
-  const node = document.getElementById(targetId);
-  node.innerHTML = '';
-  items.forEach((item) => node.appendChild(formatter(item)));
-}
-
-function makeFeatureCard(item) {
-  const div = document.createElement('article');
-  div.className = 'feature-box';
-  div.innerHTML = `<h3>${escapeHtml(item.title)}</h3><p class="feature-body">${escapeHtml(item.body)}</p>`;
-  return div;
-}
-
-function makeTag(item) {
-  const span = document.createElement('span');
-  span.textContent = item;
-  return span;
-}
-
-function makeRoadmapItem(item) {
-  const li = document.createElement('li');
-  li.textContent = item;
-  return li;
-}
-
-
-function extractYouTubeId(input) {
-  const value = String(input || '').trim();
-  if (!value) return '';
-  if (/^[A-Za-z0-9_-]{11}$/.test(value)) return value;
-  const patterns = [
-    /youtu\.be\/([A-Za-z0-9_-]{11})/i,
-    /[?&]v=([A-Za-z0-9_-]{11})/i,
-    /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/i,
-    /youtube\.com\/shorts\/([A-Za-z0-9_-]{11})/i
-  ];
-  for (const pattern of patterns) {
-    const match = value.match(pattern);
-    if (match) return match[1];
-  }
-  return '';
-}
-
-function toYouTubeEmbedUrl(input) {
-  const id = extractYouTubeId(input);
-  return id ? `https://www.youtube.com/embed/${id}?rel=0` : '';
-}
-
-function applyText() {
+function applyEditableText() {
   document.querySelectorAll('.editable[data-key]').forEach((el) => {
     const key = el.dataset.key;
     if (config[key] != null) el.innerText = config[key];
   });
 }
 
+function renderList(targetId, items, factory) {
+  const node = $(targetId);
+  if (!node) return;
+  node.innerHTML = '';
+  items.forEach(item => node.appendChild(factory(item)));
+}
+
+function makeTag(text) {
+  const span = document.createElement('span');
+  span.textContent = text;
+  return span;
+}
+
+function makeCard(item) {
+  const article = document.createElement('article');
+  article.className = 'feature-box';
+  article.innerHTML = `<h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.body)}</p>`;
+  return article;
+}
+
+function makeBullet(text) {
+  const li = document.createElement('li');
+  li.textContent = text;
+  return li;
+}
+
 function applyLinks() {
-  const primary = document.getElementById('primaryCta');
-  const secondary = document.getElementById('secondaryCta');
-  const trailerLink = document.getElementById('trailerLink');
-  const trailerEmbed = document.getElementById('trailerEmbed');
-  primary.textContent = config.links.primaryText;
-  primary.href = config.links.primaryHref;
-  secondary.textContent = config.links.secondaryText;
-  secondary.href = config.links.secondaryHref;
-  if (trailerLink) {
-    trailerLink.textContent = config.links.trailerText || 'Watch on YouTube';
-    trailerLink.href = config.links.trailerHref || 'https://www.youtube.com/watch?v=d78EOS1a1-8';
+  const primary = $('primaryCta');
+  const secondary = $('secondaryCta');
+  const trailer = $('trailerLink');
+  const lore = $('loreLink');
+  if (primary) {
+    primary.textContent = config.links.primaryText;
+    primary.href = config.links.primaryHref;
   }
-  if (trailerEmbed) {
-    trailerEmbed.src = toYouTubeEmbedUrl(config.links.trailerHref) || 'https://www.youtube.com/embed/d78EOS1a1-8?rel=0';
+  if (secondary) {
+    secondary.textContent = config.links.secondaryText;
+    secondary.href = config.links.secondaryHref;
   }
+  if (trailer) {
+    trailer.textContent = config.links.trailerText;
+    trailer.href = config.links.trailerHref;
+  }
+  if (lore) {
+    lore.textContent = config.links.loreText;
+    lore.href = config.links.loreHref;
+  }
+  const iframe = $('trailerEmbed');
+  if (iframe) iframe.src = toYouTubeEmbedUrl(config.links.trailerHref) || 'https://www.youtube.com/embed/d78EOS1a1-8?rel=0';
+}
+
+function fileNameOnly(path) {
+  return String(path || '').split('/').pop();
+}
+
+function isAbsolutePath(path) {
+  return /^(https?:|data:|blob:|\/)/i.test(String(path || '').trim());
+}
+
+function withVersion(url) {
+  const version = String(config.assetVersion || '').trim();
+  if (!version || isAbsolutePath(url) || url.includes('data:')) return url;
+  return url.includes('?') ? `${url}&v=${encodeURIComponent(version)}` : `${url}?v=${encodeURIComponent(version)}`;
+}
+
+function makeImageCandidates(path, slot) {
+  const input = String(path || '').trim();
+  const names = IMAGE_FALLBACK_MAP[slot] || [];
+  const pickedName = fileNameOnly(input);
+  const set = new Set();
+
+  const add = (value) => {
+    if (!value) return;
+    set.add(withVersion(value));
+  };
+
+  if (input) {
+    add(input.replace(/^\.\//, ''));
+    if (!isAbsolutePath(input)) {
+      add(`assets/images/${pickedName}`);
+      add(`./assets/images/${pickedName}`);
+      add(`site_bundle/assets/images/${pickedName}`);
+      add(`steamtemp/${pickedName}`);
+    }
+  }
+
+  names.forEach((name) => {
+    add(`assets/images/${name}`);
+    add(`./assets/images/${name}`);
+    add(`site_bundle/assets/images/${name}`);
+    add(`steamtemp/${name}`);
+  });
+
+  return [...set];
+}
+
+function applyResolvedSource(el, candidates) {
+  if (!el || !candidates.length) return;
+  let index = 0;
+  const tryNext = () => {
+    if (index >= candidates.length) return;
+    el.src = candidates[index++];
+  };
+  el.onerror = tryNext;
+  tryNext();
 }
 
 function applyImages() {
-  applyResolvedSource(document.getElementById('heroLogo'), makeImageCandidates(config.images.heroLogo));
-  applyResolvedSource(document.getElementById('heroHeaderImage'), makeImageCandidates(config.images.heroHeader));
-  applyResolvedSource(document.getElementById('navLogo'), makeImageCandidates(config.images.navLogo));
-  applyResolvedSource(document.getElementById('footerLogo'), makeImageCandidates(config.images.footerLogo));
-  applyResolvedSource(document.getElementById('mediaMain'), makeImageCandidates(config.images.mediaMain));
-  applyResolvedSource(document.getElementById('mediaAlt1'), makeImageCandidates(config.images.mediaAlt1));
-  applyResolvedSource(document.getElementById('mediaAlt2'), makeImageCandidates(config.images.mediaAlt2));
-  applyResolvedSource(document.getElementById('mediaAlt3'), makeImageCandidates(config.images.mediaAlt3));
-  applyResolvedSource(document.getElementById('mediaAlt4'), makeImageCandidates(config.images.mediaAlt4));
+  applyResolvedSource($('heroLogo'), makeImageCandidates(config.images.heroLogo, 'heroLogo'));
+  applyResolvedSource($('heroHeaderImage'), makeImageCandidates(config.images.heroHeader, 'heroHeader'));
+  applyResolvedSource($('navLogo'), makeImageCandidates(config.images.navLogo, 'navLogo'));
+  applyResolvedSource($('footerLogo'), makeImageCandidates(config.images.footerLogo, 'footerLogo'));
+  applyResolvedSource($('mediaMain'), makeImageCandidates(config.images.mediaMain, 'mediaMain'));
+  applyResolvedSource($('mediaAlt1'), makeImageCandidates(config.images.mediaAlt1, 'mediaAlt1'));
+  applyResolvedSource($('mediaAlt2'), makeImageCandidates(config.images.mediaAlt2, 'mediaAlt2'));
+  applyResolvedSource($('mediaAlt3'), makeImageCandidates(config.images.mediaAlt3, 'mediaAlt3'));
+  applyResolvedSource($('mediaAlt4'), makeImageCandidates(config.images.mediaAlt4, 'mediaAlt4'));
 }
 
 function applyConfig() {
-  setRootTheme();
-  applyText();
+  setThemeVars();
+  applyEditableText();
   applyLinks();
   applyImages();
   renderList('heroTags', config.heroTags, makeTag);
   renderList('metaTags', config.metaTags, makeTag);
-  renderList('featuresGrid', config.features, makeFeatureCard);
-  renderList('roadmapList', config.roadmap, makeRoadmapItem);
-  renderList('communityGrid', config.community, makeFeatureCard);
+  renderList('featuresGrid', config.features, makeCard);
+  renderList('roadmapList', config.roadmap, makeBullet);
+  renderList('communityGrid', config.community, makeCard);
   syncAdminInputs();
 }
 
 function syncAdminInputs() {
-  const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
-  setVal('accentColor', config.theme.accent);
-  setVal('bgColor', config.theme.bg);
-  setVal('panelColor', config.theme.panel);
-  setVal('primaryCtaText', config.links.primaryText);
-  setVal('primaryCtaLink', config.links.primaryHref);
-  setVal('secondaryCtaText', config.links.secondaryText);
-  setVal('secondaryCtaLink', config.links.secondaryHref);
-  setVal('trailerUrlInput', config.links.trailerHref);
-  setVal('trailerLinkTextInput', config.links.trailerText || 'Watch on YouTube');
-  setVal('heroLogoInput', config.images.heroLogo);
-  setVal('heroHeaderInput', config.images.heroHeader);
-  setVal('navLogoInput', config.images.navLogo);
-  setVal('footerLogoInput', config.images.footerLogo);
-  setVal('heroTagsInput', config.heroTags.join('\n'));
-  setVal('metaTagsInput', config.metaTags.join('\n'));
-  setVal('featuresInput', config.features.map(f => `${f.title} | ${f.body}`).join('\n'));
-  setVal('roadmapInput', config.roadmap.join('\n'));
-  setVal('communityInput', config.community.map(c => `${c.title} | ${c.body}`).join('\n'));
-  setVal('mediaMainInput', config.images.mediaMain);
-  setVal('mediaAlt1Input', config.images.mediaAlt1);
-  setVal('mediaAlt2Input', config.images.mediaAlt2);
-  setVal('mediaAlt3Input', config.images.mediaAlt3);
-  setVal('mediaAlt4Input', config.images.mediaAlt4);
+  const set = (id, value) => { if ($(id)) $(id).value = value; };
+  set('accentColor', config.theme.accent);
+  set('bgColor', config.theme.bg);
+  set('panelColor', config.theme.panel);
+  set('assetVersionInput', config.assetVersion || '');
+  set('primaryCtaText', config.links.primaryText);
+  set('primaryCtaLink', config.links.primaryHref);
+  set('secondaryCtaText', config.links.secondaryText);
+  set('secondaryCtaLink', config.links.secondaryHref);
+  set('trailerUrlInput', config.links.trailerHref);
+  set('trailerLinkTextInput', config.links.trailerText);
+  set('loreLinkTextInput', config.links.loreText);
+  set('loreLinkInput', config.links.loreHref);
+  set('heroLogoInput', config.images.heroLogo);
+  set('heroHeaderInput', config.images.heroHeader);
+  set('navLogoInput', config.images.navLogo);
+  set('footerLogoInput', config.images.footerLogo);
+  set('mediaMainInput', config.images.mediaMain);
+  set('mediaAlt1Input', config.images.mediaAlt1);
+  set('mediaAlt2Input', config.images.mediaAlt2);
+  set('mediaAlt3Input', config.images.mediaAlt3);
+  set('mediaAlt4Input', config.images.mediaAlt4);
+  set('heroTagsInput', config.heroTags.join('\n'));
+  set('metaTagsInput', config.metaTags.join('\n'));
+  set('featuresInput', config.features.map(item => `${item.title} | ${item.body}`).join('\n'));
+  set('roadmapInput', config.roadmap.join('\n'));
+  set('communityInput', config.community.map(item => `${item.title} | ${item.body}`).join('\n'));
 }
 
-function readEditableTextFromPage() {
+function readEditableText() {
   document.querySelectorAll('.editable[data-key]').forEach((el) => {
-    const key = el.dataset.key;
-    config[key] = el.innerText.trim();
+    config[el.dataset.key] = el.innerText.trim();
   });
 }
 
-function parseLineItems(text) {
-  return text.split('\n').map(v => v.trim()).filter(Boolean);
+function parseLines(text) {
+  return String(text || '').split('\n').map(v => v.trim()).filter(Boolean);
 }
 
-function parseCardLines(text) {
-  return parseLineItems(text).map((line) => {
+function parseCards(text) {
+  return parseLines(text).map((line) => {
     const [title, ...rest] = line.split('|');
     return { title: (title || '').trim(), body: rest.join('|').trim() };
   }).filter(item => item.title && item.body);
 }
 
 function pullAdminValues() {
-  readEditableTextFromPage();
-  config.theme.accent = document.getElementById('accentColor').value;
-  config.theme.bg = document.getElementById('bgColor').value;
-  config.theme.panel = document.getElementById('panelColor').value;
-  config.links.primaryText = document.getElementById('primaryCtaText').value.trim() || defaultConfig.links.primaryText;
-  config.links.primaryHref = document.getElementById('primaryCtaLink').value.trim() || defaultConfig.links.primaryHref;
-  config.links.secondaryText = document.getElementById('secondaryCtaText').value.trim() || defaultConfig.links.secondaryText;
-  config.links.secondaryHref = document.getElementById('secondaryCtaLink').value.trim() || defaultConfig.links.secondaryHref;
-  config.links.trailerHref = document.getElementById('trailerUrlInput').value.trim() || defaultConfig.links.trailerHref;
-  config.links.trailerText = document.getElementById('trailerLinkTextInput').value.trim() || defaultConfig.links.trailerText;
-  config.images.heroLogo = document.getElementById('heroLogoInput').value.trim() || defaultConfig.images.heroLogo;
-  config.images.heroHeader = document.getElementById('heroHeaderInput').value.trim() || defaultConfig.images.heroHeader;
-  config.images.navLogo = document.getElementById('navLogoInput').value.trim() || defaultConfig.images.navLogo;
-  config.images.footerLogo = document.getElementById('footerLogoInput').value.trim() || defaultConfig.images.footerLogo;
-  config.heroTags = parseLineItems(document.getElementById('heroTagsInput').value);
-  config.metaTags = parseLineItems(document.getElementById('metaTagsInput').value);
-  config.features = parseCardLines(document.getElementById('featuresInput').value);
-  config.roadmap = parseLineItems(document.getElementById('roadmapInput').value);
-  config.community = parseCardLines(document.getElementById('communityInput').value);
-  config.images.mediaMain = document.getElementById('mediaMainInput').value.trim() || defaultConfig.images.mediaMain;
-  config.images.mediaAlt1 = document.getElementById('mediaAlt1Input').value.trim() || defaultConfig.images.mediaAlt1;
-  config.images.mediaAlt2 = document.getElementById('mediaAlt2Input').value.trim() || defaultConfig.images.mediaAlt2;
-  config.images.mediaAlt3 = document.getElementById('mediaAlt3Input').value.trim() || defaultConfig.images.mediaAlt3;
-  config.images.mediaAlt4 = document.getElementById('mediaAlt4Input').value.trim() || defaultConfig.images.mediaAlt4;
+  readEditableText();
+  config.theme.accent = $('accentColor')?.value || defaultConfig.theme.accent;
+  config.theme.bg = $('bgColor')?.value || defaultConfig.theme.bg;
+  config.theme.panel = $('panelColor')?.value || defaultConfig.theme.panel;
+  config.assetVersion = $('assetVersionInput')?.value.trim() || defaultConfig.assetVersion;
+  config.links.primaryText = $('primaryCtaText')?.value.trim() || defaultConfig.links.primaryText;
+  config.links.primaryHref = $('primaryCtaLink')?.value.trim() || defaultConfig.links.primaryHref;
+  config.links.secondaryText = $('secondaryCtaText')?.value.trim() || defaultConfig.links.secondaryText;
+  config.links.secondaryHref = $('secondaryCtaLink')?.value.trim() || defaultConfig.links.secondaryHref;
+  config.links.trailerHref = $('trailerUrlInput')?.value.trim() || defaultConfig.links.trailerHref;
+  config.links.trailerText = $('trailerLinkTextInput')?.value.trim() || defaultConfig.links.trailerText;
+  config.links.loreText = $('loreLinkTextInput')?.value.trim() || defaultConfig.links.loreText;
+  config.links.loreHref = $('loreLinkInput')?.value.trim() || defaultConfig.links.loreHref;
+  config.images.heroLogo = $('heroLogoInput')?.value.trim() || defaultConfig.images.heroLogo;
+  config.images.heroHeader = $('heroHeaderInput')?.value.trim() || defaultConfig.images.heroHeader;
+  config.images.navLogo = $('navLogoInput')?.value.trim() || defaultConfig.images.navLogo;
+  config.images.footerLogo = $('footerLogoInput')?.value.trim() || defaultConfig.images.footerLogo;
+  config.images.mediaMain = $('mediaMainInput')?.value.trim() || defaultConfig.images.mediaMain;
+  config.images.mediaAlt1 = $('mediaAlt1Input')?.value.trim() || defaultConfig.images.mediaAlt1;
+  config.images.mediaAlt2 = $('mediaAlt2Input')?.value.trim() || defaultConfig.images.mediaAlt2;
+  config.images.mediaAlt3 = $('mediaAlt3Input')?.value.trim() || defaultConfig.images.mediaAlt3;
+  config.images.mediaAlt4 = $('mediaAlt4Input')?.value.trim() || defaultConfig.images.mediaAlt4;
+  config.heroTags = parseLines($('heroTagsInput')?.value);
+  config.metaTags = parseLines($('metaTagsInput')?.value);
+  config.features = parseCards($('featuresInput')?.value);
+  config.roadmap = parseLines($('roadmapInput')?.value);
+  config.community = parseCards($('communityInput')?.value);
 }
 
-function toggleAdmin(force = null) {
-  adminOpen = force == null ? !adminOpen : force;
-  const panel = document.getElementById('adminPanel');
+function setAdminEditableState(enabled) {
+  document.querySelectorAll('.editable').forEach((el) => {
+    el.contentEditable = enabled ? 'true' : 'false';
+    el.classList.toggle('admin-editing', enabled);
+  });
+}
+
+function ensureUnlocked() {
+  if (!ADMIN_PIN) return true;
+  if (sessionStorage.getItem(SESSION_KEY) === '1') return true;
+  const typed = prompt('Enter admin PIN');
+  if (typed === ADMIN_PIN) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    return true;
+  }
+  alert('Admin PIN incorrect.');
+  return false;
+}
+
+function toggleAdmin(force) {
+  const desired = force == null ? !adminOpen : !!force;
+  if (desired && !ensureUnlocked()) return;
+  adminOpen = desired;
+  const panel = $('adminPanel');
+  if (!panel) return;
   panel.classList.toggle('open', adminOpen);
   panel.setAttribute('aria-hidden', String(!adminOpen));
-  document.querySelectorAll('.editable').forEach((el) => {
-    el.contentEditable = adminOpen ? 'true' : 'false';
-    el.classList.toggle('admin-editing', adminOpen);
-  });
+  setAdminEditableState(adminOpen);
 }
 
 function exportJson() {
@@ -473,11 +435,10 @@ function importJson(file) {
   const reader = new FileReader();
   reader.onload = () => {
     try {
-      const parsed = JSON.parse(reader.result);
-      config = deepMerge(structuredClone(defaultConfig), parsed);
+      config = deepMerge(structuredClone(defaultConfig), JSON.parse(reader.result));
       saveConfig();
       applyConfig();
-    } catch (err) {
+    } catch {
       alert('Invalid JSON file.');
     }
   };
@@ -485,7 +446,7 @@ function importJson(file) {
 }
 
 function bindFileInput(id, onLoad) {
-  const input = document.getElementById(id);
+  const input = $(id);
   if (!input) return;
   input.addEventListener('change', (event) => {
     const file = event.target.files?.[0];
@@ -509,33 +470,78 @@ function escapeHtml(str) {
     .replaceAll("'", '&#039;');
 }
 
+function extractYouTubeId(input) {
+  const value = String(input || '').trim();
+  if (!value) return '';
+  if (/^[A-Za-z0-9_-]{11}$/.test(value)) return value;
+  const patterns = [
+    /youtu\.be\/([A-Za-z0-9_-]{11})/i,
+    /[?&]v=([A-Za-z0-9_-]{11})/i,
+    /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/i,
+    /youtube\.com\/shorts\/([A-Za-z0-9_-]{11})/i
+  ];
+  for (const pattern of patterns) {
+    const match = value.match(pattern);
+    if (match) return match[1];
+  }
+  return '';
+}
+
+function toYouTubeEmbedUrl(input) {
+  const id = extractYouTubeId(input);
+  return id ? `https://www.youtube.com/embed/${id}?rel=0` : '';
+}
+
 function setupAdmin() {
-  document.getElementById('adminToggle').addEventListener('click', () => toggleAdmin());
-  document.getElementById('closeAdmin').addEventListener('click', () => toggleAdmin(false));
-  document.getElementById('saveAdmin').addEventListener('click', () => {
+  $('adminToggle')?.addEventListener('click', () => toggleAdmin());
+  $('closeAdmin')?.addEventListener('click', () => toggleAdmin(false));
+  $('saveAdmin')?.addEventListener('click', () => {
     pullAdminValues();
     saveConfig();
     applyConfig();
   });
-  document.getElementById('resetAdmin').addEventListener('click', () => {
+  $('resetAdmin')?.addEventListener('click', () => {
     if (!confirm('Reset the page to default content?')) return;
     config = structuredClone(defaultConfig);
     saveConfig();
     applyConfig();
   });
-  document.getElementById('exportAdmin').addEventListener('click', exportJson);
-  document.getElementById('importAdmin').addEventListener('change', (e) => {
-    const file = e.target.files?.[0];
+  $('exportAdmin')?.addEventListener('click', exportJson);
+  $('importAdmin')?.addEventListener('change', (event) => {
+    const file = event.target.files?.[0];
     if (file) importJson(file);
   });
 
-  bindFileInput('uploadHeroLogo', (data) => { config.images.heroLogo = data; config.images.navLogo = data; document.getElementById('heroLogoInput').value = data; document.getElementById('navLogoInput').value = data; });
-  bindFileInput('uploadHeroHeader', (data) => { config.images.heroHeader = data; document.getElementById('heroHeaderInput').value = data; });
-  bindFileInput('uploadMediaMain', (data) => { config.images.mediaMain = data; document.getElementById('mediaMainInput').value = data; });
-  bindFileInput('uploadMediaAlt1', (data) => { config.images.mediaAlt1 = data; document.getElementById('mediaAlt1Input').value = data; });
-  bindFileInput('uploadMediaAlt2', (data) => { config.images.mediaAlt2 = data; document.getElementById('mediaAlt2Input').value = data; });
-  bindFileInput('uploadMediaAlt3', (data) => { config.images.mediaAlt3 = data; document.getElementById('mediaAlt3Input').value = data; });
-  bindFileInput('uploadMediaAlt4', (data) => { config.images.mediaAlt4 = data; document.getElementById('mediaAlt4Input').value = data; });
+  bindFileInput('uploadHeroLogo', (data) => {
+    config.images.heroLogo = data;
+    config.images.navLogo = data;
+    if ($('heroLogoInput')) $('heroLogoInput').value = data;
+    if ($('navLogoInput')) $('navLogoInput').value = data;
+  });
+  bindFileInput('uploadHeroHeader', (data) => {
+    config.images.heroHeader = data;
+    if ($('heroHeaderInput')) $('heroHeaderInput').value = data;
+  });
+  bindFileInput('uploadMediaMain', (data) => {
+    config.images.mediaMain = data;
+    if ($('mediaMainInput')) $('mediaMainInput').value = data;
+  });
+  bindFileInput('uploadMediaAlt1', (data) => {
+    config.images.mediaAlt1 = data;
+    if ($('mediaAlt1Input')) $('mediaAlt1Input').value = data;
+  });
+  bindFileInput('uploadMediaAlt2', (data) => {
+    config.images.mediaAlt2 = data;
+    if ($('mediaAlt2Input')) $('mediaAlt2Input').value = data;
+  });
+  bindFileInput('uploadMediaAlt3', (data) => {
+    config.images.mediaAlt3 = data;
+    if ($('mediaAlt3Input')) $('mediaAlt3Input').value = data;
+  });
+  bindFileInput('uploadMediaAlt4', (data) => {
+    config.images.mediaAlt4 = data;
+    if ($('mediaAlt4Input')) $('mediaAlt4Input').value = data;
+  });
 
   document.addEventListener('keydown', (event) => {
     if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'a') {

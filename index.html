@@ -4,48 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Matrix OS: Arcade Evolution</title>
-  <meta name="description" content="Matrix OS: Arcade Evolution — virtual desktop, arcade hub, creator sandbox, and evolving tool ecosystem." />
+  <meta name="description" content="Matrix OS: Arcade Evolution — an evolving immersive platform for testers, modders, content creators, publishers, and gamers." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="page-backdrop"></div>
-  <div class="grid-overlay"></div>
-  <div class="noise-overlay"></div>
-  <div class="scanlines"></div>
+  <div class="page-grid"></div>
+  <div class="page-noise"></div>
+  <div class="cityline"></div>
 
-  <header class="topbar shell">
-    <div class="brand-block">
-      <span class="micro overline editable" data-key="microLabel">GLITCHED MATRIX</span>
-      <a class="brand-link" href="#top">
-        <img id="navLogo" class="nav-logo" src="assets/images/logo.png" alt="Matrix OS logo" />
-      </a>
-    </div>
+  <header class="shell topbar">
+    <a class="brand-link" href="#top" aria-label="Matrix OS home">
+      <img id="navLogo" class="nav-logo" src="assets/images/logo.png" alt="Matrix OS logo" />
+    </a>
     <nav class="nav">
       <a href="#about">About</a>
-      <a href="#features">Features</a>
-      <a href="#roadmap">Roadmap</a>
+      <a href="#current">Current Focus</a>
+      <a href="#vision">Vision</a>
       <a href="#media">Media</a>
-      <a href="#community">Community</a>
+      <a href="#lore">Lore</a>
     </nav>
-    <button id="adminToggle" class="admin-toggle" type="button" aria-label="Open admin panel">Admin</button>
+    <button id="adminToggle" class="admin-toggle" type="button">Admin</button>
   </header>
 
   <main id="top" class="shell main-shell">
     <section class="hero panel">
-      <div class="hero-visual">
-        <img id="heroHeaderImage" class="hero-header-art" src="assets/images/library_hero.png" alt="Matrix OS header art" />
-        <div class="hero-gradient"></div>
+      <div class="hero-art-wrap">
+        <img id="heroHeaderImage" class="hero-art" src="assets/images/library_hero.png" alt="Matrix OS header art" />
+        <div class="hero-overlay"></div>
       </div>
 
       <div class="hero-copy">
-        <div class="hero-wordmark-wrap">
-          <img id="heroLogo" class="hero-logo" src="assets/images/logo.png" alt="Matrix OS Arcade Evolution wordmark" />
+        <div class="hero-logo-row">
+          <img id="heroLogo" class="hero-logo" src="assets/images/logo.png" alt="Matrix OS Arcade Evolution logo" />
         </div>
-        <div class="eyebrow editable" data-key="heroEyebrow">Arcade Hub • Virtual Desktop • Creator Sandbox</div>
+        <p class="eyebrow editable" data-key="heroEyebrow">Arcade Hub • Virtual Desktop • Creator Sandbox</p>
         <h1 class="editable" data-key="heroTitle">Matrix OS: Arcade Evolution</h1>
-        <p class="lead editable" data-key="heroLead">
-          A dark operating surface for playable prototypes, creator tools, modular apps, and an expanding arcade ecosystem.
-        </p>
+        <p class="lead editable" data-key="heroLead">A dark operating surface for playable prototypes, creator tools, modular apps, and an expanding arcade ecosystem.</p>
         <div class="cta-row">
           <a id="primaryCta" class="btn btn-primary" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">View on Steam</a>
           <a id="secondaryCta" class="btn btn-secondary" href="#about">Explore Project</a>
@@ -64,59 +59,55 @@
         <strong class="stat-value editable" data-key="stat2Value">50+ Games & Apps</strong>
       </article>
       <article class="panel stat-card">
-        <span class="stat-label editable" data-key="stat3Label">Core Identity</span>
-        <strong class="stat-value editable" data-key="stat3Value">Creator Desktop + Arcade</strong>
+        <span class="stat-label editable" data-key="stat3Label">Working On Now</span>
+        <strong class="stat-value editable" data-key="stat3Value">VR Support + Platform Polish</strong>
       </article>
       <article class="panel stat-card">
-        <span class="stat-label editable" data-key="stat4Label">Focus</span>
-        <strong class="stat-value editable" data-key="stat4Value">Tools, Workflows, Modularity</strong>
+        <span class="stat-label editable" data-key="stat4Label">Ultimate Goal</span>
+        <strong class="stat-value editable" data-key="stat4Value">Immersive Platform For Creators And Players</strong>
       </article>
     </section>
 
     <section id="about" class="split-grid">
       <article class="panel content-card">
-        <span class="section-label editable" data-key="aboutLabel">About This Project</span>
-        <h2 class="editable" data-key="aboutTitle">More than a game page</h2>
-        <p class="editable" data-key="aboutBody1">
-          Matrix OS is positioned as a virtual desktop environment where games, tools, experiments, and creator workflows live inside one system-like world.
-        </p>
-        <p class="editable" data-key="aboutBody2">
-          The site mirrors that identity with a dark control-surface look, teal neon accents, industrial silhouettes, and a media-first layout inspired by your Steam presentation.
-        </p>
+        <span class="section-label editable" data-key="aboutLabel">About Matrix OS</span>
+        <h2 class="editable" data-key="aboutTitle">A site for the evolving platform, not just one page</h2>
+        <p class="editable" data-key="aboutBody1">Matrix OS is positioned as a virtual desktop environment where games, tools, experiments, and creator workflows live inside one system-like world.</p>
+        <p class="editable" data-key="aboutBody2">The long-term direction is bigger than a single release: an immersive platform for testers, modders, content creators of all types, publishers, and gamers to explore, build, evaluate, and share work.</p>
       </article>
-      <aside class="panel content-card tone-card">
-        <span class="section-label editable" data-key="fictionLabel">Project Fiction</span>
+      <aside id="lore" class="panel content-card lore-card">
+        <span class="section-label editable" data-key="fictionLabel">Lore</span>
         <h2 class="editable" data-key="fictionTitle">Rebuild the archive</h2>
-        <p class="editable" data-key="fictionBody1">
-          The world framing should preserve the sense of a damaged hub, preserved systems, and a surviving archive trying to keep projects alive.
-        </p>
-        <p class="editable" data-key="fictionBody2">
-          That gives the brand a stronger identity than a generic storefront and helps future services feel like part of the same platform.
-        </p>
+        <p class="editable" data-key="fictionBody1">The fiction should preserve the sense of a damaged hub, surviving systems, and an archive trying to keep projects alive after collapse.</p>
+        <p class="editable" data-key="fictionBody2">That gives the platform a stronger identity than a generic storefront and ties future tools and services back into the same world.</p>
+        <a id="loreLink" class="btn btn-secondary lore-link" href="https://www.amazon.fr/-/en/GLITCHED-MATRIX-ebook/dp/B0CW1NMCK9?dib=eyJ2IjoiMSJ9.ShEoM8fvlVyl0lBCimWn7g.391iz7J7Q4lB5VWhg76Ejhc_X0fP6_H75N4bnJ76Wns&dib_tag=se&qid=1774876478&refinements=p_27%3AGLITCHED+MATRIX&s=digital-text&sr=1-1&text=GLITCHED+MATRIX" target="_blank" rel="noopener noreferrer">Read More</a>
       </aside>
     </section>
 
-    <section id="features" class="panel content-card">
-      <span class="section-label editable" data-key="featuresLabel">Current Build</span>
-      <h2 class="editable" data-key="featuresTitle">What the Steam page is communicating</h2>
+    <section id="current" class="panel content-card">
+      <div class="section-top">
+        <div>
+          <span class="section-label editable" data-key="featuresLabel">Current Build</span>
+          <h2 class="editable" data-key="featuresTitle">What the platform is communicating right now</h2>
+        </div>
+        <div class="section-mini-card panel-inset">
+          <span class="section-mini-label editable" data-key="focusLabel">Current Focus</span>
+          <p class="editable" data-key="focusBody">VR support, platform stability, clearer workflows, stronger customization, and a more immersive presentation layer.</p>
+        </div>
+      </div>
       <div id="featuresGrid" class="feature-grid"></div>
     </section>
 
-    <section id="roadmap" class="split-grid split-grid-roadmap">
+    <section id="vision" class="split-grid split-grid-roadmap">
       <article class="panel content-card">
-        <span class="section-label editable" data-key="roadmapLabel">Toward 1.0</span>
-        <h2 class="editable" data-key="roadmapTitle">Planned expansion</h2>
+        <span class="section-label editable" data-key="roadmapLabel">Near-Term Roadmap</span>
+        <h2 class="editable" data-key="roadmapTitle">What is being pushed next</h2>
         <ul id="roadmapList" class="bullet-list"></ul>
       </article>
       <article class="panel content-card">
-        <span class="section-label editable" data-key="directionLabel">Development Direction</span>
-        <h2 class="editable" data-key="directionTitle">How the project should mature</h2>
-        <p class="editable" data-key="directionBody1">
-          Stability, UI readability, creator workflow, and performance should stay at the center of the presentation.
-        </p>
-        <p class="editable" data-key="directionBody2">
-          This page is structured so you can evolve it from a Steam-adjacent landing page into a broader site for future services and custom tools.
-        </p>
+        <span class="section-label editable" data-key="communityLabel">Ultimate Platform Vision</span>
+        <h2 class="editable" data-key="communityTitle">Who this is being built for</h2>
+        <div id="communityGrid" class="feature-grid community-grid"></div>
       </article>
     </section>
 
@@ -124,49 +115,50 @@
       <div class="media-head">
         <div>
           <span class="section-label editable" data-key="mediaLabel">Media</span>
-          <h2 class="editable" data-key="mediaTitle">Screenshots and brand visuals</h2>
+          <h2 class="editable" data-key="mediaTitle">Trailer, interface, and presentation materials</h2>
         </div>
-        <a id="trailerLink" class="btn btn-audio" href="https://www.youtube.com/watch?v=d78EOS1a1-8" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <a id="trailerLink" class="btn btn-secondary" href="https://youtu.be/d78EOS1a1-8?si=JSakLn7A1Jhj1Gm0" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
       </div>
-      <div class="media-grid">
-        <figure class="media-card media-main-card media-video-card">
+      <div class="media-grid media-grid-rich">
+        <figure class="media-card media-video-card media-span-2-row-2">
           <div class="video-shell">
             <iframe id="trailerEmbed" src="https://www.youtube.com/embed/d78EOS1a1-8?rel=0" title="Matrix OS Arcade Evolution trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
         </figure>
-        <figure class="media-card"><img id="mediaAlt1" src="assets/images/screenshot2.png" alt="Alternate Matrix OS screenshot" /></figure>
-        <figure class="media-card"><img id="mediaAlt2" src="assets/images/c1.png" alt="Arcade machine concept" /></figure>
-        <figure class="media-card"><img id="mediaAlt3" src="assets/images/c2.png" alt="Arcade machine concept variant" /></figure>
-        <figure class="media-card"><img id="mediaAlt4" src="assets/images/bg.png" alt="Matrix OS visual theme graphic" /></figure>
+        <figure class="media-card media-main-shot"><img id="mediaMain" src="assets/images/SCREENSHOT.png" alt="Matrix OS main screenshot" /></figure>
+        <figure class="media-card"><img id="mediaAlt1" src="assets/images/screenshot2.png" alt="Matrix OS screenshot 2" /></figure>
+        <figure class="media-card"><img id="mediaAlt2" src="assets/images/matrixos_window.png" alt="Matrix OS window art" /></figure>
+        <figure class="media-card"><img id="mediaAlt3" src="assets/images/c1.png" alt="Arcade cabinet concept" /></figure>
+        <figure class="media-card"><img id="mediaAlt4" src="assets/images/c2.png" alt="Arcade cabinet concept 2" /></figure>
       </div>
     </section>
 
-    <section class="panel content-card store-meta">
-      <span class="section-label editable" data-key="metaLabel">Modes, Tags, and Features</span>
-      <h2 class="editable" data-key="metaTitle">Store identity</h2>
-      <div id="metaTags" class="tag-cloud tag-cloud-secondary"></div>
-    </section>
-
-    <section id="community" class="panel content-card">
-      <span class="section-label editable" data-key="communityLabel">Community Direction</span>
-      <h2 class="editable" data-key="communityTitle">What feedback should shape</h2>
-      <div id="communityGrid" class="feature-grid community-grid"></div>
+    <section class="split-grid split-grid-roadmap lower-split">
+      <article class="panel content-card store-meta">
+        <span class="section-label editable" data-key="metaLabel">Modes, Tags, and Features</span>
+        <h2 class="editable" data-key="metaTitle">Store identity</h2>
+        <div id="metaTags" class="tag-cloud tag-cloud-secondary"></div>
+      </article>
+      <article class="panel content-card visual-card">
+        <span class="section-label editable" data-key="visualLabel">Visual Identity</span>
+        <h2 class="editable" data-key="visualTitle">Presentable, dark, and system-like</h2>
+        <p class="editable" data-key="visualBody">The site should feel like an industrial control surface with teal neon, matte black panels, restrained logo usage, and enough media to show the platform clearly without overwhelming the page.</p>
+        <img id="footerLogo" class="visual-footer-brand" src="assets/images/library_header.png" alt="Matrix OS header graphic" />
+      </article>
     </section>
   </main>
 
   <footer class="shell footer">
     <div class="footer-left">
-      <img id="footerLogo" class="footer-logo" src="assets/images/library_header.png" alt="Matrix OS footer logo" />
       <p class="footer-copy editable" data-key="footerCopy">© GLITCHED MATRIX — Matrix OS: Arcade Evolution</p>
     </div>
     <div class="footer-links">
       <a href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Steam</a>
       <a href="#media">Media</a>
-      <a href="#community">Community</a>
+      <a href="#lore">Lore</a>
     </div>
   </footer>
 
-  
   <aside id="adminPanel" class="admin-panel" aria-hidden="true">
     <div class="admin-header">
       <div>
@@ -176,10 +168,13 @@
       <button id="closeAdmin" class="admin-close" type="button">×</button>
     </div>
 
-    <div class="admin-section">
-      <label>Accent color <input id="accentColor" type="color" value="#67ba9a" /></label>
-      <label>Background color <input id="bgColor" type="color" value="#040505" /></label>
+    <div class="admin-section three-col">
+      <label>Accent color <input id="accentColor" type="color" value="#5ec6a0" /></label>
+      <label>Background color <input id="bgColor" type="color" value="#050706" /></label>
       <label>Panel tint <input id="panelColor" type="color" value="#101614" /></label>
+      <label>Asset version <input id="assetVersionInput" type="text" placeholder="20260330b" /></label>
+      <label>Lore link text <input id="loreLinkTextInput" type="text" /></label>
+      <label>Lore link URL <input id="loreLinkInput" type="text" /></label>
     </div>
 
     <div class="admin-section two-col">
@@ -195,7 +190,12 @@
       <label>Hero logo URL <input id="heroLogoInput" type="text" /></label>
       <label>Header art URL <input id="heroHeaderInput" type="text" /></label>
       <label>Nav logo URL <input id="navLogoInput" type="text" /></label>
-      <label>Footer logo URL <input id="footerLogoInput" type="text" /></label>
+      <label>Footer / brand strip URL <input id="footerLogoInput" type="text" /></label>
+      <label>Main screenshot URL <input id="mediaMainInput" type="text" /></label>
+      <label>Media image 2 URL <input id="mediaAlt1Input" type="text" /></label>
+      <label>Media image 3 URL <input id="mediaAlt2Input" type="text" /></label>
+      <label>Media image 4 URL <input id="mediaAlt3Input" type="text" /></label>
+      <label>Media image 5 URL <input id="mediaAlt4Input" type="text" /></label>
     </div>
 
     <div class="admin-section">
@@ -203,7 +203,7 @@
         <textarea id="heroTagsInput" rows="5"></textarea>
       </label>
       <label>Store tags (one per line)
-        <textarea id="metaTagsInput" rows="6"></textarea>
+        <textarea id="metaTagsInput" rows="7"></textarea>
       </label>
     </div>
 
@@ -212,19 +212,11 @@
         <textarea id="featuresInput" rows="8"></textarea>
       </label>
       <label>Roadmap bullets (one per line)
-        <textarea id="roadmapInput" rows="6"></textarea>
+        <textarea id="roadmapInput" rows="7"></textarea>
       </label>
-      <label>Community cards (Title | Body, one per line)
+      <label>Vision cards (Title | Body, one per line)
         <textarea id="communityInput" rows="8"></textarea>
       </label>
-    </div>
-
-    <div class="admin-section two-col">
-      <label>Main screenshot URL <input id="mediaMainInput" type="text" /></label>
-      <label>Media image 2 URL <input id="mediaAlt1Input" type="text" /></label>
-      <label>Media image 3 URL <input id="mediaAlt2Input" type="text" /></label>
-      <label>Media image 4 URL <input id="mediaAlt3Input" type="text" /></label>
-      <label>Media image 5 URL <input id="mediaAlt4Input" type="text" /></label>
     </div>
 
     <div class="admin-section two-col file-upload-grid">
@@ -246,9 +238,7 @@
       </label>
     </div>
 
-    <p class="admin-note">
-      Text blocks can also be edited directly on the page while admin mode is open. Changes save in this browser. Export JSON to keep a portable backup. GitHub-login-verified publishing is not possible from a pure static GitHub Pages site without a separate GitHub App or OAuth backend.
-    </p>
+    <p class="admin-note">Text blocks can also be edited directly on the page while admin mode is open. Changes save in this browser. GitHub-login-only editing is not possible on a pure static GitHub Pages site without a separate GitHub App or OAuth backend. This bundle uses local admin editing instead.</p>
   </aside>
 
   <script src="admin.js"></script>

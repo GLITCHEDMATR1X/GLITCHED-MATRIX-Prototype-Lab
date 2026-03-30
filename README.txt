@@ -1,20 +1,20 @@
-Site bundle for Matrix OS: Arcade Evolution
+Matrix OS Site Bundle — Updated
 
-Files included:
-- index.html
-- style.css
-- admin.js
-- assets/images/*
-- assets/music/Trailer.mp3
+What changed:
+- Uses the newer uploaded art and screenshots more aggressively.
+- Adds the YouTube trailer embed.
+- Adds VR support / immersive platform messaging.
+- Adds a Lore section with the requested Read More link.
+- Adds a more robust local admin editor.
+- Adds assetVersion cache-busting so replaced images appear sooner.
 
-Admin mode:
-- Click the Admin button, or use Ctrl+Shift+A
-- Changes save in this browser via localStorage
-- Export JSON to keep a backup or move settings to another browser/device
+Important:
+- This is still a static GitHub Pages site.
+- The admin editor is local to the browser via localStorage.
+- Pure GitHub Pages cannot securely restrict admin mode to “logged into GitHub only” without an external GitHub App or OAuth backend.
+- If you want a local admin prompt, set ADMIN_PIN in admin.js.
 
-GitHub Pages:
-- Upload all files into your repo root, keeping the assets folder structure intact
-- Make sure index.html stays in the repo root
-
-
-Update v3: YouTube trailer embed added for d78EOS1a1-8. Static admin remains local/browser-only. Secure GitHub-verified on-page publishing requires a GitHub App or OAuth flow with a backend/serverless function.
+If replaced images do not appear:
+1. Change the assetVersion value in the admin panel.
+2. Save.
+3. Hard refresh with Ctrl+F5.
