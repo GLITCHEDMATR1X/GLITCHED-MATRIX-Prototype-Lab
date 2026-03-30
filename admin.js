@@ -67,7 +67,9 @@ const defaultConfig = {
     primaryText: 'View on Steam',
     primaryHref: 'https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/',
     secondaryText: 'Explore Project',
-    secondaryHref: '#about'
+    secondaryHref: '#about',
+    trailerHref: 'https://www.youtube.com/watch?v=d78EOS1a1-8',
+    trailerText: 'Watch on YouTube'
   },
   images: {
     heroLogo: 'assets/images/logo.png',
@@ -301,6 +303,29 @@ function makeRoadmapItem(item) {
   return li;
 }
 
+
+function extractYouTubeId(input) {
+  const value = String(input || '').trim();
+  if (!value) return '';
+  if (/^[A-Za-z0-9_-]{11}$/.test(value)) return value;
+  const patterns = [
+    /youtu\.be\/([A-Za-z0-9_-]{11})/i,
+    /[?&]v=([A-Za-z0-9_-]{11})/i,
+    /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/i,
+    /youtube\.com\/shorts\/([A-Za-z0-9_-]{11})/i
+  ];
+  for (const pattern of patterns) {
+    const match = value.match(pattern);
+    if (match) return match[1];
+  }
+  return '';
+}
+
+function toYouTubeEmbedUrl(input) {
+  const id = extractYouTubeId(input);
+  return id ? `https://www.youtube.com/embed/${id}?rel=0` : '';
+}
+
 function applyText() {
   document.querySelectorAll('.editable[data-key]').forEach((el) => {
     const key = el.dataset.key;
@@ -311,10 +336,19 @@ function applyText() {
 function applyLinks() {
   const primary = document.getElementById('primaryCta');
   const secondary = document.getElementById('secondaryCta');
+  const trailerLink = document.getElementById('trailerLink');
+  const trailerEmbed = document.getElementById('trailerEmbed');
   primary.textContent = config.links.primaryText;
   primary.href = config.links.primaryHref;
   secondary.textContent = config.links.secondaryText;
   secondary.href = config.links.secondaryHref;
+  if (trailerLink) {
+    trailerLink.textContent = config.links.trailerText || 'Watch on YouTube';
+    trailerLink.href = config.links.trailerHref || 'https://www.youtube.com/watch?v=d78EOS1a1-8';
+  }
+  if (trailerEmbed) {
+    trailerEmbed.src = toYouTubeEmbedUrl(config.links.trailerHref) || 'https://www.youtube.com/embed/d78EOS1a1-8?rel=0';
+  }
 }
 
 function applyImages() {
@@ -351,6 +385,8 @@ function syncAdminInputs() {
   setVal('primaryCtaLink', config.links.primaryHref);
   setVal('secondaryCtaText', config.links.secondaryText);
   setVal('secondaryCtaLink', config.links.secondaryHref);
+  setVal('trailerUrlInput', config.links.trailerHref);
+  setVal('trailerLinkTextInput', config.links.trailerText || 'Watch on YouTube');
   setVal('heroLogoInput', config.images.heroLogo);
   setVal('heroHeaderInput', config.images.heroHeader);
   setVal('navLogoInput', config.images.navLogo);
@@ -394,6 +430,8 @@ function pullAdminValues() {
   config.links.primaryHref = document.getElementById('primaryCtaLink').value.trim() || defaultConfig.links.primaryHref;
   config.links.secondaryText = document.getElementById('secondaryCtaText').value.trim() || defaultConfig.links.secondaryText;
   config.links.secondaryHref = document.getElementById('secondaryCtaLink').value.trim() || defaultConfig.links.secondaryHref;
+  config.links.trailerHref = document.getElementById('trailerUrlInput').value.trim() || defaultConfig.links.trailerHref;
+  config.links.trailerText = document.getElementById('trailerLinkTextInput').value.trim() || defaultConfig.links.trailerText;
   config.images.heroLogo = document.getElementById('heroLogoInput').value.trim() || defaultConfig.images.heroLogo;
   config.images.heroHeader = document.getElementById('heroHeaderInput').value.trim() || defaultConfig.images.heroHeader;
   config.images.navLogo = document.getElementById('navLogoInput').value.trim() || defaultConfig.images.navLogo;
@@ -471,32 +509,6 @@ function escapeHtml(str) {
     .replaceAll("'", '&#039;');
 }
 
-function setupAudio() {
-  const audio = document.getElementById('trailerAudio');
-  const button = document.getElementById('soundToggle');
-  applyResolvedAudio(audio, makeAudioCandidates(audio.getAttribute('src') || 'assets/music/Trailer.mp3'));
-  button.addEventListener('click', async () => {
-    if (!audioPlaying) {
-      try {
-        await audio.play();
-        audioPlaying = true;
-        button.textContent = 'Pause trailer audio';
-      } catch {
-        button.textContent = 'Audio blocked — click again';
-      }
-    } else {
-      audio.pause();
-      audioPlaying = false;
-      button.textContent = 'Play trailer audio';
-    }
-  });
-
-  audio.addEventListener('ended', () => {
-    audioPlaying = false;
-    button.textContent = 'Play trailer audio';
-  });
-}
-
 function setupAdmin() {
   document.getElementById('adminToggle').addEventListener('click', () => toggleAdmin());
   document.getElementById('closeAdmin').addEventListener('click', () => toggleAdmin(false));
@@ -538,5 +550,4 @@ function setupAdmin() {
 }
 
 applyConfig();
-setupAudio();
 setupAdmin();

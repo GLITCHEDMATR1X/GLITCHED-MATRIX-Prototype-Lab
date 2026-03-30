@@ -15,3 +15,6 @@ Admin mode:
 GitHub Pages:
 - Upload all files into your repo root, keeping the assets folder structure intact
 - Make sure index.html stays in the repo root
+
+
+Update v3: YouTube trailer embed added for d78EOS1a1-8. Static admin remains local/browser-only. Secure GitHub-verified on-page publishing requires a GitHub App or OAuth flow with a backend/serverless function.

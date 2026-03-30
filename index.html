@@ -126,11 +126,13 @@
           <span class="section-label editable" data-key="mediaLabel">Media</span>
           <h2 class="editable" data-key="mediaTitle">Screenshots and brand visuals</h2>
         </div>
-        <button id="soundToggle" class="btn btn-audio" type="button">Play trailer audio</button>
+        <a id="trailerLink" class="btn btn-audio" href="https://www.youtube.com/watch?v=d78EOS1a1-8" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
       </div>
       <div class="media-grid">
-        <figure class="media-card media-main-card">
-          <img id="mediaMain" src="assets/images/SCREENSHOT.png" alt="Main Matrix OS screenshot" />
+        <figure class="media-card media-main-card media-video-card">
+          <div class="video-shell">
+            <iframe id="trailerEmbed" src="https://www.youtube.com/embed/d78EOS1a1-8?rel=0" title="Matrix OS Arcade Evolution trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
         </figure>
         <figure class="media-card"><img id="mediaAlt1" src="assets/images/screenshot2.png" alt="Alternate Matrix OS screenshot" /></figure>
         <figure class="media-card"><img id="mediaAlt2" src="assets/images/c1.png" alt="Arcade machine concept" /></figure>
@@ -164,8 +166,7 @@
     </div>
   </footer>
 
-  <audio id="trailerAudio" preload="none" src="assets/music/Trailer.mp3"></audio>
-
+  
   <aside id="adminPanel" class="admin-panel" aria-hidden="true">
     <div class="admin-header">
       <div>
@@ -186,6 +187,8 @@
       <label>Primary CTA link <input id="primaryCtaLink" type="text" /></label>
       <label>Secondary CTA text <input id="secondaryCtaText" type="text" /></label>
       <label>Secondary CTA link <input id="secondaryCtaLink" type="text" /></label>
+      <label>Trailer URL <input id="trailerUrlInput" type="text" /></label>
+      <label>Trailer button text <input id="trailerLinkTextInput" type="text" /></label>
     </div>
 
     <div class="admin-section two-col">
@@ -244,7 +247,7 @@
     </div>
 
     <p class="admin-note">
-      Text blocks can also be edited directly on the page while admin mode is open. Changes save in this browser. Export JSON to keep a portable backup.
+      Text blocks can also be edited directly on the page while admin mode is open. Changes save in this browser. Export JSON to keep a portable backup. GitHub-login-verified publishing is not possible from a pure static GitHub Pages site without a separate GitHub App or OAuth backend.
     </p>
   </aside>
 
