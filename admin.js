@@ -63,6 +63,10 @@ const defaultConfig = {
     { title: 'Content creators', body: 'A hub for people who stream, record, build, design, write, animate, and produce around interactive media.' },
     { title: 'Publishers and gamers', body: 'A branded front end that can grow into a discoverable showcase for projects, partners, releases, and play.' }
   ],
+  updatesLabel: 'Updates',
+  updatesTitle: 'Updates',
+  updatesNote: 'Scroll through the latest patch notes here. Add more from the admin panel and keep the list growing.',
+  updatesRaw: '',
   footerCopy: '© GLITCHED MATRIX — Prototype Lab',
   links: {
     primaryText: 'View on Steam',
@@ -92,19 +96,14 @@ const defaultConfig = {
   assetVersion: ''
 };
 
-const STORAGE_KEY = 'glitched-prototype-site-config-v2';
+const STORAGE_KEY = 'glitched-prototype-site-config-v3';
+const UPDATES_SOURCE_URL = 'assets/data/combined_patch_notes.txt';
 let config = loadConfig();
 let adminOpen = false;
 
 const IMAGE_FALLBACK_BASES = [
-  '',
-  './',
-  'assets/images/',
-  './assets/images/',
-  'site_bundle/assets/images/',
-  './site_bundle/assets/images/',
-  'steamtemp/',
-  './steamtemp/'
+  '', './', 'assets/images/', './assets/images/',
+  'site_bundle/assets/images/', './site_bundle/assets/images/', 'steamtemp/', './steamtemp/'
 ];
 
 function isDirectUrl(value) {
@@ -112,7 +111,7 @@ function isDirectUrl(value) {
 }
 
 function uniqueList(values) {
-  return [...new Set(values.filter(Boolean))];
+  return [...new Set((values || []).filter(Boolean))];
 }
 
 function fileNameOnly(path) {
@@ -172,7 +171,8 @@ function applyResolvedSource(el, candidates) {
 
 function loadConfig() {
   try {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const legacy = localStorage.getItem('glitched-prototype-site-config-v2');
+    const stored = localStorage.getItem(STORAGE_KEY) || legacy;
     if (!stored) return structuredClone(defaultConfig);
     const parsed = JSON.parse(stored);
     const merged = deepMerge(structuredClone(defaultConfig), parsed);
@@ -232,7 +232,7 @@ function renderList(targetId, items, formatter) {
   const node = document.getElementById(targetId);
   if (!node) return;
   node.innerHTML = '';
-  items.forEach((item) => node.appendChild(formatter(item)));
+  items.forEach(item => node.appendChild(formatter(item)));
 }
 
 function makeFeatureCard(item) {
@@ -363,12 +363,119 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
+function parseLineItems(text) {
+  return String(text || '').split(/\r?\n/).map(v => v.trim()).filter(Boolean);
+}
+
+function parseCardLines(text) {
+  return parseLineItems(text).map((line) => {
+    const [title, ...rest] = line.split('|');
+    return { title: (title || '').trim(), body: rest.join('|').trim() };
+  }).filter(item => item.title && item.body);
+}
+
+function parseUpdates(rawText) {
+  const lines = String(rawText || '').split(/\r?\n/);
+  const entries = [];
+  let group = '';
+
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i].trim();
+    const next = (lines[i + 1] || '').trim();
+    if (!line) continue;
+
+    if (!line.includes('—') && /^=+$/.test(next)) {
+      group = line;
+      i += 1;
+      continue;
+    }
+
+    if (line.includes('—') && !line.startsWith('-')) {
+      const entry = { group, heading: line, bullets: [], extras: [] };
+      if (/^-+$/.test(next)) i += 1;
+
+      while (i + 1 < lines.length) {
+        const peek = (lines[i + 1] || '').trim();
+        const peekNext = (lines[i + 2] || '').trim();
+        if (!peek) {
+          i += 1;
+          continue;
+        }
+        if (!peek.includes('—') && /^=+$/.test(peekNext)) break;
+        if (peek.includes('—') && !peek.startsWith('-')) break;
+
+        i += 1;
+        const current = (lines[i] || '').trim();
+        if (!current || /^[-=]+$/.test(current)) continue;
+        if (current.startsWith('- ')) entry.bullets.push(current.slice(2).trim());
+        else entry.extras.push(current);
+      }
+      entries.push(entry);
+    }
+  }
+
+  return entries;
+}
+
+function splitHeadingMeta(heading) {
+  const parts = String(heading || '').split('—').map(v => v.trim()).filter(Boolean);
+  if (!parts.length) return { title: heading || '', meta: '' };
+  return { title: parts[0], meta: parts.slice(1).join(' — ') };
+}
+
+function makeUpdateCard(entry) {
+  const card = document.createElement('article');
+  card.className = 'update-card';
+  const { title, meta } = splitHeadingMeta(entry.heading);
+
+  const groupHtml = entry.group ? `<span class="update-group">${escapeHtml(entry.group)}</span>` : '';
+  const metaHtml = meta ? `<div class="update-meta">${escapeHtml(meta)}</div>` : '';
+  const sourceItems = entry.bullets.length ? entry.bullets : entry.extras;
+  const bulletsHtml = sourceItems.length
+    ? `<ul class="update-bullets">${sourceItems.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`
+    : '';
+
+  card.innerHTML = `${groupHtml}<h3 class="update-heading">${escapeHtml(title)}</h3>${metaHtml}${bulletsHtml}`;
+  return card;
+}
+
+function renderUpdates() {
+  const host = document.getElementById('updatesList');
+  if (!host) return;
+  host.innerHTML = '';
+  const entries = parseUpdates(config.updatesRaw);
+  if (!entries.length) {
+    const empty = document.createElement('div');
+    empty.className = 'update-empty';
+    empty.textContent = 'No updates loaded yet. Import a patch notes text file or add an entry from the admin panel.';
+    host.appendChild(empty);
+    return;
+  }
+  entries.forEach(entry => host.appendChild(makeUpdateCard(entry)));
+}
+
+async function hydrateBundledUpdates() {
+  if (String(config.updatesRaw || '').trim()) return;
+  try {
+    const response = await fetch(appendVersion(UPDATES_SOURCE_URL), { cache: 'no-store' });
+    if (!response.ok) return;
+    const text = await response.text();
+    if (!String(config.updatesRaw || '').trim()) {
+      config.updatesRaw = text.trim();
+      applyConfig();
+    }
+  } catch (err) {
+    console.warn('Could not load bundled updates:', err);
+  }
+}
+
 function applyConfig() {
   setRootTheme();
   applyText();
   applyLinks();
   applyImages();
   renderGallery();
+  renderUpdates();
   renderList('heroTags', config.heroTags, makeTag);
   renderList('metaTags', config.metaTags, makeTag);
   renderList('featuresGrid', config.features, makeFeatureCard);
@@ -378,7 +485,11 @@ function applyConfig() {
 }
 
 function syncAdminInputs() {
-  const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+  const setVal = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  };
+
   setVal('accentColor', config.theme.accent);
   setVal('bgColor', config.theme.bg);
   setVal('panelColor', config.theme.panel);
@@ -398,6 +509,8 @@ function syncAdminInputs() {
   setVal('roadmapInput', config.roadmap.join('\n'));
   setVal('communityInput', config.community.map(c => `${c.title} | ${c.body}`).join('\n'));
   setVal('galleryImagesInput', dedupeGallery(config.images.gallery).join('\n'));
+  setVal('updatesNoteInput', config.updatesNote || defaultConfig.updatesNote);
+  setVal('updatesInput', config.updatesRaw || '');
 }
 
 function readEditableTextFromPage() {
@@ -405,17 +518,6 @@ function readEditableTextFromPage() {
     const key = el.dataset.key;
     config[key] = el.innerText.trim();
   });
-}
-
-function parseLineItems(text) {
-  return text.split('\n').map(v => v.trim()).filter(Boolean);
-}
-
-function parseCardLines(text) {
-  return parseLineItems(text).map((line) => {
-    const [title, ...rest] = line.split('|');
-    return { title: (title || '').trim(), body: rest.join('|').trim() };
-  }).filter(item => item.title && item.body);
 }
 
 function pullAdminValues() {
@@ -439,6 +541,8 @@ function pullAdminValues() {
   config.roadmap = parseLineItems(document.getElementById('roadmapInput').value);
   config.community = parseCardLines(document.getElementById('communityInput').value);
   config.images.gallery = dedupeGallery(parseLineItems(document.getElementById('galleryImagesInput').value));
+  config.updatesNote = document.getElementById('updatesNoteInput').value.trim() || defaultConfig.updatesNote;
+  config.updatesRaw = document.getElementById('updatesInput').value.replace(/\r\n/g, '\n').trim();
 }
 
 function toggleAdmin(force = null) {
@@ -450,6 +554,7 @@ function toggleAdmin(force = null) {
     el.contentEditable = adminOpen ? 'true' : 'false';
     el.classList.toggle('admin-editing', adminOpen);
   });
+  if (adminOpen) syncAdminInputs();
 }
 
 function exportJson() {
@@ -478,42 +583,29 @@ function importJson(file) {
   reader.readAsText(file);
 }
 
-function bindFileInput(id, onLoad, multiple = false) {
+function bindFileInput(id, onLoad, multiple = false, readMode = 'dataurl') {
   const input = document.getElementById(id);
   if (!input) return;
+
   input.addEventListener('change', (event) => {
     const files = Array.from(event.target.files || []);
     if (!files.length) return;
 
-    if (multiple) {
-      let remaining = files.length;
-      const results = [];
-      files.forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          results.push(reader.result);
-          remaining -= 1;
-          if (remaining === 0) {
-            onLoad(results);
-            saveConfig();
-            applyConfig();
-            input.value = '';
-          }
-        };
-        reader.readAsDataURL(file);
-      });
-      return;
-    }
+    const readOne = (file) => new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      if (readMode === 'text') reader.readAsText(file);
+      else reader.readAsDataURL(file);
+    });
 
-    const file = files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      onLoad(reader.result);
+    (async () => {
+      const results = [];
+      for (const file of files) results.push(await readOne(file));
+      onLoad(multiple ? results : results[0]);
       saveConfig();
       applyConfig();
       input.value = '';
-    };
-    reader.readAsDataURL(file);
+    })();
   });
 }
 
@@ -533,6 +625,37 @@ function setupLightbox() {
   });
 }
 
+function prependUpdateEntry() {
+  const headingInput = document.getElementById('newUpdateHeadingInput');
+  const groupInput = document.getElementById('newUpdateGroupInput');
+  const bulletsInput = document.getElementById('newUpdateBulletsInput');
+  const heading = headingInput.value.trim();
+  const group = groupInput.value.trim();
+  const bullets = parseLineItems(bulletsInput.value).map(v => v.replace(/^[-•]\s*/, ''));
+
+  if (!heading) {
+    alert('Add a heading like “Project — Version — Date” first.');
+    return;
+  }
+
+  let chunk = '';
+  if (group) {
+    chunk += `${group}\n${'='.repeat(Math.max(group.length, 3))}\n\n`;
+  }
+  chunk += `${heading}\n${'-'.repeat(Math.max(heading.length, 8))}\n`;
+  if (bullets.length) chunk += bullets.map(item => `- ${item}`).join('\n');
+  chunk += '\n\n';
+
+  const existing = String(config.updatesRaw || '').trim();
+  config.updatesRaw = existing ? `${chunk}${existing}` : chunk.trim();
+  document.getElementById('updatesInput').value = config.updatesRaw;
+  headingInput.value = '';
+  groupInput.value = '';
+  bulletsInput.value = '';
+  saveConfig();
+  applyConfig();
+}
+
 function setupAdmin() {
   document.getElementById('adminToggle').addEventListener('click', () => toggleAdmin());
   document.getElementById('closeAdmin').addEventListener('click', () => toggleAdmin(false));
@@ -546,12 +669,14 @@ function setupAdmin() {
     config = structuredClone(defaultConfig);
     saveConfig();
     applyConfig();
+    hydrateBundledUpdates();
   });
   document.getElementById('exportAdmin').addEventListener('click', exportJson);
   document.getElementById('importAdmin').addEventListener('change', (e) => {
     const file = e.target.files?.[0];
     if (file) importJson(file);
   });
+  document.getElementById('appendUpdateBtn').addEventListener('click', prependUpdateEntry);
 
   bindFileInput('uploadNavLogo', (data) => {
     config.images.navLogo = data;
@@ -569,6 +694,10 @@ function setupAdmin() {
     config.images.gallery = dedupeGallery([...(config.images.gallery || []), ...list]);
     document.getElementById('galleryImagesInput').value = config.images.gallery.join('\n');
   }, true);
+  bindFileInput('importUpdatesText', (text) => {
+    config.updatesRaw = String(text || '').replace(/\r\n/g, '\n').trim();
+    document.getElementById('updatesInput').value = config.updatesRaw;
+  }, false, 'text');
 
   document.addEventListener('keydown', (event) => {
     if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'a') {
@@ -592,3 +721,4 @@ function setupAdmin() {
 applyConfig();
 setupLightbox();
 setupAdmin();
+hydrateBundledUpdates();

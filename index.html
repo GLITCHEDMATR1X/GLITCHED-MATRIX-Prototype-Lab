@@ -70,6 +70,8 @@
       </article>
     </section>
 
+    <div class="main-grid">
+      <div class="content-flow">
     <section id="about" class="split-grid">
       <article class="panel content-card">
         <span class="section-label editable" data-key="aboutLabel">About This Project</span>
@@ -152,6 +154,19 @@
       <h2 class="editable" data-key="communityTitle">The people the platform is meant to serve</h2>
       <div id="communityGrid" class="feature-grid community-grid"></div>
     </section>
+      </div>
+
+      <aside id="updatesPanel" class="panel updates-panel">
+        <div class="updates-head">
+          <div>
+            <span class="section-label editable" data-key="updatesLabel">Updates</span>
+            <h2 class="editable" data-key="updatesTitle">Updates</h2>
+          </div>
+        </div>
+        <p class="updates-note editable" data-key="updatesNote">Scroll through the latest patch notes here. Add more from the admin panel and keep the list growing.</p>
+        <div id="updatesList" class="updates-list" aria-live="polite"></div>
+      </aside>
+    </div>
   </main>
 
   <footer class="shell footer">
@@ -222,6 +237,19 @@
       <label>Roadmap bullets (one per line) <textarea id="roadmapInput" rows="8"></textarea></label>
       <label>Meta tags (one per line) <textarea id="metaTagsInput" rows="8"></textarea></label>
       <label>Community cards (Title|Body per line) <textarea id="communityInput" rows="8"></textarea></label>
+    </div>
+
+    <div class="admin-section">
+      <label>Updates note <input id="updatesNoteInput" type="text" /></label>
+      <label>Updates source text <textarea id="updatesInput" rows="14"></textarea></label>
+      <label>Import updates text file <input id="importUpdatesText" type="file" accept=".txt,text/plain" /></label>
+    </div>
+
+    <div class="admin-section two-col append-update-grid">
+      <label>New update heading <input id="newUpdateHeadingInput" type="text" placeholder="Project — Version — Date" /></label>
+      <label>Optional group title <input id="newUpdateGroupInput" type="text" placeholder="Optional section title" /></label>
+      <label class="full-span">New update bullets (one per line) <textarea id="newUpdateBulletsInput" rows="6" placeholder="First bullet&#10;Second bullet"></textarea></label>
+      <button id="appendUpdateBtn" class="btn btn-primary full-span" type="button">Add Update To Top</button>
     </div>
 
     <div class="admin-actions">
