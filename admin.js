@@ -1,108 +1,164 @@
 const defaultConfig = {
-  microLabel: 'GLITCHED MATRIX',
-  heroEyebrow: '> Experimental Arcade Platform <',
-  heroTitle: 'GLITCHED MATRIX Prototype Lab',
-  heroLead: 'A dark virtual arcade where playable prototypes, creator tools, bots, and mod-friendly experiments live inside one connected digital world.',
-  heroTags: ['Virtual Arcade', 'Playable Prototypes', 'Creator Tools', 'Mod-Friendly', 'Sci-Fi Hub', 'Experimental Worlds'],
-  stat1Label: 'Status',
-  stat1Value: 'Early Access',
-  stat2Label: 'What You Do',
-  stat2Value: 'Explore • Play • Experiment',
-  stat3Label: 'Core Appeal',
-  stat3Value: 'Connected prototype arcade',
-  stat4Label: 'Built For',
-  stat4Value: 'Curious players and creators',
-  aboutLabel: 'About',
-  aboutTitle: 'A connected digital world built for discovery',
-  aboutBody1: 'GLITCHED MATRIX Prototype Lab is a dark sci-fi hub where games, tools, bots, and experiments all exist inside one navigable system.',
-  aboutBody2: 'Instead of presenting everything as separate downloads or menus, the lab brings play, discovery, and creative experimentation into one evolving space.',
-  fictionLabel: 'Lore',
-  fictionTitle: 'What happened to the system?',
-  fictionBody1: 'During the creation of The Utopia Project, a virtual space dimension was formed inside its central hub. When an exploit was discovered, conflicts spread through the machine and the hub was destroyed to contain the damage.',
-  fictionBody2: 'A rogue archive bot named IO-88 remained behind to preserve what survived. Those fragments now live on as recoverable prototypes, tools, and digital spaces inside the lab.',
-  featuresLabel: 'Inside the Lab',
-  featuresTitle: 'What you can explore right now',
-  features: [
-    { title: 'Connected Arcade Hub', body: 'Move through a custom digital environment rather than a standard store-style page or launcher.' },
-    { title: 'Playable Prototype Library', body: 'Jump between experimental games, concepts, and interactive modules from one central hub.' },
-    { title: 'Built-in Creator Tools', body: 'Open internal apps and utilities designed for tinkering, editing, and creative workflows.' },
-    { title: 'Bots and Side Activities', body: 'Interact with chat-driven features, smaller activities, and system spaces that make the lab feel alive.' },
-    { title: 'Mod-Friendly Structure', body: 'Replace assets, experiment with content, and treat the system as something you can shape over time.' },
-    { title: 'Growing Sci-Fi Identity', body: 'Explore a world built around damaged infrastructure, preserved archives, and strange digital recovery.' }
+  "microLabel": "GLITCHED MATRIX",
+  "heroEyebrow": "> HoloVerse + Prototype Arcade <",
+  "heroTitle": "GLITCHED MATRIX Prototype Lab",
+  "heroLead": "A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab.",
+  "heroTags": [
+    "HoloVerse",
+    "MatrixCore",
+    "Gleebs",
+    "Playable Prototypes",
+    "Panda3D Worlds",
+    "Creator Tools",
+    "Mod-Friendly"
   ],
-  roadmapLabel: 'Direction',
-  roadmapTitle: 'How the lab can grow',
-  roadmap: [
-    'We plan to keep improving stability, presentation, and overall ease of use',
-    'We plan to expand the range and quality of playable experiences inside the hub',
-    'We plan to deepen creator workflows, utilities, and modular tool support',
-    'We plan to further connect the desktop, tools, bots, and game spaces into a more cohesive world',
-    'We plan to improve customization, media support, and user-replaceable content',
-    'We plan to keep refining the platform identity as the system grows'
+  "stat1Label": "Status",
+  "stat1Value": "Active Prototype Lab",
+  "stat2Label": "What You Do",
+  "stat2Value": "Explore \u2022 Play \u2022 Build",
+  "stat3Label": "Core Appeal",
+  "stat3Value": "HoloVerse + prototype arcade",
+  "stat4Label": "Built For",
+  "stat4Value": "Players, tinkerers, creators",
+  "aboutLabel": "About",
+  "aboutTitle": "A connected digital world built for discovery",
+  "aboutBody1": "GLITCHED MATRIX Prototype Lab is a dark sci-fi hub where HoloVerse, MatrixCore, bots, standalone prototypes, and creation tools all live inside one evolving system.",
+  "aboutBody2": "The current build focuses on turning separate experiments into connected places: a walkable HoloVerse, in-world dimension runtimes, site-replaceable media, and a growing library of playable prototypes.",
+  "fictionLabel": "Lore",
+  "fictionTitle": "MatrixCore, Gleebs, and the recovered system",
+  "fictionBody1": "After the Utopia Project fractured, MatrixCore began preserving recoverable worlds, tools, and prototype fragments inside the lab. HoloVerse now acts as the living shell around those fragments.",
+  "fictionBody2": "Gleebs, IO, Sable, Archivist, and the other region bots help guide players through the digital wreckage, opening experiments, lore paths, and region-specific systems as the project grows.",
+  "featuresLabel": "Inside the Lab",
+  "featuresTitle": "What you can explore right now",
+  "features": [
+    {
+      "title": "HoloVerse default world",
+      "body": "A Panda3D shell with biome rings, region bots, day/night mood, space and water layers, and a hub-to-world flow that keeps growing."
+    },
+    {
+      "title": "Bot-owned dimensions",
+      "body": "Region bots route into in-world activities like HoloForge, Forest Planter, Hills of Life, Oddities, Ember Hangar, Frost Circuit, Urban Warzone, and the Metropolis Robot Selector."
+    },
+    {
+      "title": "Urban Warzone route work",
+      "body": "The live Urban biome now has a source-of-truth runtime path for Sable, points, capture posts, bombs, arena weapons, ally bots, robots, mechs, drones, and boss pressure."
+    },
+    {
+      "title": "Metropolis Robot Selector",
+      "body": "Archivist offers four Urban-class robots. Pick one in Metropolis and that ally deploys beside you in Urban until destroyed or replaced."
+    },
+    {
+      "title": "MatrixCore + Gleebs guidance",
+      "body": "MatrixCore lore, Gleebs dialogue, bot-aware prompts, first-contact sequences, and route-aware return guidance are now part of the HoloVerse support layer."
+    },
+    {
+      "title": "Prototype library",
+      "body": "The lab includes active experiments such as Afterlife Hotel, Apocalypse Run, Block Busters, Code Red Arcade, Duck n Cover, Fractured Dimension, Helix Biogenics, Holo Campaign, Holo Conquest, Holo Drift, Radar Hell, The Anti-Heroes, Zonez, and more."
+    }
   ],
-  directionLabel: 'Right Now',
-  directionTitle: 'What the current release emphasizes',
-  directionBody1: 'The current site and build focus on communicating the experience clearly: a dark virtual arcade built for experimentation, playable variety, and creative curiosity.',
-  directionBody2: 'Expect the presentation to keep improving as the project becomes more polished, easier to navigate, and stronger at showing its best experiences first.',
-  mediaLabel: 'Media',
-  mediaTitle: 'Trailer, capsules, and screenshots',
-  galleryNote: 'Click any image to open it at full size.',
-  metaLabel: 'What to Expect',
-  metaTitle: 'Core identity',
-  metaTags: [
-    'Experimental Arcade', 'Sci-Fi', 'Prototype Lab', 'Playable Hub', 'Creator Tools',
-    'Mod-Friendly', 'Bots', 'Interactive Systems', 'Digital World', 'Indie Tech',
-    'Evolving Platform', 'Curiosity-Driven'
+  "roadmapLabel": "Direction",
+  "roadmapTitle": "How the lab can grow",
+  "roadmap": [
+    "Verify the real Urban player route before expanding more combat content",
+    "Keep Metropolis selector-only so Archivist never throws the player into Urban by mistake",
+    "Deepen each HoloVerse region with one clear bot-owned activity instead of scattered proof scenes",
+    "Improve portable EXE packaging, dependency clarity, and user-facing setup instructions",
+    "Keep replacing outdated site images with current in-project screenshots and easier media slots",
+    "Polish the strongest prototypes while preserving experimental variety and mod-friendly structure"
   ],
-  communityLabel: 'Who It Is For',
-  communityTitle: 'Players, tinkerers, and creators',
-  community: [
-    { title: 'Curious players', body: 'People who enjoy exploring unusual games, hidden features, and connected digital spaces.' },
-    { title: 'Tinkerers and modders', body: 'People who like swapping assets, experimenting with content, and pushing unfinished ideas further.' },
-    { title: 'Creators', body: 'Artists, builders, designers, and developers looking for a space centered on experimentation and invention.' },
-    { title: 'Archive explorers', body: 'People drawn to lore, prototypes, system fiction, and the feeling of digging through a living machine.' }
+  "directionLabel": "Right Now",
+  "directionTitle": "What the current release emphasizes",
+  "directionBody1": "The current release emphasizes HoloVerse route cleanup, MatrixCore/Gleebs guidance, better prototype documentation, more reliable points/UI behavior, and clearer presentation of what is actually inside the lab.",
+  "directionBody2": "Urban Warzone and Metropolis are the most important verification paths: Sable should activate the live Urban runtime, while Archivist should stay in Metropolis as a robot selector.",
+  "mediaLabel": "Media",
+  "mediaTitle": "Trailer, HoloVerse media, and prototype screenshots",
+  "galleryNote": "Click any image to open it at full size. Replace files in assets/images/site_current to update this gallery without changing the layout.",
+  "metaLabel": "What to Expect",
+  "metaTitle": "Core identity",
+  "metaTags": [
+    "Experimental Arcade",
+    "HoloVerse",
+    "MatrixCore",
+    "Gleebs",
+    "Panda3D",
+    "Pygame",
+    "Prototype Lab",
+    "Playable Hub",
+    "Creator Tools",
+    "Bot-Guided",
+    "Mod-Friendly",
+    "Digital World",
+    "Route Cleanup",
+    "Evolving Platform"
   ],
-  updatesLabel: 'Updates',
-  updatesTitle: 'Patch Notes',
-  updatesNote: 'Latest development notes and version updates.',
-  updatesRaw: '',
-  footerCopy: '© GLITCHED MATRIX — Prototype Lab',
-  links: {
-    primaryText: 'View on Steam',
-    primaryHref: 'https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/',
-    secondaryText: 'See Features',
-    secondaryHref: '#features',
-    trailerHref: 'https://www.youtube.com/watch?v=d78EOS1a1-8',
-    trailerText: 'Watch on YouTube'
+  "communityLabel": "Who It Is For",
+  "communityTitle": "Players, tinkerers, and creators",
+  "community": [
+    {
+      "title": "Curious players",
+      "body": "People who enjoy unusual games, hidden systems, connected digital spaces, and strange prototype worlds."
+    },
+    {
+      "title": "Tinkerers and modders",
+      "body": "People who like replacing assets, testing routes, reading patch notes, and shaping unfinished systems into something stronger."
+    },
+    {
+      "title": "Creators",
+      "body": "Artists, builders, designers, and developers looking for a lab centered on invention, iteration, and playable experiments."
+    },
+    {
+      "title": "Archive explorers",
+      "body": "People drawn to MatrixCore lore, Gleebs guidance, bot personalities, recovered prototypes, and the feeling of digging through a living machine."
+    }
+  ],
+  "updatesLabel": "Updates",
+  "updatesTitle": "Patch Notes",
+  "updatesNote": "Latest development notes, HoloVerse route updates, and prototype inventory highlights.",
+  "updatesRaw": "",
+  "footerCopy": "\u00a9 GLITCHED MATRIX \u2014 Prototype Lab",
+  "links": {
+    "primaryText": "View on Steam",
+    "primaryHref": "https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/",
+    "secondaryText": "See Features",
+    "secondaryHref": "#features",
+    "trailerHref": "https://www.youtube.com/watch?v=d78EOS1a1-8",
+    "trailerText": "Watch on YouTube"
   },
-  images: {
-    heroHeader: 'assets/images/capsule_header.png',
-    navLogo: 'assets/images/capsule_small.png',
-    footerLogo: 'assets/images/capsule_small.png',
-    gallery: [
-      'assets/images/capsule_main.png',
-      'assets/images/capsule_vertical.png',
-      'assets/images/bg.png',
-      'assets/images/business_card.png',
-      'assets/images/qr_code.png'
+  "images": {
+    "heroHeader": "assets/images/site_current/hero_header.png",
+    "navLogo": "assets/images/capsule_small.png",
+    "footerLogo": "assets/images/capsule_small.png",
+    "gallery": [
+      "assets/images/site_current/gallery_01_gleebs.png",
+      "assets/images/site_current/gallery_02_holoverse_orb.png",
+      "assets/images/site_current/gallery_03_holo_conquest.jpg",
+      "assets/images/site_current/gallery_04_anti_heroes.jpg",
+      "assets/images/site_current/gallery_05_afterlife_hotel.jpg",
+      "assets/images/site_current/gallery_06_apocalypse_run.jpg",
+      "assets/images/site_current/gallery_07_radar_hell.jpg",
+      "assets/images/site_current/gallery_08_duck_n_cover.jpg",
+      "assets/images/site_current/gallery_09_holo_campaign.jpg",
+      "assets/images/site_current/gallery_10_gleebs_pot.png"
     ]
   },
-  theme: {
-    accent: '#cc1414',
-    bg: '#060606',
-    panel: '#140a0a'
+  "theme": {
+    "accent": "#cc1414",
+    "bg": "#060606",
+    "panel": "#140a0a"
   },
-  assetVersion: ''
+  "assetVersion": "20260429-holoverse-site-refresh"
 };
 
-const STORAGE_KEY = 'glitched-prototype-site-config-v4';
+const STORAGE_KEY = 'glitched-prototype-site-config-v5';
 const UPDATES_SOURCE_URL = 'assets/data/combined_patch_notes.txt';
+const IMAGE_MANIFEST_URL = 'assets/data/image_manifest.json';
+let configLoadedFromStorage = false;
 let config = loadConfig();
 let adminOpen = false;
 
 const IMAGE_FALLBACK_BASES = [
   '', './', 'assets/images/', './assets/images/',
-  'site_bundle/assets/images/', './site_bundle/assets/images/', 'steamtemp/', './steamtemp/'
+  'site_bundle/assets/images/', './site_bundle/assets/images/', 'assets/images/site_current/', './assets/images/site_current/', 'steamtemp/', './steamtemp/'
 ];
 
 function isDirectUrl(value) {
@@ -172,6 +228,7 @@ function loadConfig() {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored) return structuredClone(defaultConfig);
+    configLoadedFromStorage = true;
     const parsed = JSON.parse(stored);
     const merged = deepMerge(structuredClone(defaultConfig), parsed);
     merged.images.gallery = dedupeGallery(merged.images.gallery);
@@ -467,6 +524,23 @@ async function hydrateBundledUpdates() {
   }
 }
 
+async function hydrateBundledImageManifest() {
+  if (configLoadedFromStorage) return;
+  try {
+    const response = await fetch(appendVersion(IMAGE_MANIFEST_URL), { cache: 'no-store' });
+    if (!response.ok) return;
+    const manifest = await response.json();
+    if (manifest.assetVersion) config.assetVersion = String(manifest.assetVersion);
+    if (manifest.images && typeof manifest.images === 'object') {
+      config.images = deepMerge(structuredClone(config.images || {}), manifest.images);
+      config.images.gallery = dedupeGallery(config.images.gallery);
+    }
+    applyConfig();
+  } catch (err) {
+    console.warn('Could not load image manifest:', err);
+  }
+}
+
 function applyConfig() {
   setRootTheme();
   applyText();
@@ -727,4 +801,5 @@ function setupAdmin() {
 applyConfig();
 setupLightbox();
 setupAdmin();
+hydrateBundledImageManifest();
 hydrateBundledUpdates();

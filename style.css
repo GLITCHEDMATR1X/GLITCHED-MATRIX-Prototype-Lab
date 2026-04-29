@@ -765,3 +765,11 @@ body.admin-mode-available .admin-toggle {
 .append-update-grid .full-span {
   grid-column: 1 / -1;
 }
+
+.admin-section.two-col > .full-span {
+  grid-column: 1 / -1;
+}
+.admin-note code {
+  color: var(--accent-bright);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
