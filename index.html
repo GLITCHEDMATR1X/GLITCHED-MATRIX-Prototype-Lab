@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLITCHED MATRIX Prototype Lab</title>
   <meta name="description" content="A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab." />
-  <link rel="stylesheet" href="./style.css?v=20260429-pass3-routefix" />
+  <link rel="stylesheet" href="./style.css?v=20260429-pass5-layout-imagefix" />
 </head>
 <body>
   <div class="page-backdrop"></div>
@@ -122,7 +122,7 @@
         </aside>
 
         <div class="demo-canvas-shell">
-          
+          <canvas id="demoCanvas" class="demo-canvas" width="960" height="540" tabindex="0" aria-label="Playable selected prototype demo"></canvas>
           <div id="demoLoadingOverlay" class="demo-loading-overlay">Loading playable demos…<span>If this stays visible, refresh once after the GitHub Pages deploy finishes.</span></div>
         </div>
 
@@ -301,23 +301,22 @@
     </div>
   </aside>
 
-  <script src="./assets/js/demos.js?v=20260429-pass3-routefix"></script>
+  <script src="./assets/js/demos.js?v=20260429-pass5-layout-imagefix"></script>
+
   <script>
     (function () {
-      function installFallback() {
-        if (window.GLITCHED_DEMOS_READY || window.__GM_INLINE_DEMO_FALLBACK__) return;
-        window.__GM_INLINE_DEMO_FALLBACK__ = true;
+      function bootEmergencyDemoPlayer() {
+        if (window.GLITCHED_DEMOS_READY || window.__GM_EMERGENCY_DEMO_RUNNING__) return;
         var canvas = document.getElementById('demoCanvas');
         var grid = document.getElementById('demoGalleryGrid');
         if (!canvas || !grid) return;
+        window.__GM_EMERGENCY_DEMO_RUNNING__ = true;
+        document.body.classList.add('demo-runtime-ready');
         var overlay = document.getElementById('demoLoadingOverlay');
-        if (overlay) {
-          overlay.innerHTML = 'Fallback web demo loaded<span>The external demo script did not start, so this safe inline player is running instead.</span>';
-          setTimeout(function () { overlay.hidden = true; }, 1200);
-        }
+        if (overlay) overlay.hidden = true;
         var demos = [
-          ['sky-ground', 'Sky and Ground', 'Collect signal orbs and avoid red hazards.'],
-          ['block-busters', 'Block Busters', 'Gather cores in a neon arena.'],
+          ['sky-ground', 'Sky and Ground', 'Collect signal orbs and avoid hazards.'],
+          ['block-busters', 'Block Busters', 'Grab cores in a neon arena.'],
           ['duck-cover', 'Duck n Cover', 'Fly the flock and drop eggs.'],
           ['wheres-renaldo', "Where's Renaldo", 'Search the grid before time runs out.'],
           ['mewtants', 'Mewtants', 'Collect gene pods and mutate.'],
@@ -328,42 +327,45 @@
         ];
         var selected = 0;
         var keys = Object.create(null);
-        var player = { x: 140, y: 140 };
+        var player = { x: 120, y: 120 };
         var orbs = [];
         var hazards = [];
         var score = 0;
+        var last = performance.now();
         function esc(text) { return String(text || '').replace(/[&<>]/g, function (ch) { return {'&':'&amp;','<':'&lt;','>':'&gt;'}[ch]; }); }
+        function setText(id, text) { var el = document.getElementById(id); if (el) el.textContent = text; }
         function reset() {
-          player = { x: canvas.width * 0.22, y: canvas.height * 0.5 };
+          var w = canvas.width || 960, h = canvas.height || 540;
+          player = { x: w * 0.22, y: h * 0.52 };
+          score = 0;
           orbs = [];
           hazards = [];
-          score = 0;
-          for (var i = 0; i < 8; i += 1) {
-            orbs.push({ x: 80 + Math.random() * Math.max(120, canvas.width - 160), y: 70 + Math.random() * Math.max(120, canvas.height - 140), r: 8 });
-            hazards.push({ x: 80 + Math.random() * Math.max(120, canvas.width - 160), y: 70 + Math.random() * Math.max(120, canvas.height - 140), r: 12, vx: -70 + Math.random() * 140, vy: -70 + Math.random() * 140 });
+          for (var i = 0; i < 10; i += 1) {
+            orbs.push({ x: 50 + Math.random() * (w - 100), y: 50 + Math.random() * (h - 100), r: 7 + Math.random() * 5 });
+            hazards.push({ x: 50 + Math.random() * (w - 100), y: 50 + Math.random() * (h - 100), r: 10 + Math.random() * 9, vx: -90 + Math.random() * 180, vy: -80 + Math.random() * 160 });
           }
         }
         function setInfo() {
-          var demo = demos[selected];
-          var set = function (id, text) { var el = document.getElementById(id); if (el) el.textContent = text; };
-          set('demoStatus', 'Playable now');
-          set('demoTitle', demo[1]);
-          set('demoSummary', demo[2]);
-          set('demoObjective', demo[2]);
-          set('demoControls', 'WASD / Arrows move, R reset, P pause');
-          set('demoDetails', 'Inline fallback canvas demo. No external game assets required.');
+          var d = demos[selected];
+          setText('demoStatus', 'Playable now');
+          setText('demoTitle', d[1]);
+          setText('demoSummary', d[2]);
+          setText('demoObjective', d[2]);
+          setText('demoControls', 'WASD / Arrows move, Space boost, R reset, P pause');
+          setText('demoDetails', 'Emergency generated canvas runtime. No external assets required.');
           Array.prototype.forEach.call(document.querySelectorAll('.demo-thumb-card'), function (node, index) { node.classList.toggle('active', index === selected); });
         }
-        grid.innerHTML = '';
-        demos.forEach(function (demo, index) {
-          var btn = document.createElement('button');
-          btn.className = 'demo-thumb-card';
-          btn.type = 'button';
-          btn.innerHTML = '<span class="demo-thumb-image demo-thumb-fallback-art">' + esc(demo[1].slice(0, 2).toUpperCase()) + '</span><span class="demo-thumb-meta"><strong>' + esc(demo[1]) + '</strong><em class="is-playable">Playable now</em></span>';
-          btn.addEventListener('click', function () { selected = index; reset(); setInfo(); });
-          grid.appendChild(btn);
-        });
-        window.addEventListener('keydown', function (event) { keys[event.key.toLowerCase()] = true; if (event.key.toLowerCase() === 'r') reset(); });
+        if (!grid.children.length) {
+          demos.forEach(function (d, index) {
+            var btn = document.createElement('button');
+            btn.className = 'demo-thumb-card' + (index === selected ? ' active' : '');
+            btn.type = 'button';
+            btn.innerHTML = '<span class="demo-thumb-image demo-thumb-fallback-art">' + esc(d[1].slice(0, 2).toUpperCase()) + '</span><span class="demo-thumb-meta"><strong>' + esc(d[1]) + '</strong><em class="is-playable">Playable now</em></span>';
+            btn.addEventListener('click', function () { selected = index; reset(); setInfo(); });
+            grid.appendChild(btn);
+          });
+        }
+        window.addEventListener('keydown', function (event) { var k = event.key.toLowerCase(); keys[k] = true; if (k === 'r') reset(); });
         window.addEventListener('keyup', function (event) { keys[event.key.toLowerCase()] = false; });
         function resize() {
           var b = canvas.getBoundingClientRect();
@@ -372,34 +374,44 @@
           var h = Math.max(270, Math.floor(b.height * r));
           if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; reset(); }
         }
-        function tick() {
+        function frame(now) {
+          if (window.GLITCHED_DEMOS_READY && !window.__GM_EMERGENCY_DEMO_KEEP__) return;
           resize();
           var ctx = canvas.getContext('2d');
           var w = canvas.width, h = canvas.height;
+          var dt = Math.min(0.04, Math.max(0.001, (now - last) / 1000)); last = now;
+          var boost = keys[' '] || keys.spacebar ? 1.8 : 1;
           var dx = (keys.d || keys.arrowright ? 1 : 0) - (keys.a || keys.arrowleft ? 1 : 0);
           var dy = (keys.s || keys.arrowdown ? 1 : 0) - (keys.w || keys.arrowup ? 1 : 0);
-          player.x = Math.max(20, Math.min(w - 20, player.x + dx * 4.2));
-          player.y = Math.max(20, Math.min(h - 20, player.y + dy * 4.2));
-          hazards.forEach(function (z) { z.x += z.vx * 0.016; z.y += z.vy * 0.016; if (z.x < 20 || z.x > w - 20) z.vx *= -1; if (z.y < 20 || z.y > h - 20) z.vy *= -1; });
+          player.x = Math.max(20, Math.min(w - 20, player.x + dx * 220 * boost * dt));
+          player.y = Math.max(20, Math.min(h - 20, player.y + dy * 220 * boost * dt));
+          hazards.forEach(function (z) { z.x += z.vx * dt; z.y += z.vy * dt; if (z.x < 22 || z.x > w - 22) z.vx *= -1; if (z.y < 22 || z.y > h - 22) z.vy *= -1; });
           orbs = orbs.filter(function (o) { var d = Math.hypot(o.x - player.x, o.y - player.y); if (d < o.r + 14) { score += 10; return false; } return true; });
           if (!orbs.length) reset();
-          var grd = ctx.createLinearGradient(0, 0, w, h); grd.addColorStop(0, '#09090d'); grd.addColorStop(1, '#250407');
-          ctx.fillStyle = grd; ctx.fillRect(0, 0, w, h);
+          var grad = ctx.createLinearGradient(0, 0, w, h); grad.addColorStop(0, '#070709'); grad.addColorStop(0.55, '#210207'); grad.addColorStop(1, '#050506');
+          ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
           ctx.strokeStyle = 'rgba(255,45,65,.16)'; ctx.lineWidth = 1;
-          for (var x = 0; x < w; x += 38) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
-          for (var y = 0; y < h; y += 38) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
-          orbs.forEach(function (o) { ctx.fillStyle = 'rgba(110,230,255,.88)'; ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2); ctx.fill(); });
-          hazards.forEach(function (z) { ctx.fillStyle = 'rgba(255,55,75,.82)'; ctx.beginPath(); ctx.moveTo(z.x, z.y - z.r); ctx.lineTo(z.x + z.r, z.y + z.r); ctx.lineTo(z.x - z.r, z.y + z.r); ctx.closePath(); ctx.fill(); });
-          ctx.fillStyle = '#fff4f4'; ctx.beginPath(); ctx.arc(player.x, player.y, 14, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = 'rgba(0,0,0,.55)'; ctx.fillRect(18, 16, 390, 42);
+          for (var x = 0; x < w; x += 36) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+          for (var y = 0; y < h; y += 36) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+          orbs.forEach(function (o) { ctx.fillStyle = 'rgba(120,232,255,.9)'; ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2); ctx.fill(); });
+          hazards.forEach(function (z) { ctx.fillStyle = 'rgba(255,54,75,.82)'; ctx.beginPath(); ctx.moveTo(z.x, z.y - z.r); ctx.lineTo(z.x + z.r, z.y + z.r); ctx.lineTo(z.x - z.r, z.y + z.r); ctx.closePath(); ctx.fill(); });
+          ctx.fillStyle = '#fff2f2'; ctx.beginPath(); ctx.arc(player.x, player.y, 14, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = 'rgba(0,0,0,.58)'; ctx.fillRect(18, 16, Math.min(440, w - 36), 42);
           ctx.fillStyle = '#fff'; ctx.font = '700 18px system-ui, sans-serif'; ctx.fillText(demos[selected][1] + '  SCORE ' + score, 32, 43);
-          requestAnimationFrame(tick);
+          requestAnimationFrame(frame);
         }
-        reset(); setInfo(); tick();
+        reset(); setInfo(); requestAnimationFrame(frame);
       }
-      setTimeout(installFallback, 1600);
+      setTimeout(function () {
+        if (!window.GLITCHED_DEMOS_READY) bootEmergencyDemoPlayer();
+      }, 900);
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          if (!window.GLITCHED_DEMOS_READY) bootEmergencyDemoPlayer();
+        }, 900);
+      });
     }());
   </script>
-  <script src="./admin.js?v=20260429-pass3-routefix"></script>
+  <script src="./admin.js?v=20260429-pass5-layout-imagefix"></script>
 </body>
 </html>

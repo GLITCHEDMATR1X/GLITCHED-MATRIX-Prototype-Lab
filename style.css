@@ -1073,3 +1073,145 @@ body.admin-mode-available .admin-toggle {
     grid-column: auto;
   }
 }
+
+/* Pass 4: make the embedded player visibly boot even if remote cache is stale. */
+.demo-canvas:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 62%, transparent);
+  outline-offset: 3px;
+}
+.demo-canvas-shell canvas {
+  position: relative;
+  z-index: 1;
+}
+.demo-loading-overlay {
+  pointer-events: none;
+}
+
+/* Pass 5: sidebar alignment, demo grid containment, and image visibility hardening. */
+.main-grid,
+.content-flow,
+.content-card,
+.demo-section,
+.demo-player-layout,
+.demo-info-panel,
+.demo-canvas-shell,
+.updates-panel {
+  min-width: 0;
+}
+
+.main-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 350px);
+  overflow: visible;
+}
+
+.content-flow {
+  overflow: hidden;
+}
+
+.demo-section {
+  overflow: hidden;
+}
+
+.demo-player-layout {
+  grid-template-columns: minmax(150px, 0.58fr) minmax(0, 1.42fr);
+  max-width: 100%;
+}
+
+.demo-info-right {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+
+.demo-canvas-shell {
+  min-height: 300px;
+}
+
+.demo-canvas {
+  height: clamp(280px, 34vw, 390px);
+  min-height: 280px;
+}
+
+.demo-note {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.updates-panel {
+  z-index: 1;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 22px;
+}
+
+.updates-list {
+  min-width: 0;
+  overscroll-behavior: contain;
+}
+
+.media-gallery img,
+.hero-header-art,
+.nav-logo,
+.footer-logo {
+  background:
+    radial-gradient(circle at center, rgba(255, 48, 64, 0.18), transparent 62%),
+    rgba(5, 5, 6, 0.72);
+}
+
+.gallery-item img {
+  min-height: 160px;
+}
+
+.image-load-fallback {
+  display: grid;
+  place-items: center;
+  min-height: 160px;
+  padding: 18px;
+  color: #ffdede;
+  text-align: center;
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 32%, rgba(255, 46, 64, 0.28), transparent 58%),
+    linear-gradient(135deg, rgba(120, 0, 16, 0.28), rgba(0, 0, 0, 0.76));
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1720px) {
+  .main-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+  }
+  .demo-player-layout {
+    grid-template-columns: minmax(190px, 0.68fr) minmax(400px, 1.5fr) minmax(205px, 0.72fr);
+  }
+  .demo-info-right {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 1180px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  .updates-panel {
+    position: static;
+    max-height: none;
+  }
+  .content-flow {
+    overflow: visible;
+  }
+}
+
+@media (max-width: 860px) {
+  .demo-player-layout {
+    grid-template-columns: 1fr;
+  }
+  .demo-info-right {
+    grid-column: auto;
+  }
+  .demo-canvas {
+    height: 300px;
+  }
+}

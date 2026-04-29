@@ -146,10 +146,24 @@ const defaultConfig = {
     "bg": "#060606",
     "panel": "#140a0a"
   },
-  "assetVersion": "20260429-holoverse-site-refresh"
+  "assetVersion": "20260429-pass5-layout-imagefix"
 };
 
-const STORAGE_KEY = 'glitched-prototype-site-config-v6-assets-routefix';
+const STORAGE_KEY = 'glitched-prototype-site-config-v8-pass5-layout-imagefix';
+const LEGACY_STORAGE_PREFIX = 'glitched-prototype-site-config-';
+function clearLegacySiteConfigs() {
+  try {
+    for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(LEGACY_STORAGE_PREFIX) && key !== STORAGE_KEY) {
+        localStorage.removeItem(key);
+      }
+    }
+  } catch {
+    // Ignore blocked storage. Bundled defaults still work.
+  }
+}
+clearLegacySiteConfigs();
 const UPDATES_SOURCE_URL = './assets/data/combined_patch_notes.txt';
 const IMAGE_MANIFEST_URL = './assets/data/image_manifest.json';
 let configLoadedFromStorage = false;
@@ -213,11 +227,21 @@ function makeImageCandidates(path) {
   ]).map(appendVersion);
 }
 
-function applyResolvedSource(el, candidates) {
+function applyResolvedSource(el, candidates, label = 'Image') {
   if (!el || !candidates.length) return;
   let index = 0;
   const tryNext = () => {
-    if (index >= candidates.length) return;
+    if (index >= candidates.length) {
+      const fig = el.closest && el.closest('.gallery-item');
+      if (fig && !fig.querySelector('.image-load-fallback')) {
+        el.remove();
+        const fallback = document.createElement('div');
+        fallback.className = 'image-load-fallback';
+        fallback.textContent = label;
+        fig.appendChild(fallback);
+      }
+      return;
+    }
     el.src = candidates[index++];
   };
   el.onerror = tryNext;
@@ -391,7 +415,7 @@ function renderGallery() {
     const img = document.createElement('img');
     img.alt = `GLITCHED MATRIX gallery image ${index + 1}`;
     img.loading = 'lazy';
-    applyResolvedSource(img, makeImageCandidates(path));
+    applyResolvedSource(img, makeImageCandidates(path), fileNameOnly(path).replace(/[_-]/g, ' '));
 
     fig.appendChild(img);
     fig.addEventListener('click', () => openLightbox(path, img.alt));
@@ -405,7 +429,7 @@ function openLightbox(path, alt = 'Expanded gallery image') {
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
   img.alt = alt;
-  applyResolvedSource(img, makeImageCandidates(path));
+  applyResolvedSource(img, makeImageCandidates(path), alt);
   document.body.style.overflow = 'hidden';
 }
 
@@ -525,7 +549,6 @@ async function hydrateBundledUpdates() {
 }
 
 async function hydrateBundledImageManifest() {
-  if (configLoadedFromStorage) return;
   try {
     const response = await fetch(appendVersion(IMAGE_MANIFEST_URL), { cache: 'no-store' });
     if (!response.ok) return;

@@ -50,3 +50,18 @@ assets/images/site_current/
 assets/images/site_current/demo_thumbs/
 
 After replacing images, update assets/data/image_manifest.json or keep the same filenames, then bump the assetVersion value.
+
+
+PASS 4 PLAYER FIX — 2026-04-29
+- Restored the actual <canvas id="demoCanvas"> inside the Play Demos player shell.
+- Added script-side canvas creation as a safety net if a cached HTML shell is missing it.
+- Bumped CSS/JS/data cache versions to 20260429-pass5-layout-imagefix.
+- Bumped the localStorage config key so stale image paths from older deployed passes do not override the new site_current assets.
+- Kept the layout, demo manifest workflow, and image replacement folders intact.
+
+PASS 5 — LAYOUT + IMAGE FIX (20260429-pass5-layout-imagefix)
+- The Patch Notes sidebar is constrained so it cannot cover the playable demo player or help panels.
+- The demo player now uses a two-column contained layout beside the sidebar and only expands to a three-column help/player/help view on very wide screens.
+- A new emergency canvas boot shim hides the loading overlay and starts a generated fallback player if the external demo runtime or manifest loads late.
+- Site image config uses a fresh storage key and clears older local browser image overrides, so current assets/images/site_current media should load again without stale paths taking over.
+- Image cards now show a visible fallback tile instead of an empty/broken media slot if a path is wrong.
