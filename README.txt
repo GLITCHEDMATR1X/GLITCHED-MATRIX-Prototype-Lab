@@ -31,7 +31,7 @@ Main files:
 Playable demo gallery
 =====================
 
-This refresh adds a Play Demos section to the static GitHub Pages site. The first playable demos are generated browser/canvas slices for Sky and Ground, Block Busters, Duck n Cover, and Where's Renaldo. They do not load sprite, sound, or Python runtime assets.
+This refresh adds a Play Demos section to the static GitHub Pages site. The current playable demos are generated browser/canvas slices for Sky and Ground, Block Busters, Duck n Cover, Where's Renaldo, Mewtants, DreamCrawler2D, Helix Biogenics, Isometric World Machine, and Holo Campaign. They do not load sprite, sound, Python runtime, or EXE assets.
 
 To update the demo grid without changing the layout:
 
@@ -39,4 +39,4 @@ To update the demo grid without changing the layout:
 2. Replace thumbnails in assets/images/site_current/demo_thumbs using the same filenames, or change the thumbnail paths in the manifest.
 3. Bump assetVersion in demo_manifest.json so browsers refresh cached thumbnails.
 
-Future demo slots are already present for Mewtants, DreamCrawler2D, Helix Biogenics, Isometric World Machine, and Holo Campaign. HoloVerse is intentionally not embedded yet.
+HoloVerse is intentionally not embedded yet. The current demos are lightweight, asset-free teasers for existing simple prototypes only.
