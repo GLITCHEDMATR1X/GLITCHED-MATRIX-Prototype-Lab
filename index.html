@@ -23,6 +23,7 @@
     <nav class="nav">
       <a href="#about">About</a>
       <a href="#features">Inside the Lab</a>
+      <a href="#demos">Play Demos</a>
       <a href="#roadmap">Plans</a>
       <a href="#media">Media</a>
       <a href="#community">Players + Creators</a>
@@ -102,6 +103,45 @@
       <div id="featuresGrid" class="feature-grid"></div>
     </section>
 
+    <section id="demos" class="panel content-card demo-section">
+      <div class="demo-head">
+        <div>
+          <span class="section-label">Playable Demos</span>
+          <h2 id="demoSectionTitle">Playable Web Demo Gallery</h2>
+          <p id="demoSectionIntro" class="demo-section-intro">Generated, asset-light browser demos. These are small site-safe versions for visitors, not full desktop builds.</p>
+        </div>
+        <a class="btn btn-secondary" href="assets/data/demo_manifest.json" target="_blank" rel="noopener noreferrer">Edit Demo Manifest</a>
+      </div>
+
+      <div class="demo-player-layout">
+        <aside class="demo-info-panel demo-info-left">
+          <span id="demoStatus" class="demo-status">Playable now</span>
+          <h3 id="demoTitle">Sky and Ground</h3>
+          <p id="demoSummary">Select a demo below.</p>
+          <div id="demoTags" class="demo-tags"></div>
+        </aside>
+
+        <div class="demo-canvas-shell">
+          <canvas id="demoCanvas" class="demo-canvas" width="960" height="540" aria-label="Playable generated web demo canvas"></canvas>
+        </div>
+
+        <aside class="demo-info-panel demo-info-right">
+          <h3>Brief Help</h3>
+          <dl class="demo-help-list">
+            <dt>Objective</dt>
+            <dd id="demoObjective">Collect points and avoid hazards.</dd>
+            <dt>Controls</dt>
+            <dd id="demoControls">WASD / Arrows move, R reset, P pause.</dd>
+            <dt>Build note</dt>
+            <dd id="demoDetails">Pure generated canvas demo.</dd>
+          </dl>
+        </aside>
+      </div>
+
+      <p id="demoSectionNote" class="demo-note">The player above the grid runs the selected demo. Replace thumbnails in assets/images/site_current/demo_thumbs or edit assets/data/demo_manifest.json to change the gallery.</p>
+      <div id="demoGalleryGrid" class="demo-gallery-grid" aria-label="Playable and future demo thumbnails"></div>
+    </section>
+
     <section id="roadmap" class="split-grid split-grid-roadmap">
       <article class="panel content-card">
         <span class="section-label editable" data-key="roadmapLabel">Direction</span>
@@ -174,6 +214,7 @@
     </div>
     <div class="footer-links">
       <a href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Steam</a>
+      <a href="#demos">Demos</a>
       <a href="#media">Media</a>
       <a href="#community">Players + Creators</a>
     </div>
@@ -259,6 +300,7 @@
     </div>
   </aside>
 
+  <script src="assets/js/demos.js"></script>
   <script src="admin.js"></script>
 </body>
 </html>
