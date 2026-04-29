@@ -1,3 +1,14 @@
+GLITCHED MATRIX Prototype Lab Website — pass14-holoverse-mech-fps — 2026-04-29
+--------------------------------------------------------------------------------
+- Added vertical mouse look so the demo can look up and down as well as left and right.
+- Reversed the mouse left/right yaw direction from the prior pass.
+- Reversed keyboard turn behavior so Q turns right and E turns left.
+- Lightened rendering with capped resolution, shorter render distance, fewer active chunks, and simpler far surfaces.
+- Added a mech-suit cockpit overlay with cylindrical shoulder arms on both sides of the view.
+- Added automatic mech-arm lock-on and firing against enemy silhouettes.
+- Reworked the interface into a red tactical scanner HUD with scanlines, target boxes, mech heat, lock percentage, pitch, and compact controls.
+- Updated the HoloVerse Demo text and IO patch-note entries to describe the mech scan route.
+
 GLITCHED MATRIX Prototype Lab Website — pass13-holoverse-visual-io — 2026-04-29
 --------------------------------------------------------------------------------
 - Replaced the jarring day/night inversion feel with slower, smoother color motion.
