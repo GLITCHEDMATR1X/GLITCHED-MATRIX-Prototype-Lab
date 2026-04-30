@@ -1,3 +1,13 @@
+GLITCHED MATRIX Prototype Lab Website — pass15-gallery-holoverse — 2026-04-30
+--------------------------------------------------------------------------------
+- Removed visible placeholder cards for missing screenshot files so the media section only shows artwork that actually loads.
+- Changed the media gallery into a same-size responsive thumbnail grid instead of one long vertical stack.
+- Updated the live page cache version and HoloVerse demo copy for the current mech city route.
+- Wired the page directly to the pass14b HoloVerse mech runtime script so the newest web demo loads in the playable slot.
+- Added an in-page HoloVerse patch note card so the latest media cleanup and route notes appear immediately after render.
+- Kept the Urban and Metropolis route reminders visible: Sable routes to Urban, while Archivist remains the Metropolis robot selector path.
+- Preserved the existing admin editor, lightbox, trailer embed, and patch-note panel behavior while tightening the screenshot presentation.
+
 GLITCHED MATRIX Prototype Lab Website — pass14-holoverse-mech-fps — 2026-04-29
 --------------------------------------------------------------------------------
 - Added vertical mouse look so the demo can look up and down as well as left and right.
