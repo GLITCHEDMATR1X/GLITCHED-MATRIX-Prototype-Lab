@@ -1,3 +1,12 @@
+GLITCHED MATRIX Prototype Lab Website — pass20-live-civilian-loader — 2026-05-01
+--------------------------------------------------------------------------------
+- Added a live-safe Pass 20 HoloVerse loader at assets/js/holoverse_mini_ringworld_pass20.js.
+- The loader prepares the demo canvas for the staged smart-civilian runtime before loading it with a fresh cache key.
+- This protects the Pass 19 civilian runtime from the stale canvas/global reference issue found during review.
+- Preserved the smart-civilian ring-world behavior: correct HoloVerse ring order, 16:9 canvas lock, minimap, realm-specific civilians, F fit-view, drag/WASD pan, wheel zoom, click-to-inspect, Esc release, and M mute.
+- Kept the page layout and existing admin/media/lightbox systems untouched so the update remains surgical.
+- The next wiring step is switching the live script tag from the older holoverse_mech_pass14b.js runtime to the Pass 20 loader once the branch is reviewed.
+
 GLITCHED MATRIX Prototype Lab Website — pass19-smart-civilian-ringworld — 2026-04-30
 --------------------------------------------------------------------------------
 - Added a new smart-civilian miniature HoloVerse runtime at assets/js/holoverse_mini_ringworld_pass19.js.
