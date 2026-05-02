@@ -1,3 +1,13 @@
+GLITCHED MATRIX Prototype Lab Website — pass23-expanded-timelapse-world — 2026-05-02
+--------------------------------------------------------------------------------
+- Added the Pass 23 expanded timelapse runtime at assets/js/holoverse_mini_ringworld_pass23.js.
+- Upscaled the mini HoloVerse so every region band has more room and clearer separation.
+- Expanded each region into visible sub-sectors such as plazas, groves, pastures, spore zones, caravan lanes, freeway relays, urban districts, and metropolis sorting shells.
+- Increased smart mini-bot population and improved AI routing: harvest, deliver, build, sort, promote, return weaker bots to Urban, and construct the Dyson shell.
+- Added a day/night timelapse cycle with a visible cycle bar so the world feels like it is thriving over time.
+- Upgraded pseudo-3D / mini-wireframe visuals for bots, sector structures, traffic lanes, Urban/Metropolis blocks, and the growing red Dyson sphere.
+- Preserved lightweight website controls and kept page layout, admin, media, and lightbox systems untouched.
+
 GLITCHED MATRIX Prototype Lab Website — pass22-smart-bot-ecology — 2026-05-02
 --------------------------------------------------------------------------------
 - Added the Pass 22 smart-bot ecology runtime at assets/js/holoverse_mini_ringworld_pass22.js.
@@ -6,7 +16,7 @@ GLITCHED MATRIX Prototype Lab Website — pass22-smart-bot-ecology — 2026-05-0
 - Added region-purpose behavior: Flat events, Forest flora harvesting, Green Hills fauna tending, Mushroom vegetation growth, Ice fast freeway travel, Desert slow cargo traffic, Urban centered neighborhood building, Metropolis success sorting, and Space Dyson construction.
 - Added lightweight pseudo-3D / mini-wireframe visuals for bots, centered neighborhood blocks, harvest shapes, traffic lanes, and the red exterior Dyson shell.
 - Added resource counters for flora, fauna, vegetation, cargo, building, and Dyson activity so the smart system is readable at a glance.
-- Preserved the lightweight 16:9 website controls and avoided returning to cockpit/FPS mode.
+- Preserved the lightweight 16:9 website controls.
 
 GLITCHED MATRIX Prototype Lab Website — pass21-living-watch-ringworld — 2026-05-02
 --------------------------------------------------------------------------------
@@ -16,79 +26,13 @@ GLITCHED MATRIX Prototype Lab Website — pass21-living-watch-ringworld — 2026
 - Added hub-to-realm supply pulses, live event beacons, cargo/signal carriers, and stronger realm activity callouts.
 - Kept the mini ring-world foundation: Flat, Forests, Green Hills, Mushroom, Desert, Ice, Urban, Metropolis, and exterior Space/Orbit.
 - Preserved lightweight website controls: C watch mode, drag/WASD pan, Shift fast pan, mouse-wheel zoom, F fit view, H home, click rings/beacons, M mute, and Esc release.
-- Avoided bringing back cockpit/FPS controls and kept the existing page layout, admin editor, media gallery, and lightbox untouched.
-
-GLITCHED MATRIX Prototype Lab Website — pass20-live-civilian-loader — 2026-05-01
---------------------------------------------------------------------------------
-- Added a live-safe Pass 20 HoloVerse loader at assets/js/holoverse_mini_ringworld_pass20.js.
-- The loader prepares the demo canvas for the staged smart-civilian runtime before loading it with a fresh cache key.
-- This protects the Pass 19 civilian runtime from the stale canvas/global reference issue found during review.
-- Preserved the smart-civilian ring-world behavior: correct HoloVerse ring order, 16:9 canvas lock, minimap, realm-specific civilians, F fit-view, drag/WASD pan, wheel zoom, click-to-inspect, Esc release, and M mute.
-- Kept the page layout and existing admin/media/lightbox systems untouched so the update remains surgical.
-- The next wiring step is switching the live script tag from the older holoverse_mech_pass14b.js runtime to the Pass 20 loader once the branch is reviewed.
-
-GLITCHED MATRIX Prototype Lab Website — pass19-smart-civilian-ringworld — 2026-04-30
---------------------------------------------------------------------------------
-- Added a new smart-civilian miniature HoloVerse runtime at assets/js/holoverse_mini_ringworld_pass19.js.
-- Locked the demo canvas styling to a clean 16:9 display and starts the camera at roughly a 5x overhead inspection scale.
-- Preserved the real world.py ring order: Flat, Forests, Green Hills, Mushroom, Desert, Ice, Urban, then Metropolis.
-- Added a minimap so the whole ring world remains readable while the main view stays zoomed in from above.
-- Added realm-specific civilian behavior: hub route citizens, forest foragers, hill farmers/animals, mushroom spore keepers, desert caravans, ice scanners, urban repair/scout crews, metropolis couriers, and exterior space orbiters.
-- Added F to fit the full ring world after zooming in, while keeping drag pan, WASD/Arrow panning, Shift fast pan, wheel zoom, click-to-inspect, Esc release, and M mute.
-- This pass stages the living-world runtime for wiring into the public page without replacing the stable pass-18 script yet.
-
-GLITCHED MATRIX Prototype Lab Website — pass18-mini-ringworld-base — 2026-04-30
---------------------------------------------------------------------------------
-- Replaced the infinite satellite survey behavior with a bounded miniature HoloVerse ring-world base.
-- Used the actual Panda3D world.py ring order: Flat, Forests, Green Hills, Mushroom, Desert, Ice, Urban, then Metropolis.
-- Compressed the full region stack into one top-down view so every ground region can be rendered at once.
-- Kept Metropolis as the outermost ground ring and moved Space/Orbit to the exterior layer outside the world edge.
-- Added color-coded region bands, region labels, bot anchor markers, hub pulses, route guide lines, and simple region pattern hints.
-- Preserved drag pan, WASD/Arrow panning, Shift fast pan, mouse-wheel zoom, click-to-inspect ring info, Esc release, and M mute.
-- Set this up as the foundation for later living-civilization passes: traffic, citizens, construction, repairs, weather, and region events.
-
-GLITCHED MATRIX Prototype Lab Website — pass17-infinite-satellite-survey — 2026-04-30
---------------------------------------------------------------------------------
-- Reworked the HoloVerse satellite demo toward the supplied overview reference: cyan grid, dark vignette, portal hub rings, colored district clusters, and core-option labeling.
-- Added WASD and Arrow-key camera panning in all directions, with Shift for faster survey movement.
-- Kept mouse-wheel zoom over the canvas and drag-to-pan support so the tour works with keyboard or mouse.
-- Added infinite city sector streaming around the camera: panning away from the hub reveals new generated HoloVerse cores, rings, and biome-colored district clusters.
-- Replaced the single bounded city view with a survey field that can keep changing as the player explores farther out.
-- Added clickable hub cores and colored district clusters for contextual HoloVerse info popups.
-- Preserved the non-FPS tour route with no cockpit overlay and no first-person control path.
-
-GLITCHED MATRIX Prototype Lab Website — pass16-satellite-city-tour — 2026-04-30
---------------------------------------------------------------------------------
-- Replaced the HoloVerse site demo with a satellite POV city tour.
-- Removed cockpit-style visuals, player tools, first-person movement, and tactical HUD language from the site demo runtime.
-- Added drag-to-pan and mouse-wheel zoom controls for moving around the city from above.
-- Added clickable information points and clickable generated buildings so the demo remains interactive from the tour view.
-- Added traffic lanes, moving vehicles, and small citizen motion to make the HoloVerse city read as a living civilization.
-- Kept smooth color transitions, layered glow surfaces, city-grid readability, and lightweight browser rendering.
-- Updated the visible demo copy, controls, tags, and build note to describe the tour layer instead of the previous cockpit pass.
-
-GLITCHED MATRIX Prototype Lab Website — pass15-gallery-holoverse — 2026-04-30
---------------------------------------------------------------------------------
-- Removed visible placeholder cards for missing screenshot files so the media section only shows artwork that actually loads.
-- Changed the media gallery into a same-size responsive thumbnail grid instead of one long vertical stack.
-- Updated the live page cache version and HoloVerse demo copy for the current city route.
-- Wired the page directly to the current HoloVerse runtime script so the newest web demo loads in the playable slot.
-- Added an in-page HoloVerse patch note card so the latest media cleanup and route notes appear immediately after render.
-- Kept the Urban and Metropolis reminders visible: Sable routes to Urban, while Archivist remains the Metropolis robot selector path.
-- Preserved the existing admin editor, lightbox, trailer embed, and patch-note panel behavior while tightening the screenshot presentation.
+- Kept the existing page layout, admin editor, media gallery, and lightbox untouched.
 
 HoloVerse — v0.10.45-ui-persistence-polish — 2026-04-29
 -------------------------------------------------------
-- Removed the FPS corner box and replaced it with a small transparent total-points readout.
+- Replaced the old corner debug readout with a small transparent total-points readout.
 - Reduced UI panel opacity and tightened runtime panels that were prone to running offscreen.
 - Updated Green Hills animals so they appear as grown saved animals instead of egg-like placeholders.
 - Mirrored Hills and Mushroom region saves into canonical shared data.
 - Darkened Urban terrain relative to the sky without adding new geometry.
 - Confirmed Metropolis Robot Selector should remain selector-only and must not spawn the player into Urban.
-
-HoloVerse — Urban route-truth reminder — 2026-04-29
----------------------------------------------------
-- Urban Warzone gameplay belongs to data/HoloVerse/Dimensions/Urban Warzone/runtime.py.
-- The visible Urban shell belongs to data/HoloVerse/world.py through holoverse_world_shell_mount.py.
-- The player route is not verified until the real Urban view shows URBAN WARZONE WORLD ROUTE ACTIVE and the top-right POINTS readout.
-- Do not expand Urban content until that real player route is proven.
