@@ -1,3 +1,14 @@
+GLITCHED MATRIX Prototype Lab Website — pass33-readable-site-repair — 2026-05-02
+--------------------------------------------------------------------------------
+- Repaired the live page layout after the HoloVerse demo became too narrow, condensed, and hard to read on wide screens and zoomed-out browser views.
+- Increased the site shell width so the content uses available screen space instead of sitting in a tiny center column surrounded by empty background.
+- Reworked the hero into a wider two-column feature area with stronger contrast, darker art treatment, larger title text, and less visual noise behind copy.
+- Promoted the HoloVerse canvas as the main feature with a larger 1280x720 canvas target and a wide 16:9 display area.
+- Moved cramped demo side panels into a clearer canvas-plus-sidebar layout, with responsive stacking for smaller screens.
+- Removed tiny trapped scroll-box behavior from the HoloVerse info panels and improved text size, line height, contrast, and card spacing.
+- Flattened the updates panel into a normal full-width section so public updates are readable instead of squeezed into a narrow sticky column.
+- Added a short readable-site guidance strip above the demo so players can quickly understand the layout, controls, and purpose.
+
 GLITCHED MATRIX Prototype Lab Website — pass29-merge-reconciliation — 2026-05-02
 --------------------------------------------------------------------------------
 - Reconciled the current GitHub pass branches against main before touching the live site files.
