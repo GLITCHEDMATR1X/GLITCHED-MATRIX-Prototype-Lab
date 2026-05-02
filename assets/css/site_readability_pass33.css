@@ -1,0 +1,419 @@
+/* GLITCHED MATRIX Prototype Lab — Pass 33 readability repair
+   Goal: widen the live site, remove the squeezed demo layout, and make the HoloVerse panels readable. */
+
+:root {
+  --shell: 1840px;
+  --text: #f5f7fb;
+  --muted: #c9d1d8;
+  --line: rgba(255, 76, 76, 0.24);
+  --line-strong: rgba(88, 224, 255, 0.42);
+}
+
+body {
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+}
+
+.page-backdrop {
+  opacity: 0.16 !important;
+  filter: saturate(0.9) brightness(0.72);
+}
+
+.grid-overlay {
+  opacity: 0.10 !important;
+}
+
+.scanlines,
+.noise-overlay {
+  opacity: 0.035 !important;
+}
+
+.shell {
+  width: min(calc(100% - clamp(22px, 3.2vw, 72px)), var(--shell)) !important;
+}
+
+.topbar {
+  padding-block: 14px !important;
+}
+
+.topbar::before {
+  inset-inline: calc(clamp(22px, 3.2vw, 72px) * -0.5) !important;
+  background: rgba(5, 5, 7, 0.94) !important;
+}
+
+.nav {
+  gap: clamp(12px, 1.2vw, 24px) !important;
+}
+
+.nav a {
+  color: #d7dce2 !important;
+  font-size: clamp(0.92rem, 0.78vw, 1.02rem) !important;
+}
+
+.panel {
+  background:
+    linear-gradient(180deg, rgba(18, 10, 12, 0.96), rgba(4, 7, 9, 0.97)) !important;
+  border-color: rgba(255, 70, 70, 0.22) !important;
+}
+
+.hero.panel {
+  display: grid !important;
+  grid-template-columns: minmax(420px, 0.92fr) minmax(440px, 1.08fr) !important;
+  align-items: stretch !important;
+  min-height: clamp(460px, 42vw, 720px) !important;
+  overflow: hidden !important;
+}
+
+body.holoverse-demo-featured-top .hero-visual,
+.hero-visual {
+  min-height: 100% !important;
+  max-height: none !important;
+  border-right: 1px solid rgba(255, 70, 70, 0.24) !important;
+  border-bottom: 0 !important;
+}
+
+body.holoverse-demo-featured-top .hero-header-art,
+.hero-header-art {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: clamp(460px, 42vw, 720px) !important;
+  object-fit: cover !important;
+  filter: contrast(1.04) brightness(0.62) saturate(1.05) !important;
+}
+
+.hero-gradient {
+  background:
+    radial-gradient(circle at 70% 40%, rgba(0, 255, 210, 0.12), transparent 30%),
+    linear-gradient(90deg, rgba(5, 7, 7, 0.2) 0%, rgba(5, 7, 7, 0.72) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.76)) !important;
+}
+
+body.holoverse-demo-featured-top .hero-copy,
+.hero-copy {
+  margin: 0 !important;
+  width: auto !important;
+  padding: clamp(28px, 4.2vw, 72px) !important;
+  align-content: center !important;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(255, 48, 48, 0.16), transparent 38%),
+    linear-gradient(180deg, rgba(10, 5, 6, 0.82), rgba(4, 7, 9, 0.94)) !important;
+  text-shadow: none !important;
+}
+
+.hero h1 {
+  max-width: 12ch;
+  font-size: clamp(3.25rem, 5.2vw, 6.4rem) !important;
+  line-height: 0.93 !important;
+}
+
+.lead {
+  max-width: 68ch !important;
+  color: #e4e9ee !important;
+  font-size: clamp(1.03rem, 0.96vw, 1.24rem) !important;
+}
+
+.btn {
+  min-height: 46px !important;
+  padding-inline: 18px !important;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: clamp(14px, 1.25vw, 22px) !important;
+}
+
+.stat-card,
+.content-card {
+  padding: clamp(22px, 1.7vw, 32px) !important;
+}
+
+.content-card p,
+.feature-body,
+.bullet-list,
+.gallery-note,
+.demo-section-intro,
+.demo-note {
+  color: #cfd7de !important;
+  line-height: 1.72 !important;
+}
+
+.content-card h2,
+.updates-panel h2 {
+  color: #f6f8fb !important;
+  letter-spacing: -0.018em;
+}
+
+.main-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.updates-panel {
+  position: static !important;
+  max-height: none !important;
+  min-height: 0 !important;
+}
+
+.updates-list {
+  overflow: visible !important;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 14px !important;
+  padding-right: 0 !important;
+}
+
+.update-card {
+  min-height: 100% !important;
+}
+
+.single-holoverse-section.demo-featured-top,
+.single-holoverse-section {
+  margin-top: clamp(20px, 2vw, 32px) !important;
+  padding: clamp(20px, 2.2vw, 38px) !important;
+  border-color: rgba(74, 232, 255, 0.32) !important;
+  background:
+    radial-gradient(circle at 52% 2%, rgba(0, 245, 255, 0.14), transparent 36%),
+    radial-gradient(circle at 14% 78%, rgba(255, 40, 70, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(8, 12, 16, 0.98), rgba(3, 6, 9, 0.98)) !important;
+}
+
+.demo-head {
+  margin-bottom: clamp(14px, 1.2vw, 22px) !important;
+}
+
+.demo-head h2,
+#demoSectionTitle {
+  margin: 8px 0 10px !important;
+  font-size: clamp(2rem, 2.4vw, 3.25rem) !important;
+  line-height: 1.05 !important;
+}
+
+.demo-section-intro {
+  max-width: 1080px !important;
+  font-size: clamp(1rem, 0.92vw, 1.18rem) !important;
+}
+
+.single-holoverse-section.demo-featured-top .demo-player-layout,
+.demo-player-layout {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.42fr) minmax(360px, 0.46fr) !important;
+  grid-template-areas:
+    "canvas left"
+    "canvas right"
+    "goals goals" !important;
+  gap: clamp(14px, 1.4vw, 22px) !important;
+  align-items: stretch !important;
+}
+
+.demo-info-left { grid-area: left !important; }
+.demo-info-right { grid-area: right !important; }
+
+.single-holoverse-section.demo-featured-top .demo-canvas-shell,
+.demo-canvas-shell {
+  grid-area: canvas !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: clamp(500px, 46vw, 820px) !important;
+  aspect-ratio: 16 / 9 !important;
+  padding: clamp(10px, 1vw, 16px) !important;
+  border-color: rgba(0, 245, 255, 0.34) !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.08), transparent 60%),
+    #020608 !important;
+}
+
+.single-holoverse-section.demo-featured-top .demo-canvas,
+.demo-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: clamp(480px, 44vw, 790px) !important;
+  max-height: none !important;
+  aspect-ratio: 16 / 9 !important;
+  border-color: rgba(0, 245, 255, 0.56) !important;
+  box-shadow:
+    inset 0 0 90px rgba(0, 0, 0, 0.84),
+    0 0 48px rgba(0, 190, 255, 0.16) !important;
+}
+
+#holoverseGoalAlignmentPanel,
+.holo-goal-panel {
+  grid-area: goals !important;
+  margin-top: 0 !important;
+}
+
+.demo-info-panel {
+  padding: clamp(18px, 1.35vw, 26px) !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  color: #e9f4f7 !important;
+  border-color: rgba(0, 245, 255, 0.20) !important;
+  background:
+    linear-gradient(180deg, rgba(0, 15, 20, 0.74), rgba(3, 7, 10, 0.9)) !important;
+}
+
+.demo-info-panel h3,
+.holo-title {
+  color: #f2fdff !important;
+  font-size: clamp(1.18rem, 1.05vw, 1.42rem) !important;
+  line-height: 1.22 !important;
+}
+
+.demo-info-panel p,
+.demo-help-list dd,
+.holo-card p {
+  color: #d5e1e7 !important;
+  font-size: clamp(0.95rem, 0.82vw, 1.06rem) !important;
+  line-height: 1.62 !important;
+}
+
+.demo-status {
+  color: #f1fdff !important;
+  border-color: rgba(0, 245, 255, 0.28) !important;
+  background: rgba(0, 245, 255, 0.10) !important;
+}
+
+.holo-k {
+  color: rgba(95, 241, 255, 0.95) !important;
+  font-size: 0.8rem !important;
+}
+
+.holo-card {
+  padding: clamp(14px, 1vw, 18px) !important;
+  border-color: rgba(0, 245, 255, 0.18) !important;
+  background: rgba(0, 14, 19, 0.56) !important;
+}
+
+.holo-meter {
+  grid-template-columns: minmax(86px, 0.34fr) minmax(90px, 1fr) minmax(32px, auto) !important;
+  font-size: clamp(0.84rem, 0.75vw, 0.96rem) !important;
+  color: #e0faff !important;
+}
+
+.holo-region-row {
+  font-size: clamp(0.86rem, 0.72vw, 0.95rem) !important;
+  line-height: 1.45 !important;
+  color: #d1dbe1 !important;
+}
+
+.holo-dot {
+  width: 11px !important;
+  height: 11px !important;
+}
+
+.demo-tags span,
+.tag-cloud span {
+  color: #f4fbff !important;
+}
+
+.site-readability-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0 18px;
+}
+
+.site-readability-card {
+  padding: 13px 14px;
+  border: 1px solid rgba(0, 245, 255, 0.18);
+  border-radius: 14px;
+  background: rgba(0, 16, 22, 0.52);
+}
+
+.site-readability-card strong {
+  display: block;
+  color: #eefcff;
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-readability-card span {
+  display: block;
+  margin-top: 5px;
+  color: #cfd9df;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.media-grid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr) !important;
+}
+
+.media-gallery {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+}
+
+@media (max-width: 1280px) {
+  .hero.panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.holoverse-demo-featured-top .hero-visual,
+  .hero-visual,
+  body.holoverse-demo-featured-top .hero-header-art,
+  .hero-header-art {
+    min-height: clamp(320px, 42vw, 520px) !important;
+  }
+
+  .hero-copy {
+    background: rgba(6, 8, 10, 0.94) !important;
+  }
+
+  .hero h1 {
+    max-width: none;
+  }
+
+  .single-holoverse-section.demo-featured-top .demo-player-layout,
+  .demo-player-layout {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "left"
+      "canvas"
+      "right"
+      "goals" !important;
+  }
+
+  .demo-info-panel {
+    overflow: visible !important;
+  }
+
+  .site-readability-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .media-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 860px) {
+  .stats-grid,
+  .split-grid,
+  .split-grid-roadmap,
+  .feature-grid,
+  .community-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.45rem, 12vw, 4rem) !important;
+  }
+
+  .single-holoverse-section.demo-featured-top .demo-canvas-shell,
+  .demo-canvas-shell {
+    min-height: 320px !important;
+  }
+
+  .single-holoverse-section.demo-featured-top .demo-canvas,
+  .demo-canvas {
+    min-height: 300px !important;
+  }
+
+  .site-readability-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .updates-list {
+    grid-template-columns: 1fr !important;
+  }
+}
