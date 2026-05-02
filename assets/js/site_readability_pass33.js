@@ -1,14 +1,14 @@
 (() => {
   'use strict';
 
-  const VERSION = 'pass33-readable-site';
-  const STYLE_ID = 'site-readability-pass33-runtime-style';
+  const VERSION = 'pass34-readable-site-freeze-fix';
+  const STYLE_ID = 'site-readability-pass34-runtime-style';
   const STRIP_ID = 'siteReadabilityStrip';
 
   const runtimeStyle = `
     body.site-readability-pass33 .single-holoverse-section.demo-featured-top .demo-player-layout,
     body.site-readability-pass33 .demo-player-layout {
-      grid-template-columns: minmax(0, 1.42fr) minmax(360px, 0.46fr) !important;
+      grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.5fr) !important;
       grid-template-areas:
         "canvas left"
         "canvas right"
@@ -20,13 +20,13 @@
     body.site-readability-pass33 .demo-info-right { grid-area: right !important; }
     body.site-readability-pass33 .demo-canvas-shell {
       grid-area: canvas !important;
-      min-height: clamp(500px, 46vw, 820px) !important;
+      min-height: clamp(430px, 38vw, 660px) !important;
       aspect-ratio: 16 / 9 !important;
     }
     body.site-readability-pass33 .demo-canvas {
       height: 100% !important;
-      min-height: clamp(480px, 44vw, 790px) !important;
-      max-height: none !important;
+      min-height: clamp(410px, 36vw, 630px) !important;
+      max-height: 660px !important;
     }
     body.site-readability-pass33 #holoverseGoalAlignmentPanel,
     body.site-readability-pass33 .holo-goal-panel { grid-area: goals !important; }
@@ -37,7 +37,7 @@
     body.site-readability-pass33 .holo-card p,
     body.site-readability-pass33 .demo-info-panel p,
     body.site-readability-pass33 .demo-help-list dd {
-      font-size: clamp(0.95rem, 0.82vw, 1.06rem) !important;
+      font-size: clamp(0.96rem, 0.82vw, 1.06rem) !important;
       line-height: 1.62 !important;
       color: #d5e1e7 !important;
     }
@@ -55,9 +55,9 @@
   `;
 
   const cards = [
-    ['Readable layout', 'The page now uses the screen instead of squeezing the lab into a narrow center column.'],
-    ['Large demo view', 'The HoloVerse canvas is the main feature, with panels moved beside or below it cleanly.'],
-    ['Cleaner panels', 'Side information gets more width, larger type, stronger contrast, and no tiny trapped scroll boxes.'],
+    ['Readable layout', 'The page uses more of the screen instead of squeezing the lab into a tiny center column.'],
+    ['Large demo view', 'The HoloVerse canvas stays prominent without forcing a massive browser workload.'],
+    ['Cleaner panels', 'Side information has larger type, stronger contrast, and no trapped mini scroll boxes.'],
     ['Controls', 'Click the demo, then drag or use WASD. Shift pans faster, wheel zooms, F fits, H returns home.']
   ];
 
@@ -99,9 +99,8 @@
   function tuneCanvasResolution() {
     const canvas = document.getElementById('demoCanvas');
     if (!canvas) return;
-    if ((canvas.getAttribute('width') || '') === '1280' && (canvas.getAttribute('height') || '') === '720') return;
-    canvas.setAttribute('width', '1280');
-    canvas.setAttribute('height', '720');
+    if ((canvas.getAttribute('width') || '') !== '1280') canvas.setAttribute('width', '1280');
+    if ((canvas.getAttribute('height') || '') !== '720') canvas.setAttribute('height', '720');
   }
 
   function simplifyPublicCopy() {
@@ -112,7 +111,7 @@
     );
     setText(
       'demoSectionNote',
-      'Readable-site pass: the demo is now presented as the main feature with a larger canvas, stronger contrast, wider panels, and less cramped text.'
+      'Readable-site pass: the demo is now presented as the main feature with a larger canvas, stronger contrast, wider panels, less cramped text, and no page-freezing observer loop.'
     );
     setText(
       'demoControls',
@@ -122,8 +121,8 @@
 
   function removeTinyPanelScroll() {
     document.querySelectorAll('.demo-info-panel').forEach((panel) => {
-      panel.style.maxHeight = 'none';
-      panel.style.overflow = 'visible';
+      if (panel.style.maxHeight !== 'none') panel.style.maxHeight = 'none';
+      if (panel.style.overflow !== 'visible') panel.style.overflow = 'visible';
     });
   }
 
@@ -139,7 +138,7 @@
 
   function schedule() {
     run();
-    [120, 360, 900, 1800, 3200].forEach((delay) => window.setTimeout(run, delay));
+    [120, 420, 1000, 2200].forEach((delay) => window.setTimeout(run, delay));
   }
 
   if (document.readyState === 'loading') {
@@ -147,7 +146,4 @@
   } else {
     schedule();
   }
-
-  const observer = new MutationObserver(() => run());
-  observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
