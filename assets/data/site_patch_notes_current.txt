@@ -1,3 +1,13 @@
+GLITCHED MATRIX Prototype Lab Website — pass21-living-watch-ringworld — 2026-05-02
+--------------------------------------------------------------------------------
+- Added a new HoloVerse living-watch runtime at assets/js/holoverse_mini_ringworld_pass21.js.
+- Wired both the legacy HoloVerse demo shim and Pass 20 loader to the new Pass 21 runtime with a fresh cache key.
+- Added cinematic watch mode so the site demo can tour active realms by itself instead of sitting idle.
+- Added hub-to-realm supply pulses, live event beacons, cargo/signal carriers, and stronger realm activity callouts.
+- Kept the mini ring-world foundation: Flat, Forests, Green Hills, Mushroom, Desert, Ice, Urban, Metropolis, and exterior Space/Orbit.
+- Preserved lightweight website controls: C watch mode, drag/WASD pan, Shift fast pan, mouse-wheel zoom, F fit view, H home, click rings/beacons, M mute, and Esc release.
+- Avoided bringing back cockpit/FPS controls and kept the existing page layout, admin editor, media gallery, and lightbox untouched.
+
 GLITCHED MATRIX Prototype Lab Website — pass20-live-civilian-loader — 2026-05-01
 --------------------------------------------------------------------------------
 - Added a live-safe Pass 20 HoloVerse loader at assets/js/holoverse_mini_ringworld_pass20.js.
