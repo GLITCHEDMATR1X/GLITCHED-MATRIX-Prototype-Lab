@@ -129,6 +129,7 @@ const defaultConfig = {
     "navLogo": "assets/images/capsule_small.png",
     "footerLogo": "assets/images/capsule_small.png",
     "gallery": [
+      "assets/images/site_current/block_busters_original_preview.png",
       "assets/images/site_current/gallery_01_gleebs.png",
       "assets/images/site_current/gallery_02_holoverse_orb.png",
       "assets/images/site_current/gallery_03_holo_conquest.jpg",
@@ -146,10 +147,10 @@ const defaultConfig = {
     "bg": "#060606",
     "panel": "#140a0a"
   },
-  "assetVersion": "20260429-pass5-layout-imagefix"
+  "assetVersion": "20260429-pass7-blockbusters-single"
 };
 
-const STORAGE_KEY = 'glitched-prototype-site-config-v8-pass5-layout-imagefix';
+const STORAGE_KEY = 'glitched-prototype-site-config-v10-pass7-blockbusters-single';
 const LEGACY_STORAGE_PREFIX = 'glitched-prototype-site-config-';
 function clearLegacySiteConfigs() {
   try {
@@ -171,8 +172,7 @@ let config = loadConfig();
 let adminOpen = false;
 
 const IMAGE_FALLBACK_BASES = [
-  '', './', 'assets/images/', './assets/images/',
-  'site_bundle/assets/images/', './site_bundle/assets/images/', 'assets/images/site_current/', './assets/images/site_current/', 'steamtemp/', './steamtemp/'
+  '', './', 'assets/images/site_current/', './assets/images/site_current/', 'assets/images/', './assets/images/'
 ];
 
 function isDirectUrl(value) {
@@ -531,18 +531,18 @@ function renderUpdates() {
     return;
   }
   entries.forEach(entry => host.appendChild(makeUpdateCard(entry)));
+  host.scrollTop = 0;
 }
 
 async function hydrateBundledUpdates() {
-  if (String(config.updatesRaw || '').trim()) return;
   try {
     const response = await fetch(appendVersion(UPDATES_SOURCE_URL), { cache: 'no-store' });
     if (!response.ok) return;
     const text = await response.text();
-    if (!String(config.updatesRaw || '').trim()) {
-      config.updatesRaw = text.trim();
-      applyConfig();
-    }
+    config.updatesRaw = text.trim();
+    applyConfig();
+    const host = document.getElementById('updatesList');
+    if (host) host.scrollTop = 0;
   } catch (err) {
     console.warn('Could not load bundled updates:', err);
   }
@@ -555,7 +555,7 @@ async function hydrateBundledImageManifest() {
     const manifest = await response.json();
     if (manifest.assetVersion) config.assetVersion = String(manifest.assetVersion);
     if (manifest.images && typeof manifest.images === 'object') {
-      config.images = deepMerge(structuredClone(config.images || {}), manifest.images);
+      config.images = deepMerge(structuredClone(defaultConfig.images || {}), manifest.images);
       config.images.gallery = dedupeGallery(config.images.gallery);
     }
     applyConfig();

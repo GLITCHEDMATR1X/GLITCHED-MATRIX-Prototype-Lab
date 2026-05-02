@@ -65,3 +65,17 @@ PASS 5 — LAYOUT + IMAGE FIX (20260429-pass5-layout-imagefix)
 - A new emergency canvas boot shim hides the loading overlay and starts a generated fallback player if the external demo runtime or manifest loads late.
 - Site image config uses a fresh storage key and clears older local browser image overrides, so current assets/images/site_current media should load again without stale paths taking over.
 - Image cards now show a visible fallback tile instead of an empty/broken media slot if a path is wrong.
+
+
+Pass 6 — 20260429-pass6-demo-image-patchnotes
+- Real screenshot thumbnails added for the simple web-demo gallery.
+- Demo card clicks now switch player/runtime/help text reliably.
+- Patch notes now force-load newest bundled notes at the top.
+- Current image manifest force-loads to repair stale local browser image paths.
+
+
+Pass 7 — Block Busters Single Demo
+-----------------------------------
+The Play Demos section now uses one dedicated Block Busters browser demo instead of a multi-game gallery. The web demo uses original Block Busters pixel/block art where available, generated fallbacks where needed, low-volume audio, and a mute button.
+
+Replace header/gallery images through assets/images/site_current and keep filenames unchanged for the safest update path.

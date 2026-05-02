@@ -1215,3 +1215,155 @@ body.admin-mode-available .admin-toggle {
     height: 300px;
   }
 }
+
+
+/* Pass 6: demo image/card reliability, patch-note alignment, and current-art visibility. */
+.main-grid {
+  align-items: start;
+  gap: clamp(22px, 2.2vw, 34px);
+}
+.content-flow { min-width: 0; }
+.updates-panel {
+  width: 100%;
+  max-width: 100%;
+  align-self: start;
+  position: sticky;
+  top: 96px;
+  z-index: 2;
+}
+.updates-list {
+  max-height: min(62vh, 620px);
+  overflow-y: auto;
+  padding-right: 8px;
+  scroll-behavior: auto;
+}
+.demo-canvas-shell { min-height: 300px; }
+.demo-loading-overlay[hidden] { display: none !important; }
+.demo-gallery-grid { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.demo-thumb-card { cursor: pointer; border-color: rgba(255, 48, 60, 0.24); }
+.demo-thumb-card:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 4px; }
+.demo-thumb-image { aspect-ratio: 16 / 9; background: #070707; }
+.demo-thumb-image img { width: 100%; height: 100%; object-fit: cover; opacity: 1; filter: saturate(1.08) contrast(1.03); }
+.demo-thumb-card.active .demo-thumb-image img { filter: saturate(1.18) contrast(1.1) brightness(1.05); }
+.image-load-fallback {
+  min-height: 170px;
+  display: grid;
+  place-items: center;
+  color: #ffdada;
+  background: linear-gradient(135deg, rgba(40,0,5,.95), rgba(0,0,0,.95));
+  border: 1px solid rgba(255, 48, 60, .35);
+  padding: 18px;
+  text-align: center;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.demo-noscript-note { display: none; color: #c8adad; margin: 8px 0 0; font-size: .9rem; }
+@media (max-width: 1380px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .updates-panel { position: relative; top: auto; }
+  .updates-list { max-height: 480px; }
+}
+@media (min-width: 1381px) {
+  .main-grid { grid-template-columns: minmax(0, 1fr) minmax(300px, 360px); }
+  .demo-player-layout { grid-template-columns: minmax(170px, .62fr) minmax(390px, 1.5fr); }
+  .demo-info-right { grid-column: 1 / -1; }
+}
+
+/* Pass 7: single dedicated Block Busters web demo + image/header reliability. */
+.single-demo-section {
+  overflow: hidden;
+}
+.single-demo-head {
+  align-items: center;
+}
+.demo-audio-button[aria-pressed="true"] {
+  border-color: rgba(255, 80, 96, 0.72);
+  background: rgba(255, 34, 50, 0.16);
+}
+.single-demo-layout {
+  grid-template-columns: minmax(180px, 0.62fr) minmax(0, 1.7fr) minmax(210px, 0.74fr);
+  gap: clamp(12px, 1.4vw, 18px);
+}
+.block-busters-shell {
+  min-height: 390px;
+  padding: 12px;
+  background:
+    radial-gradient(circle at 48% 20%, rgba(72, 205, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(8, 8, 16, 0.94), rgba(2, 2, 4, 0.98));
+}
+.block-busters-canvas {
+  width: 100%;
+  height: auto;
+  min-height: 360px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  border: 1px solid rgba(90, 210, 255, 0.18);
+  background: #04070d;
+  image-rendering: pixelated;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.42), 0 0 32px rgba(255, 30, 50, 0.10);
+}
+.single-demo-runtime .demo-loading-overlay {
+  display: none !important;
+}
+.single-demo-section .demo-note {
+  max-width: 980px;
+  margin-bottom: 0;
+}
+.single-demo-section .demo-info-panel {
+  min-height: 0;
+}
+.single-demo-section .demo-tags span {
+  color: #dffaff;
+  border-color: rgba(90, 210, 255, 0.18);
+  background: rgba(90, 210, 255, 0.055);
+}
+.nav-logo,
+.footer-logo {
+  object-fit: contain;
+  opacity: 1;
+}
+.hero-header-art,
+.media-gallery img,
+.gallery-item img {
+  opacity: 1;
+  object-fit: cover;
+}
+.media-gallery {
+  align-items: stretch;
+}
+.gallery-item {
+  min-height: 170px;
+  background: linear-gradient(135deg, rgba(30, 0, 4, 0.92), rgba(0, 0, 0, 0.96));
+}
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 170px;
+}
+.updates-list {
+  scroll-padding-top: 4px;
+}
+@media (max-width: 1480px) {
+  .single-demo-layout {
+    grid-template-columns: minmax(170px, 0.62fr) minmax(0, 1.55fr);
+  }
+  .single-demo-layout .demo-info-right {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 980px) {
+  .single-demo-head {
+    align-items: start;
+    flex-direction: column;
+  }
+  .single-demo-layout {
+    grid-template-columns: 1fr;
+  }
+  .single-demo-layout .demo-info-right {
+    grid-column: auto;
+  }
+  .block-busters-canvas {
+    min-height: 300px;
+  }
+}
