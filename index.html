@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLITCHED MATRIX Prototype Lab</title>
   <meta name="description" content="GLITCHED MATRIX Prototype Lab is a dark creative technology lab for AI-assisted tools, visual experiments, media systems, and mod-friendly utilities." />
-  <link rel="stylesheet" href="./style.css?v=20260502-no-demo" />
+  <link rel="stylesheet" href="./style.css?v=20260502-no-demo-media-restore" />
   <style>
     body { background: #050506; }
     .page-backdrop { opacity: .08 !important; }
@@ -28,12 +28,16 @@
     .updates-panel { position: static !important; max-height: none !important; }
     .updates-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; overflow: visible !important; padding-right: 0 !important; }
     .update-card, .feature-box { background: rgba(5, 10, 12, .72); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 18px; }
-    .content-card p, .feature-body, .bullet-list, .updates-note { color: #cfd7de; line-height: 1.68; }
-    .media-grid { grid-template-columns: 1fr !important; }
-    .media-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-    .media-gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+    .content-card p, .feature-body, .bullet-list, .updates-note, .gallery-note { color: #cfd7de; line-height: 1.68; }
+    .media-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(420px, .88fr) !important; gap: clamp(18px, 2vw, 34px); align-items: start; }
+    .video-shell { position: relative; aspect-ratio: 16 / 9; width: 100%; overflow: hidden; border-radius: 18px; border: 1px solid rgba(255,255,255,.12); background: #020304; }
+    .video-shell iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .media-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .gallery-item { min-height: 0; aspect-ratio: 16 / 9; cursor: pointer; }
+    .media-gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; display: block; }
+    .media-card { background: rgba(5, 10, 12, .72); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 8px; }
     @media (max-width: 1000px) {
-      .hero.panel, .stats-grid, .split-grid, .split-grid-roadmap, .feature-grid { grid-template-columns: 1fr !important; }
+      .hero.panel, .stats-grid, .split-grid, .split-grid-roadmap, .feature-grid, .media-grid { grid-template-columns: 1fr !important; }
       .hero-visual { min-height: 260px; }
       .hero h1 { max-width: none; }
     }
@@ -95,12 +99,12 @@
             <span class="section-label">About</span>
             <h2>A connected lab for practical experiments</h2>
             <p>GLITCHED MATRIX Prototype Lab collects tools, media workflows, visual tests, automation helpers, and research notes into one evolving workspace.</p>
-            <p>The current site is being simplified so it shows only useful, readable project information instead of distracting embedded experiments.</p>
+            <p>The current site is being simplified so it shows useful, readable project information without unstable embedded browser experiments.</p>
           </article>
           <aside class="panel content-card tone-card">
             <span class="section-label">Direction</span>
             <h2>Cleaner, smaller, more useful</h2>
-            <p>The lab should present what is working, what is being improved, and what creators can use without forcing visitors through unstable browser experiments.</p>
+            <p>The lab should present what is working, what is being improved, and what creators can use without forcing visitors through unstable runtimes.</p>
             <p>Future updates should emphasize clear screenshots, direct instructions, reliable downloads, and practical tool documentation.</p>
           </aside>
         </section>
@@ -114,7 +118,7 @@
             <article class="feature-box"><h3>Packaging utilities</h3><p class="feature-body">Cleaner build notes, dependency tracking, portable packaging research, and setup guidance.</p></article>
             <article class="feature-box"><h3>Mod-friendly tools</h3><p class="feature-body">Research utilities, file viewers, patch notes, and workflows for inspecting and organizing technical experiments.</p></article>
             <article class="feature-box"><h3>Documentation</h3><p class="feature-body">Readable project summaries, requirements, usage notes, and practical next-step lists.</p></article>
-            <article class="feature-box"><h3>Media library</h3><p class="feature-body">A cleaner gallery area for current images and prototype screenshots without unstable embedded demos.</p></article>
+            <article class="feature-box"><h3>Media library</h3><p class="feature-body">A full gallery area for current images, prototype screenshots, and visual references.</p></article>
           </div>
         </section>
 
@@ -124,30 +128,46 @@
             <h2>What should improve next</h2>
             <ul class="bullet-list">
               <li>Keep the public page readable and fast.</li>
-              <li>Remove unstable browser runtimes from the front page.</li>
+              <li>Keep unstable browser runtimes off the front page.</li>
               <li>Document the strongest tools clearly before adding new visual experiments.</li>
-              <li>Use screenshots and short explanations instead of heavy embedded systems.</li>
-              <li>Keep project notes organized and player-facing copy separate from internal work logs.</li>
+              <li>Use screenshots, videos, and short explanations instead of heavy embedded systems.</li>
+              <li>Keep project notes organized and public-facing copy separate from internal work logs.</li>
             </ul>
           </article>
           <article class="panel content-card">
             <span class="section-label">Now</span>
             <h2>Current cleanup state</h2>
-            <p>The unstable embedded demo has been removed from the public page. The site now presents the lab as a tool and media hub.</p>
-            <p>This keeps the page lighter, calmer, and easier to maintain while the actual project work continues elsewhere.</p>
+            <p>The unstable embedded runtime has been removed from the public page. The site now presents the lab as a tool, documentation, and media hub.</p>
+            <p>The image gallery and project video remain part of the page so the visual identity is preserved.</p>
           </article>
         </section>
 
         <section id="media" class="panel content-card media-section">
           <div class="media-head">
-            <div><span class="section-label">Media</span><h2>Project screenshots and visual references</h2></div>
+            <div><span class="section-label">Media</span><h2>Trailer, project screenshots, and visual references</h2></div>
+            <a class="btn btn-audio" href="https://www.youtube.com/watch?v=d78EOS1a1-8" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
           </div>
-          <p class="gallery-note">Click any image to open it at full size. Missing image slots are skipped automatically so the gallery stays clean.</p>
-          <div id="mediaGallery" class="media-gallery">
-            <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_04_anti_heroes.jpg" alt="Prototype screenshot" loading="lazy" /></figure>
-            <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_05_afterlife_hotel.jpg" alt="Prototype screenshot" loading="lazy" /></figure>
-            <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_06_apocalypse_run.jpg" alt="Prototype screenshot" loading="lazy" /></figure>
-            <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_08_duck_n_cover.jpg" alt="Prototype screenshot" loading="lazy" /></figure>
+          <div class="media-grid">
+            <figure class="media-card media-main-card media-video-card">
+              <div class="video-shell">
+                <iframe src="https://www.youtube.com/embed/d78EOS1a1-8?rel=0" title="GLITCHED MATRIX Prototype Lab trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+            </figure>
+            <div class="gallery-stack">
+              <p class="gallery-note">Click any image to open it at full size. Missing image slots are skipped automatically so the gallery stays clean.</p>
+              <div id="mediaGallery" class="media-gallery">
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_01_gleebs.png" alt="Project gallery image 1" loading="lazy" /></figure>
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_02_holoverse_orb.png" alt="Project gallery image 2" loading="lazy" /></figure>
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_03_holo_conquest.jpg" alt="Project gallery image 3" loading="lazy" /></figure>
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_04_anti_heroes.jpg" alt="Project gallery image 4" loading="lazy" /></figure>
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_05_afterlife_hotel.jpg" alt="Project gallery image 5" loading="lazy" /></figure>
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_06_apocalypse_run.jpg" alt="Project gallery image 6" loading="lazy" /></figure>
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_07_radar_hell.jpg" alt="Project gallery image 7" loading="lazy" /></figure>
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_08_duck_n_cover.jpg" alt="Project gallery image 8" loading="lazy" /></figure>
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_09_holo_campaign.jpg" alt="Project gallery image 9" loading="lazy" /></figure>
+                <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_10_gleebs_pot.png" alt="Project gallery image 10" loading="lazy" /></figure>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -166,8 +186,8 @@
         <div class="updates-head"><div><span class="section-label">Updates</span><h2>Public Update Notes</h2></div></div>
         <p class="updates-note">Recent cleanup notes for the public page.</p>
         <div class="updates-list">
-          <article class="update-card"><span class="update-group">Website</span><h3 class="update-heading">Embedded demo removed</h3><div class="update-meta">2026-05-02</div><ul class="update-bullets"><li>Removed the unstable embedded demo area from the public page.</li><li>Removed front-page references to the failed browser experiment.</li><li>Simplified the site into a calmer project lab and media hub.</li></ul></article>
-          <article class="update-card"><span class="update-group">Layout</span><h3 class="update-heading">Readability reset</h3><div class="update-meta">2026-05-02</div><ul class="update-bullets"><li>Reduced heavy runtime scripts.</li><li>Kept the page focused on readable cards, project direction, and useful media.</li></ul></article>
+          <article class="update-card"><span class="update-group">Website</span><h3 class="update-heading">Embedded runtime removed</h3><div class="update-meta">2026-05-02</div><ul class="update-bullets"><li>Removed the unstable embedded runtime area from the public page.</li><li>Kept the media section, trailer, and full image gallery active.</li><li>Simplified the page into a calmer project lab and media hub.</li></ul></article>
+          <article class="update-card"><span class="update-group">Media</span><h3 class="update-heading">Gallery restored</h3><div class="update-meta">2026-05-02</div><ul class="update-bullets"><li>Restored the full site gallery list.</li><li>Kept lightweight click-to-expand image viewing.</li></ul></article>
         </div>
       </aside>
     </div>
