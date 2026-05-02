@@ -1,8 +1,10 @@
 (()=>{
   'use strict';
 
-  const LIVE_SCRIPT = './assets/js/holoverse_mini_ringworld_pass27.js?v=20260502-pass29-public-copy';
+  const LIVE_SCRIPT = './assets/js/holoverse_mini_ringworld_pass27.js?v=20260502-pass30-public-note-guard';
   const TOP_LAYOUT_STYLE_ID = 'holoverse-featured-simulator-layout-pass28';
+  const STALE_UPDATE_SELECTORS = '#pass15-holoverse-media-note';
+  const STALE_UPDATE_MARKERS = ['pass15-gallery-holoverse', 'HoloVerse Site', 'Single-game live pass'];
 
   const publicUpdates = [
     {
@@ -220,6 +222,19 @@
     });
   }
 
+  function isStaleInjectedUpdate(card) {
+    if (!card) return false;
+    if (card.matches(STALE_UPDATE_SELECTORS)) return true;
+    const text = card.textContent || '';
+    return STALE_UPDATE_MARKERS.some((marker) => text.includes(marker));
+  }
+
+  function removeStaleInjectedUpdates() {
+    document.querySelectorAll('#updatesList .update-card').forEach((card) => {
+      if (!card.classList.contains('public-update-card') && isStaleInjectedUpdate(card)) card.remove();
+    });
+  }
+
   function renderPublicUpdates() {
     const host = document.getElementById('updatesList');
     if (!host) return;
@@ -230,6 +245,13 @@
       card.innerHTML = `<span class="update-group">${entry.group}</span><h3 class="update-heading">${entry.title}</h3><div class="update-meta">${entry.meta}</div><ul class="update-bullets">${entry.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>`;
       host.appendChild(card);
     });
+    removeStaleInjectedUpdates();
+  }
+
+  function publicUpdatesAreClean(host) {
+    if (!host) return false;
+    const cards = Array.from(host.querySelectorAll('.update-card'));
+    return cards.length === publicUpdates.length && cards.every((card) => card.classList.contains('public-update-card'));
   }
 
   function applyPublicCopy() {
@@ -259,7 +281,8 @@
     if (host && !host.dataset.publicUpdatesObserver) {
       host.dataset.publicUpdatesObserver = 'true';
       const observer = new MutationObserver(() => {
-        if (!host.querySelector('.public-update-card')) renderPublicUpdates();
+        removeStaleInjectedUpdates();
+        if (!publicUpdatesAreClean(host)) renderPublicUpdates();
       });
       observer.observe(host, { childList: true, subtree: false });
     }
