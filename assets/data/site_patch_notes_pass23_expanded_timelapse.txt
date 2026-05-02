@@ -1,0 +1,9 @@
+GLITCHED MATRIX Prototype Lab Website — pass23-expanded-timelapse-world — 2026-05-02
+--------------------------------------------------------------------------------
+- Added the Pass 23 expanded timelapse runtime at assets/js/holoverse_mini_ringworld_pass23.js.
+- Upscaled the mini HoloVerse so every region band has more room and clearer separation.
+- Expanded each region into visible sub-sectors such as plazas, groves, pastures, spore zones, caravan lanes, freeway relays, urban districts, and metropolis sorting shells.
+- Increased smart mini-bot population and improved AI routing: harvest, deliver, build, sort, promote, return weaker bots to Urban, and construct the Dyson shell.
+- Added a day/night timelapse cycle with a visible cycle bar so the world feels like it is thriving over time.
+- Upgraded pseudo-3D / mini-wireframe visuals for bots, sector structures, traffic lanes, Urban/Metropolis blocks, and the growing red Dyson sphere.
+- Preserved lightweight website controls and kept page layout, admin, media, and lightbox systems untouched.
