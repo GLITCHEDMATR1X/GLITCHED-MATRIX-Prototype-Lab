@@ -1,0 +1,42 @@
+HoloVerse Smart System Goals — Pass 22
+======================================
+
+Purpose
+-------
+Turn the site HoloVerse demo from a passive miniature world into a readable smart ecosystem. Entities should take form as small colored bots, move through region-specific jobs, and make the world feel alive without adding heavy rendering cost.
+
+Entity Form
+-----------
+- Entities should appear as tiny bots, not plain dots.
+- Bots should use different colors and silhouettes based on their home region.
+- Preferred style: lightweight mini-wireframe / pseudo-3D canvas shapes so the demo looks dimensional without hurting browser performance.
+- Bots can carry small glowing resource markers when harvesting, transporting, building, or constructing.
+
+Region Purposes
+---------------
+- Flat: central hub for gatherings, events, handoffs, and world coordination.
+- Forests: flora harvesting zone.
+- Green Hills: fauna tending / animal-resource zone.
+- Mushroom: vegetation, spores, and wetland bio-material growth zone.
+- Ice: fast road/freeway ring for faster travel between sides of the regions.
+- Desert: slower traffic lane for heavy cargo, caravans, and archive routes.
+- Urban: bots build their own unique neighborhoods, aligned toward the center of mass.
+- Metropolis: peak-success shell; strong bots rise here, weaker bots are sent back to Urban.
+- Space: exterior Dyson sphere construction layer, visually resembling the red wireframe Dyson shell from the full HoloVerse direction.
+
+Smart Behavior Goals
+--------------------
+- Bots should harvest resources from the regions that produce what they need.
+- Movement should communicate intent: harvesting, tending, growing, routing, building, sorting, or constructing.
+- Ice traffic should visibly move faster than Desert traffic.
+- Urban structures should form readable neighborhood clusters aligned around the world center.
+- Metropolis should act like a success/sorting ring instead of just another city band.
+- Space should show ongoing Dyson construction progress as an exterior wireframe shell.
+
+Performance Rules
+-----------------
+- Keep the site demo lightweight.
+- Prefer procedural canvas graphics over image-heavy assets.
+- Reuse simple geometry patterns: rings, small cubes, diamonds, circles, hex bots, pyramids, trees, and thin wireframe structures.
+- Avoid first-person/cockpit/FPS systems for the website version.
+- Keep the 16:9 top-down ring-world readability and existing lightweight controls.

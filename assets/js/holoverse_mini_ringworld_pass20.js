@@ -1,28 +1,19 @@
 (()=>{
   'use strict';
 
-  const LIVE_SCRIPT = './assets/js/holoverse_mini_ringworld_pass19.js?v=20260501-pass20-live-civilians';
+  const LIVE_SCRIPT = './assets/js/holoverse_mini_ringworld_pass23.js?v=20260502-pass23-expanded-timelapse-world';
 
   function mount() {
     const demoCanvas = document.getElementById('demoCanvas');
-    if (demoCanvas) {
-      window.canvas = demoCanvas;
-    }
-
-    if (document.querySelector('script[data-holoverse-pass20-loader="true"]')) {
-      return;
-    }
-
+    if (demoCanvas) window.canvas = demoCanvas;
+    if (document.querySelector('script[data-holoverse-pass23-loader="true"]')) return;
     const script = document.createElement('script');
     script.src = LIVE_SCRIPT;
     script.async = false;
-    script.dataset.holoversePass20Loader = 'true';
+    script.dataset.holoversePass23Loader = 'true';
     document.head.appendChild(script);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', mount, { once: true });
-  } else {
-    mount();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, { once: true });
+  else mount();
 })();

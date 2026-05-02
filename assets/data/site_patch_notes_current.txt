@@ -1,3 +1,23 @@
+GLITCHED MATRIX Prototype Lab Website — pass22-smart-bot-ecology — 2026-05-02
+--------------------------------------------------------------------------------
+- Added the Pass 22 smart-bot ecology runtime at assets/js/holoverse_mini_ringworld_pass22.js.
+- Recorded the HoloVerse smart-system goals in assets/data/holoverse_smart_system_goals.txt.
+- Entities now take form as tiny region-colored mini bots instead of plain civilian dots.
+- Added region-purpose behavior: Flat events, Forest flora harvesting, Green Hills fauna tending, Mushroom vegetation growth, Ice fast freeway travel, Desert slow cargo traffic, Urban centered neighborhood building, Metropolis success sorting, and Space Dyson construction.
+- Added lightweight pseudo-3D / mini-wireframe visuals for bots, centered neighborhood blocks, harvest shapes, traffic lanes, and the red exterior Dyson shell.
+- Added resource counters for flora, fauna, vegetation, cargo, building, and Dyson activity so the smart system is readable at a glance.
+- Preserved the lightweight 16:9 website controls and avoided returning to cockpit/FPS mode.
+
+GLITCHED MATRIX Prototype Lab Website — pass21-living-watch-ringworld — 2026-05-02
+--------------------------------------------------------------------------------
+- Added a new HoloVerse living-watch runtime at assets/js/holoverse_mini_ringworld_pass21.js.
+- Wired both the legacy HoloVerse demo shim and Pass 20 loader to the new Pass 21 runtime with a fresh cache key.
+- Added cinematic watch mode so the site demo can tour active realms by itself instead of sitting idle.
+- Added hub-to-realm supply pulses, live event beacons, cargo/signal carriers, and stronger realm activity callouts.
+- Kept the mini ring-world foundation: Flat, Forests, Green Hills, Mushroom, Desert, Ice, Urban, Metropolis, and exterior Space/Orbit.
+- Preserved lightweight website controls: C watch mode, drag/WASD pan, Shift fast pan, mouse-wheel zoom, F fit view, H home, click rings/beacons, M mute, and Esc release.
+- Avoided bringing back cockpit/FPS controls and kept the existing page layout, admin editor, media gallery, and lightbox untouched.
+
 GLITCHED MATRIX Prototype Lab Website — pass20-live-civilian-loader — 2026-05-01
 --------------------------------------------------------------------------------
 - Added a live-safe Pass 20 HoloVerse loader at assets/js/holoverse_mini_ringworld_pass20.js.
@@ -54,7 +74,7 @@ GLITCHED MATRIX Prototype Lab Website — pass15-gallery-holoverse — 2026-04-3
 - Updated the live page cache version and HoloVerse demo copy for the current city route.
 - Wired the page directly to the current HoloVerse runtime script so the newest web demo loads in the playable slot.
 - Added an in-page HoloVerse patch note card so the latest media cleanup and route notes appear immediately after render.
-- Kept the Urban and Metropolis route reminders visible: Sable routes to Urban, while Archivist remains the Metropolis robot selector path.
+- Kept the Urban and Metropolis reminders visible: Sable routes to Urban, while Archivist remains the Metropolis robot selector path.
 - Preserved the existing admin editor, lightbox, trailer embed, and patch-note panel behavior while tightening the screenshot presentation.
 
 HoloVerse — v0.10.45-ui-persistence-polish — 2026-04-29
