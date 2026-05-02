@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLITCHED MATRIX Prototype Lab</title>
   <meta name="description" content="A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab." />
-  <link rel="stylesheet" href="./style.css?v=20260430-pass15-gallery-holoverse" />
+  <link rel="stylesheet" href="./style.css?v=20260502-pass31-goal-alignment" />
   <style id="pass15-gallery-cleanup">
     .media-gallery {
       display: grid !important;
@@ -115,15 +115,15 @@
           <div class="demo-head">
             <div>
               <span class="section-label">Playable Demo</span>
-              <h2 id="demoSectionTitle">HoloVerse Demo — Mech Guard City Pass</h2>
-              <p id="demoSectionIntro" class="demo-section-intro">A browser canvas HoloVerse pass with smoother sky colors, mouse-look controls, IO patch-note interactions, safer non-player behavior, and a shoulder-mounted mech suit assist.</p>
+              <h2 id="demoSectionTitle">HoloVerse Demo — Visible Living World</h2>
+              <p id="demoSectionIntro" class="demo-section-intro">A browser canvas HoloVerse world-view prototype with readable regions, visible trees, animals, mushrooms, roads, towers, cargo lanes, bots, and Dyson construction panels.</p>
             </div>
           </div>
           <div class="demo-player-layout single-demo-layout">
             <aside class="demo-info-panel demo-info-left">
               <span id="demoStatus" class="demo-status">Playable now</span>
-              <h3 id="demoTitle">HoloVerse Demo</h3>
-              <p id="demoSummary">Explore a generated wireframe city slice while IO protects from a distance and the suit tracks targets automatically.</p>
+              <h3 id="demoTitle">Visible Living HoloVerse</h3>
+              <p id="demoSummary">Survey the HoloVerse as a clean world-view prototype: inspect regions, bots, structures, roads, resources, and Dyson construction without cockpit or FPS framing.</p>
               <div id="demoTags" class="demo-tags"></div>
             </aside>
             <div class="demo-canvas-shell">
@@ -133,13 +133,13 @@
             <aside class="demo-info-panel demo-info-right">
               <h3>Brief Help</h3>
               <dl class="demo-help-list">
-                <dt>Objective</dt><dd id="demoObjective">Move through the city, test FPS-style pointer controls, click IO for patch-note callouts, and watch the suit assist.</dd>
-                <dt>Controls</dt><dd id="demoControls">Click the game first. WASD move, mouse look, Shift sprint, Q/E strafe, LMB action, TAB next tool, M mute. Esc releases controls.</dd>
-                <dt>Build note</dt><dd id="demoDetails">This site pass keeps the page layout intact while swapping the playable slot to the latest HoloVerse web demo.</dd>
+                <dt>Objective</dt><dd id="demoObjective">Survey the hub and regions, inspect objects and bots, and keep the world readable as a public HoloVerse/MatrixCore prototype.</dd>
+                <dt>Controls</dt><dd id="demoControls">Click the demo first. C watch mode, drag/WASD pan, Shift fast pan, mouse wheel zoom, F fit world, H home, click inspect, Esc releases controls.</dd>
+                <dt>Build note</dt><dd id="demoDetails">This page frames the demo as a non-cockpit, non-first-person world-view pass with clean player-facing public notes.</dd>
               </dl>
             </aside>
           </div>
-          <p id="demoSectionNote" class="demo-note">Single-game live pass: HoloVerse Demo now focuses on the smooth-color mech city test and current route notes.</p>
+          <p id="demoSectionNote" class="demo-note">Visible-world pass: readable regions, visible objects, bot activity, clean side panels, and no stale internal patch-note feed.</p>
         </section>
 
         <section id="roadmap" class="split-grid split-grid-roadmap">
@@ -157,8 +157,8 @@
       </div>
 
       <aside id="updatesPanel" class="panel updates-panel">
-        <div class="updates-head"><div><span class="section-label editable" data-key="updatesLabel">Updates</span><h2 class="editable" data-key="updatesTitle">Patch Notes</h2></div></div>
-        <p class="updates-note editable" data-key="updatesNote">Latest development notes, HoloVerse route updates, and prototype inventory highlights.</p>
+        <div class="updates-head"><div><span class="section-label editable" data-key="updatesLabel">Updates</span><h2 class="editable" data-key="updatesTitle">Public Update Notes</h2></div></div>
+        <p class="updates-note editable" data-key="updatesNote">Player-facing progress, world direction, and major Prototype Lab updates.</p>
         <div id="updatesList" class="updates-list" aria-live="polite"></div>
       </aside>
     </div>
@@ -183,14 +183,6 @@
 
   <script>
     (() => {
-      const PATCH_ID = 'pass15-holoverse-media-note';
-      const patchBullets = [
-        'Removed visible placeholder cards for missing screenshot files so the media section only shows artwork that actually loads.',
-        'Changed the media gallery into a same-size responsive thumbnail grid instead of one long vertical stack.',
-        'Refreshed the live HoloVerse demo slot toward the current mech city pass and kept the page copy aligned with IO route notes.',
-        'Kept the Urban and Metropolis reminders visible: Sable routes to Urban, while Archivist remains the Metropolis robot selector path.'
-      ];
-
       function cleanGallery() {
         document.querySelectorAll('#mediaGallery .gallery-item').forEach((item) => {
           if (item.querySelector('.image-load-fallback') || !item.querySelector('img')) item.remove();
@@ -198,13 +190,7 @@
       }
 
       function injectPatchNote() {
-        const host = document.getElementById('updatesList');
-        if (!host || document.getElementById(PATCH_ID)) return;
-        const card = document.createElement('article');
-        card.className = 'update-card';
-        card.id = PATCH_ID;
-        card.innerHTML = '<span class="update-group">HoloVerse Site</span><h3 class="update-heading">GLITCHED MATRIX Prototype Lab Website</h3><div class="update-meta">pass15-gallery-holoverse — 2026-04-30</div><ul class="update-bullets">' + patchBullets.map((text) => '<li>' + text + '</li>').join('') + '</ul>';
-        host.prepend(card);
+        return;
       }
 
       function runPass15Cleanup() {
@@ -217,7 +203,7 @@
       new MutationObserver(runPass15Cleanup).observe(document.documentElement, { childList: true, subtree: true });
     })();
   </script>
-  <script src="./assets/js/holoverse_mech_pass14b.js?v=20260430-pass15-gallery-holoverse"></script>
-  <script src="./admin.js?v=20260430-pass15-gallery-holoverse"></script>
+  <script src="./assets/js/holoverse_mech_pass14b.js?v=20260502-pass31-goal-alignment"></script>
+  <script src="./admin.js?v=20260502-pass31-goal-alignment"></script>
 </body>
 </html>
