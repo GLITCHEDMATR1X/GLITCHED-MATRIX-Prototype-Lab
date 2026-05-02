@@ -4,38 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLITCHED MATRIX Prototype Lab</title>
-  <meta name="description" content="A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab." />
-  <link rel="stylesheet" href="./style.css?v=20260502-pass35-wide-dashboard" />
-  <link rel="stylesheet" href="./assets/css/site_readability_pass33.css?v=20260502-pass35-wide-dashboard" />
-  <link rel="stylesheet" href="./assets/css/site_layout_pass35.css?v=20260502-pass35-wide-dashboard" />
-  <style id="pass15-gallery-cleanup">
-    .media-gallery {
-      display: grid !important;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) !important;
-      gap: 14px !important;
-      align-items: stretch !important;
+  <meta name="description" content="GLITCHED MATRIX Prototype Lab is a dark creative technology lab for AI-assisted tools, visual experiments, media systems, and mod-friendly utilities." />
+  <link rel="stylesheet" href="./style.css?v=20260502-no-demo" />
+  <style>
+    body { background: #050506; }
+    .page-backdrop { opacity: .08 !important; }
+    .grid-overlay, .noise-overlay, .scanlines { opacity: .025 !important; }
+    .shell { width: min(calc(100% - 40px), 1600px) !important; }
+    .hero.panel {
+      display: grid;
+      grid-template-columns: minmax(320px, .8fr) minmax(420px, 1fr);
+      min-height: clamp(360px, 32vw, 620px);
+      overflow: hidden;
     }
-    .gallery-item {
-      aspect-ratio: 16 / 9;
-      min-height: 0;
-      padding: 8px !important;
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-    }
-    .gallery-item img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      border-radius: 10px;
-    }
-    .gallery-item:has(.image-load-fallback),
-    .image-load-fallback { display: none !important; }
-    @media (max-width: 1080px) {
-      .media-gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; }
-    }
-    @media (max-width: 560px) {
-      .media-gallery { grid-template-columns: 1fr !important; }
+    .hero-visual { min-height: 100%; max-height: none; }
+    .hero-header-art { width: 100%; height: 100%; object-fit: cover; filter: brightness(.48) saturate(.78) contrast(1.02); }
+    .hero-copy { margin: 0 !important; padding: clamp(32px, 4vw, 72px) !important; align-content: center; background: rgba(5, 6, 8, .88); }
+    .hero h1 { max-width: 14ch; font-size: clamp(3.5rem, 5vw, 7rem); line-height: .92; }
+    .lead { max-width: 72ch; color: #e1e7eb; line-height: 1.65; }
+    .main-grid { grid-template-columns: 1fr !important; }
+    .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .updates-panel { position: static !important; max-height: none !important; }
+    .updates-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; overflow: visible !important; padding-right: 0 !important; }
+    .update-card, .feature-box { background: rgba(5, 10, 12, .72); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 18px; }
+    .content-card p, .feature-body, .bullet-list, .updates-note { color: #cfd7de; line-height: 1.68; }
+    .media-grid { grid-template-columns: 1fr !important; }
+    .media-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .media-gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+    @media (max-width: 1000px) {
+      .hero.panel, .stats-grid, .split-grid, .split-grid-roadmap, .feature-grid { grid-template-columns: 1fr !important; }
+      .hero-visual { min-height: 260px; }
+      .hero h1 { max-width: none; }
     }
   </style>
 </head>
@@ -47,7 +47,7 @@
 
   <header class="topbar shell">
     <div class="brand-block">
-      <span class="micro overline editable" data-key="microLabel">GLITCHED MATRIX</span>
+      <span class="micro overline">GLITCHED MATRIX</span>
       <a class="brand-link" href="#top">
         <img id="navLogo" class="nav-logo" src="assets/images/capsule_small.png" alt="GLITCHED MATRIX Prototype Lab logo" />
       </a>
@@ -55,12 +55,10 @@
     <nav class="nav">
       <a href="#about">About</a>
       <a href="#features">Inside the Lab</a>
-      <a href="#demos">HoloVerse Demo</a>
       <a href="#roadmap">Plans</a>
       <a href="#media">Media</a>
-      <a href="#community">Players + Creators</a>
+      <a href="#community">Creators</a>
     </nav>
-    <button id="adminToggle" class="admin-toggle" type="button" aria-label="Open admin panel" hidden>Admin</button>
   </header>
 
   <main id="top" class="shell main-shell">
@@ -70,130 +68,140 @@
         <div class="hero-gradient"></div>
       </div>
       <div class="hero-copy">
-        <div class="eyebrow editable" data-key="heroEyebrow">&gt; HoloVerse + Prototype Arcade &lt;</div>
-        <h1 class="editable" data-key="heroTitle">GLITCHED MATRIX Prototype Lab</h1>
-        <p class="lead editable" data-key="heroLead">A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab.</p>
+        <div class="eyebrow">&gt; Prototype Systems + Creator Tools &lt;</div>
+        <h1>GLITCHED MATRIX Prototype Lab</h1>
+        <p class="lead">A dark creative technology lab for AI-assisted tools, visual experiments, media systems, packaging workflows, and mod-friendly utilities.</p>
         <div class="cta-row">
-          <a id="primaryCta" class="btn btn-primary" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">View on Steam</a>
-          <a id="secondaryCta" class="btn btn-secondary" href="#demos">HoloVerse Demo</a>
+          <a class="btn btn-primary" href="#features">See Lab Work</a>
+          <a class="btn btn-secondary" href="#media">View Media</a>
         </div>
-        <div id="heroTags" class="tag-cloud"></div>
+        <div class="tag-cloud">
+          <span>AI Tools</span><span>Visual Systems</span><span>Packaging</span><span>Mod Utilities</span><span>Creative Lab</span>
+        </div>
       </div>
     </section>
 
     <section class="stats-grid">
-      <article class="panel stat-card"><span class="stat-label editable" data-key="stat1Label">Status</span><strong class="stat-value editable" data-key="stat1Value">Active Prototype Lab</strong></article>
-      <article class="panel stat-card"><span class="stat-label editable" data-key="stat2Label">What You Do</span><strong class="stat-value editable" data-key="stat2Value">Explore • Play • Build</strong></article>
-      <article class="panel stat-card"><span class="stat-label editable" data-key="stat3Label">Core Appeal</span><strong class="stat-value editable" data-key="stat3Value">HoloVerse + prototype arcade</strong></article>
-      <article class="panel stat-card"><span class="stat-label editable" data-key="stat4Label">Built For</span><strong class="stat-value editable" data-key="stat4Value">Players, tinkerers, creators</strong></article>
+      <article class="panel stat-card"><span class="stat-label">Status</span><strong class="stat-value">Active Lab</strong></article>
+      <article class="panel stat-card"><span class="stat-label">Focus</span><strong class="stat-value">Tools • Media • Systems</strong></article>
+      <article class="panel stat-card"><span class="stat-label">Core Appeal</span><strong class="stat-value">Creative experimentation</strong></article>
+      <article class="panel stat-card"><span class="stat-label">Built For</span><strong class="stat-value">Creators and tinkerers</strong></article>
     </section>
 
     <div class="main-grid">
       <div class="content-flow">
         <section id="about" class="split-grid">
           <article class="panel content-card">
-            <span class="section-label editable" data-key="aboutLabel">About</span>
-            <h2 class="editable" data-key="aboutTitle">A connected digital world built for discovery</h2>
-            <p class="editable" data-key="aboutBody1">GLITCHED MATRIX Prototype Lab is a dark sci-fi hub where HoloVerse, MatrixCore, bots, standalone prototypes, and creation tools all live inside one evolving system.</p>
-            <p class="editable" data-key="aboutBody2">The current build focuses on turning separate experiments into connected places: a walkable HoloVerse, in-world dimension runtimes, site-replaceable media, and a growing library of playable prototypes.</p>
+            <span class="section-label">About</span>
+            <h2>A connected lab for practical experiments</h2>
+            <p>GLITCHED MATRIX Prototype Lab collects tools, media workflows, visual tests, automation helpers, and research notes into one evolving workspace.</p>
+            <p>The current site is being simplified so it shows only useful, readable project information instead of distracting embedded experiments.</p>
           </article>
           <aside class="panel content-card tone-card">
-            <span class="section-label editable" data-key="fictionLabel">Lore</span>
-            <h2 class="editable" data-key="fictionTitle">MatrixCore, Gleebs, and the recovered system</h2>
-            <p class="editable" data-key="fictionBody1">After the Utopia Project fractured, MatrixCore began preserving recoverable worlds, tools, and prototype fragments inside the lab. HoloVerse now acts as the living shell around those fragments.</p>
-            <p class="editable" data-key="fictionBody2">Gleebs, IO, Sable, Archivist, and the other region bots help guide players through the digital wreckage, opening experiments, lore paths, and region-specific systems as the project grows.</p>
+            <span class="section-label">Direction</span>
+            <h2>Cleaner, smaller, more useful</h2>
+            <p>The lab should present what is working, what is being improved, and what creators can use without forcing visitors through unstable browser experiments.</p>
+            <p>Future updates should emphasize clear screenshots, direct instructions, reliable downloads, and practical tool documentation.</p>
           </aside>
         </section>
 
         <section id="features" class="panel content-card">
-          <span class="section-label editable" data-key="featuresLabel">Inside the Lab</span>
-          <h2 class="editable" data-key="featuresTitle">What you can explore right now</h2>
-          <div id="featuresGrid" class="feature-grid"></div>
-        </section>
-
-        <section id="demos" class="panel content-card demo-section single-holoverse-section">
-          <div class="demo-head">
-            <div>
-              <span class="section-label">Playable Demo</span>
-              <h2 id="demoSectionTitle">HoloVerse Demo — Full World Dashboard</h2>
-              <p id="demoSectionIntro" class="demo-section-intro">A calm full-width HoloVerse map: the whole world is visible first, with readable side panels and no forced zoom into one giant ring.</p>
-            </div>
+          <span class="section-label">Inside the Lab</span>
+          <h2>What this page now focuses on</h2>
+          <div class="feature-grid">
+            <article class="feature-box"><h3>AI-assisted workflows</h3><p class="feature-body">Command planning, tool handoffs, testing notes, and structured passes for creative technical work.</p></article>
+            <article class="feature-box"><h3>Visual experiments</h3><p class="feature-body">Screenshots, concept media, interface studies, and presentation tests that can be reviewed without heavy browser runtimes.</p></article>
+            <article class="feature-box"><h3>Packaging utilities</h3><p class="feature-body">Cleaner build notes, dependency tracking, portable packaging research, and setup guidance.</p></article>
+            <article class="feature-box"><h3>Mod-friendly tools</h3><p class="feature-body">Research utilities, file viewers, patch notes, and workflows for inspecting and organizing technical experiments.</p></article>
+            <article class="feature-box"><h3>Documentation</h3><p class="feature-body">Readable project summaries, requirements, usage notes, and practical next-step lists.</p></article>
+            <article class="feature-box"><h3>Media library</h3><p class="feature-body">A cleaner gallery area for current images and prototype screenshots without unstable embedded demos.</p></article>
           </div>
-          <div class="demo-player-layout single-demo-layout">
-            <aside class="demo-info-panel demo-info-left">
-              <span id="demoStatus" class="demo-status">Readable Survey</span>
-              <h3 id="demoTitle">Visible Living HoloVerse</h3>
-              <p id="demoSummary">Survey the HoloVerse as a full-world dashboard: inspect regions, bots, structures, roads, resources, and Dyson construction without eye-strain or giant cropped rings.</p>
-              <div id="demoTags" class="demo-tags"></div>
-            </aside>
-            <div class="demo-canvas-shell">
-              <canvas id="demoCanvas" class="demo-canvas holoverse-demo-canvas" width="1280" height="720" tabindex="0" aria-label="Playable HoloVerse web demo"></canvas>
-              <div id="demoLoadingOverlay" class="demo-loading-overlay">Loading HoloVerse Demo…<span>If this stays visible, refresh once after GitHub Pages deploy finishes.</span></div>
-            </div>
-            <aside class="demo-info-panel demo-info-right">
-              <h3>Brief Help</h3>
-              <dl class="demo-help-list">
-                <dt>Objective</dt><dd id="demoObjective">Survey the whole world first, then click a region to inspect it.</dd>
-                <dt>Controls</dt><dd id="demoControls">Click a region. Drag to pan. Wheel zooms. F fits the world. H returns home.</dd>
-                <dt>Build note</dt><dd id="demoDetails">This page now uses a calmer dashboard runtime instead of the old animated zoomed-ring view.</dd>
-              </dl>
-            </aside>
-          </div>
-          <p id="demoSectionNote" class="demo-note">Pass 35: full-world dashboard view, reduced motion, clearer panels, and lighter first-load behavior.</p>
         </section>
 
         <section id="roadmap" class="split-grid split-grid-roadmap">
-          <article class="panel content-card"><span class="section-label editable" data-key="roadmapLabel">Direction</span><h2 class="editable" data-key="roadmapTitle">How the lab can grow</h2><ul id="roadmapList" class="bullet-list"></ul></article>
-          <article class="panel content-card"><span class="section-label editable" data-key="directionLabel">Right Now</span><h2 class="editable" data-key="directionTitle">What the current release emphasizes</h2><p class="editable" data-key="directionBody1">The current release emphasizes HoloVerse route cleanup, MatrixCore/Gleebs guidance, better prototype documentation, more reliable points/UI behavior, and clearer presentation of what is actually inside the lab.</p><p class="editable" data-key="directionBody2">Urban Warzone and Metropolis are the most important verification paths: Sable should activate the live Urban runtime, while Archivist should stay in Metropolis as a robot selector.</p></article>
+          <article class="panel content-card">
+            <span class="section-label">Plans</span>
+            <h2>What should improve next</h2>
+            <ul class="bullet-list">
+              <li>Keep the public page readable and fast.</li>
+              <li>Remove unstable browser runtimes from the front page.</li>
+              <li>Document the strongest tools clearly before adding new visual experiments.</li>
+              <li>Use screenshots and short explanations instead of heavy embedded systems.</li>
+              <li>Keep project notes organized and player-facing copy separate from internal work logs.</li>
+            </ul>
+          </article>
+          <article class="panel content-card">
+            <span class="section-label">Now</span>
+            <h2>Current cleanup state</h2>
+            <p>The unstable embedded demo has been removed from the public page. The site now presents the lab as a tool and media hub.</p>
+            <p>This keeps the page lighter, calmer, and easier to maintain while the actual project work continues elsewhere.</p>
+          </article>
         </section>
 
         <section id="media" class="panel content-card media-section">
-          <div class="media-head"><div><span class="section-label editable" data-key="mediaLabel">Media</span><h2 class="editable" data-key="mediaTitle">Trailer, HoloVerse media, and prototype screenshots</h2></div><a id="trailerLink" class="btn btn-audio" href="https://www.youtube.com/watch?v=d78EOS1a1-8" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></div>
-          <div class="media-grid"><figure class="media-card media-main-card media-video-card"><div class="video-shell"><iframe id="trailerEmbed" src="https://www.youtube.com/embed/d78EOS1a1-8?rel=0" title="GLITCHED MATRIX Prototype Lab trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></figure><div class="gallery-stack"><p class="gallery-note editable" data-key="galleryNote">Click any image to open it at full size. Missing screenshot slots are skipped automatically so the gallery stays clean.</p><div id="mediaGallery" class="media-gallery"></div></div></div>
+          <div class="media-head">
+            <div><span class="section-label">Media</span><h2>Project screenshots and visual references</h2></div>
+          </div>
+          <p class="gallery-note">Click any image to open it at full size. Missing image slots are skipped automatically so the gallery stays clean.</p>
+          <div id="mediaGallery" class="media-gallery">
+            <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_04_anti_heroes.jpg" alt="Prototype screenshot" loading="lazy" /></figure>
+            <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_05_afterlife_hotel.jpg" alt="Prototype screenshot" loading="lazy" /></figure>
+            <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_06_apocalypse_run.jpg" alt="Prototype screenshot" loading="lazy" /></figure>
+            <figure class="media-card gallery-item"><img src="assets/images/site_current/gallery_08_duck_n_cover.jpg" alt="Prototype screenshot" loading="lazy" /></figure>
+          </div>
         </section>
 
-        <section class="panel content-card store-meta"><span class="section-label editable" data-key="metaLabel">What to Expect</span><h2 class="editable" data-key="metaTitle">Core identity</h2><div id="metaTags" class="tag-cloud tag-cloud-secondary"></div></section>
-        <section id="community" class="panel content-card"><span class="section-label editable" data-key="communityLabel">Who It Is For</span><h2 class="editable" data-key="communityTitle">Players, tinkerers, and creators</h2><div id="communityGrid" class="feature-grid community-grid"></div></section>
+        <section id="community" class="panel content-card">
+          <span class="section-label">Creators</span>
+          <h2>Who this is for</h2>
+          <div class="feature-grid community-grid">
+            <article class="feature-box"><h3>Tinkerers</h3><p class="feature-body">People who like testing tools, replacing assets, cleaning builds, and shaping rough systems into something useful.</p></article>
+            <article class="feature-box"><h3>Creators</h3><p class="feature-body">Artists, builders, designers, and developers looking for a lab centered on invention and iteration.</p></article>
+            <article class="feature-box"><h3>Technical explorers</h3><p class="feature-body">People drawn to file research, utility design, automation, and practical project organization.</p></article>
+          </div>
+        </section>
       </div>
 
       <aside id="updatesPanel" class="panel updates-panel">
-        <div class="updates-head"><div><span class="section-label editable" data-key="updatesLabel">Updates</span><h2 class="editable" data-key="updatesTitle">Public Update Notes</h2></div></div>
-        <p class="updates-note editable" data-key="updatesNote">Player-facing progress, world direction, and major Prototype Lab updates.</p>
-        <div id="updatesList" class="updates-list" aria-live="polite"></div>
+        <div class="updates-head"><div><span class="section-label">Updates</span><h2>Public Update Notes</h2></div></div>
+        <p class="updates-note">Recent cleanup notes for the public page.</p>
+        <div class="updates-list">
+          <article class="update-card"><span class="update-group">Website</span><h3 class="update-heading">Embedded demo removed</h3><div class="update-meta">2026-05-02</div><ul class="update-bullets"><li>Removed the unstable embedded demo area from the public page.</li><li>Removed front-page references to the failed browser experiment.</li><li>Simplified the site into a calmer project lab and media hub.</li></ul></article>
+          <article class="update-card"><span class="update-group">Layout</span><h3 class="update-heading">Readability reset</h3><div class="update-meta">2026-05-02</div><ul class="update-bullets"><li>Reduced heavy runtime scripts.</li><li>Kept the page focused on readable cards, project direction, and useful media.</li></ul></article>
+        </div>
       </aside>
     </div>
   </main>
 
-  <footer class="shell footer"><div class="footer-left"><img id="footerLogo" class="footer-logo" src="assets/images/capsule_small.png" alt="GLITCHED MATRIX Prototype Lab footer logo" /><p class="footer-copy editable" data-key="footerCopy">© GLITCHED MATRIX — Prototype Lab</p></div><div class="footer-links"><a href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Steam</a><a href="#demos">HoloVerse Demo</a><a href="#media">Media</a><a href="#community">Players + Creators</a></div></footer>
+  <footer class="shell footer">
+    <div class="footer-left"><img class="footer-logo" src="assets/images/capsule_small.png" alt="GLITCHED MATRIX Prototype Lab footer logo" /><p class="footer-copy">© GLITCHED MATRIX — Prototype Lab</p></div>
+    <div class="footer-links"><a href="#features">Lab Work</a><a href="#media">Media</a><a href="#community">Creators</a></div>
+  </footer>
 
   <div id="lightbox" class="lightbox" aria-hidden="true"><div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Expanded image viewer"><button id="lightboxClose" class="lightbox-close" type="button" aria-label="Close image viewer">×</button><img id="lightboxImage" class="lightbox-image" src="" alt="" /></div></div>
 
-  <aside id="adminPanel" class="admin-panel" aria-hidden="true">
-    <div class="admin-header"><div><div class="admin-overline">Admin Mode</div><h3>Live page editor</h3></div><button id="closeAdmin" class="admin-close" type="button">×</button></div>
-    <div class="admin-section"><label>Accent color <input id="accentColor" type="color" value="#cc1414" /></label><label>Background color <input id="bgColor" type="color" value="#060606" /></label><label>Panel tint <input id="panelColor" type="color" value="#140a0a" /></label></div>
-    <div class="admin-section two-col"><label>Primary CTA text <input id="primaryCtaText" type="text" /></label><label>Primary CTA link <input id="primaryCtaLink" type="text" /></label><label>Secondary CTA text <input id="secondaryCtaText" type="text" /></label><label>Secondary CTA link <input id="secondaryCtaLink" type="text" /></label><label>Trailer URL <input id="trailerUrlInput" type="text" /></label><label>Trailer button text <input id="trailerLinkTextInput" type="text" /></label></div>
-    <div class="admin-section two-col"><label>Nav logo path <input id="navLogoInput" type="text" /></label><label>Hero header image <input id="heroHeaderInput" type="text" /></label><label>Footer logo path <input id="footerLogoInput" type="text" /></label><label>Gallery images (one path per line) <textarea id="galleryImagesInput" rows="8"></textarea></label><p class="admin-note full-span">Repo image swaps: replace files in <code>assets/images/site_current</code> or edit <code>assets/data/image_manifest.json</code>. Use <code>?admin=1</code> or Ctrl+Shift+A for this editor.</p></div>
-    <div class="admin-section two-col"><label>Upload nav logo <input id="uploadNavLogo" type="file" accept="image/*" /></label><label>Upload hero header <input id="uploadHeroHeader" type="file" accept="image/*" /></label><label>Upload footer logo <input id="uploadFooterLogo" type="file" accept="image/*" /></label><label>Add gallery images <input id="uploadGalleryImages" type="file" accept="image/*" multiple /></label></div>
-    <div class="admin-section"><label>Asset version <input id="assetVersionInput" type="text" placeholder="e.g. 20260402a" /></label><p class="admin-note">Change the asset version after replacing repo images to force a refresh.</p></div>
-    <div class="admin-section"><label>Hero tags (one per line) <textarea id="heroTagsInput" rows="5"></textarea></label><label>Feature cards (Title|Body per line) <textarea id="featuresInput" rows="8"></textarea></label><label>Roadmap bullets (one per line) <textarea id="roadmapInput" rows="8"></textarea></label><label>Meta tags (one per line) <textarea id="metaTagsInput" rows="8"></textarea></label><label>Community cards (Title|Body per line) <textarea id="communityInput" rows="8"></textarea></label></div>
-    <div class="admin-section"><label>Updates note <input id="updatesNoteInput" type="text" /></label><label>Updates source text <textarea id="updatesInput" rows="14"></textarea></label><label>Import updates text file <input id="importUpdatesText" type="file" accept=".txt,text/plain" /></label></div>
-    <div class="admin-section two-col append-update-grid"><label>New update heading <input id="newUpdateHeadingInput" type="text" placeholder="Project — Version — Date" /></label><label>Optional group title <input id="newUpdateGroupInput" type="text" placeholder="Optional section title" /></label><label class="full-span">New update bullets (one per line) <textarea id="newUpdateBulletsInput" rows="6" placeholder="First bullet&#10;Second bullet"></textarea></label><button id="appendUpdateBtn" class="btn btn-primary full-span" type="button">Add Update To Top</button></div>
-    <div class="admin-actions"><button id="saveAdmin" class="btn btn-primary" type="button">Save Changes</button><button id="resetAdmin" class="btn btn-secondary" type="button">Reset to Defaults</button><button id="exportAdmin" class="btn btn-secondary" type="button">Export JSON</button><label class="btn btn-secondary import-label">Import JSON <input id="importAdmin" type="file" accept="application/json" hidden /></label></div>
-  </aside>
-
   <script>
     (() => {
-      function cleanGallery() {
-        document.querySelectorAll('#mediaGallery .gallery-item').forEach((item) => {
-          if (item.querySelector('.image-load-fallback') || !item.querySelector('img')) item.remove();
+      const modal = document.getElementById('lightbox');
+      const image = document.getElementById('lightboxImage');
+      const close = document.getElementById('lightboxClose');
+      document.querySelectorAll('#mediaGallery img').forEach((img) => {
+        img.addEventListener('error', () => img.closest('.gallery-item')?.remove(), { once: true });
+        img.addEventListener('click', () => {
+          image.src = img.src;
+          image.alt = img.alt || 'Expanded image';
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden', 'false');
         });
+      });
+      function closeLightbox() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        image.removeAttribute('src');
       }
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanGallery, { once: true });
-      else cleanGallery();
+      close.addEventListener('click', closeLightbox);
+      modal.addEventListener('click', (event) => { if (event.target === modal) closeLightbox(); });
     })();
   </script>
-  <script src="./assets/js/holoverse_mech_pass14b.js?v=20260502-pass35-wide-dashboard"></script>
-  <script src="./assets/js/site_readability_pass33.js?v=20260502-pass35-wide-dashboard"></script>
-  <script src="./admin.js?v=20260502-pass35-wide-dashboard"></script>
 </body>
 </html>
