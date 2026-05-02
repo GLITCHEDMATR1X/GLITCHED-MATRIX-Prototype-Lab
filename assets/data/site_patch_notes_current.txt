@@ -1,3 +1,21 @@
+GLITCHED MATRIX Prototype Lab Website — pass29-merge-reconciliation — 2026-05-02
+--------------------------------------------------------------------------------
+- Reconciled the current GitHub pass branches against main before touching the live site files.
+- Confirmed main already contains the newer HoloVerse public-copy/layout merge: the active loader points at the Pass 27 runtime with the pass29 public-copy cache key, and the top layout style is on the Pass 28 layout path.
+- Kept the current main HoloVerse loader and layout instead of older Pass 24/25 branch copies so the live demo does not regress to older cockpit-language or oversized layout states.
+- Kept the current main Blockbusters demo runtime instead of the older single-live branch copy because main already carries the newer Pass 10 input/infinite Blockbusters work.
+- Preserved the previously uncommitted Pass 17 satellite-survey note below so the pass history is complete without downgrading the active runtime.
+
+GLITCHED MATRIX Prototype Lab Website — pass17-infinite-satellite-survey — 2026-04-30
+--------------------------------------------------------------------------------
+- Reworked the HoloVerse satellite demo toward the supplied overview reference: cyan grid, dark vignette, portal hub rings, colored district clusters, and core-option labeling.
+- Added WASD and Arrow-key camera panning in all directions, with Shift for faster survey movement.
+- Kept mouse-wheel zoom over the canvas and drag-to-pan support so the tour works with keyboard or mouse.
+- Added infinite city sector streaming around the camera: panning away from the hub reveals new generated HoloVerse cores, rings, and biome-colored district clusters.
+- Replaced the single bounded city view with a survey field that can keep changing as the player explores farther out.
+- Added clickable hub cores and colored district clusters for contextual HoloVerse info popups.
+- Preserved the non-FPS tour route with no cockpit overlay and no first-person control path.
+
 GLITCHED MATRIX Prototype Lab Website — pass23-expanded-timelapse-world — 2026-05-02
 --------------------------------------------------------------------------------
 - Added the Pass 23 expanded timelapse runtime at assets/js/holoverse_mini_ringworld_pass23.js.
