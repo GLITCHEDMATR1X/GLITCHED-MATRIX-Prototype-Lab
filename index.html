@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLITCHED MATRIX Prototype Lab</title>
   <meta name="description" content="A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab." />
-  <link rel="stylesheet" href="./style.css?v=20260502-pass34-freeze-fix" />
-  <link rel="stylesheet" href="./assets/css/site_readability_pass33.css?v=20260502-pass34-freeze-fix" />
+  <link rel="stylesheet" href="./style.css?v=20260502-pass35-wide-dashboard" />
+  <link rel="stylesheet" href="./assets/css/site_readability_pass33.css?v=20260502-pass35-wide-dashboard" />
+  <link rel="stylesheet" href="./assets/css/site_layout_pass35.css?v=20260502-pass35-wide-dashboard" />
   <style id="pass15-gallery-cleanup">
     .media-gallery {
       display: grid !important;
@@ -29,9 +30,7 @@
       border-radius: 10px;
     }
     .gallery-item:has(.image-load-fallback),
-    .image-load-fallback {
-      display: none !important;
-    }
+    .image-load-fallback { display: none !important; }
     @media (max-width: 1080px) {
       .media-gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; }
     }
@@ -76,7 +75,7 @@
         <p class="lead editable" data-key="heroLead">A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab.</p>
         <div class="cta-row">
           <a id="primaryCta" class="btn btn-primary" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">View on Steam</a>
-          <a id="secondaryCta" class="btn btn-secondary" href="#demos">Play HoloVerse Demo</a>
+          <a id="secondaryCta" class="btn btn-secondary" href="#demos">HoloVerse Demo</a>
         </div>
         <div id="heroTags" class="tag-cloud"></div>
       </div>
@@ -116,15 +115,15 @@
           <div class="demo-head">
             <div>
               <span class="section-label">Playable Demo</span>
-              <h2 id="demoSectionTitle">HoloVerse Demo — Visible Living World</h2>
-              <p id="demoSectionIntro" class="demo-section-intro">A browser canvas HoloVerse world-view prototype with readable regions, visible trees, animals, mushrooms, roads, towers, cargo lanes, bots, and Dyson construction panels.</p>
+              <h2 id="demoSectionTitle">HoloVerse Demo — Full World Dashboard</h2>
+              <p id="demoSectionIntro" class="demo-section-intro">A calm full-width HoloVerse map: the whole world is visible first, with readable side panels and no forced zoom into one giant ring.</p>
             </div>
           </div>
           <div class="demo-player-layout single-demo-layout">
             <aside class="demo-info-panel demo-info-left">
-              <span id="demoStatus" class="demo-status">Playable now</span>
+              <span id="demoStatus" class="demo-status">Readable Survey</span>
               <h3 id="demoTitle">Visible Living HoloVerse</h3>
-              <p id="demoSummary">Survey the HoloVerse as a clean world-view prototype: inspect regions, bots, structures, roads, resources, and Dyson construction without cockpit or FPS framing.</p>
+              <p id="demoSummary">Survey the HoloVerse as a full-world dashboard: inspect regions, bots, structures, roads, resources, and Dyson construction without eye-strain or giant cropped rings.</p>
               <div id="demoTags" class="demo-tags"></div>
             </aside>
             <div class="demo-canvas-shell">
@@ -134,13 +133,13 @@
             <aside class="demo-info-panel demo-info-right">
               <h3>Brief Help</h3>
               <dl class="demo-help-list">
-                <dt>Objective</dt><dd id="demoObjective">Survey the hub and regions, inspect objects and bots, and keep the world readable as a public HoloVerse/MatrixCore prototype.</dd>
-                <dt>Controls</dt><dd id="demoControls">Click the demo first. C watch mode, drag/WASD pan, Shift fast pan, mouse wheel zoom, F fit world, H home, click inspect, Esc releases controls.</dd>
-                <dt>Build note</dt><dd id="demoDetails">This page frames the demo as a non-cockpit, non-first-person world-view pass with clean player-facing public notes.</dd>
+                <dt>Objective</dt><dd id="demoObjective">Survey the whole world first, then click a region to inspect it.</dd>
+                <dt>Controls</dt><dd id="demoControls">Click a region. Drag to pan. Wheel zooms. F fits the world. H returns home.</dd>
+                <dt>Build note</dt><dd id="demoDetails">This page now uses a calmer dashboard runtime instead of the old animated zoomed-ring view.</dd>
               </dl>
             </aside>
           </div>
-          <p id="demoSectionNote" class="demo-note">Visible-world pass: readable regions, visible objects, bot activity, clean side panels, and no stale internal patch-note feed.</p>
+          <p id="demoSectionNote" class="demo-note">Pass 35: full-world dashboard view, reduced motion, clearer panels, and lighter first-load behavior.</p>
         </section>
 
         <section id="roadmap" class="split-grid split-grid-roadmap">
@@ -189,17 +188,12 @@
           if (item.querySelector('.image-load-fallback') || !item.querySelector('img')) item.remove();
         });
       }
-
-      function runPass15Cleanup() {
-        cleanGallery();
-      }
-
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', runPass15Cleanup, { once: true });
-      else runPass15Cleanup();
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanGallery, { once: true });
+      else cleanGallery();
     })();
   </script>
-  <script src="./assets/js/holoverse_mech_pass14b.js?v=20260502-pass34-freeze-fix"></script>
-  <script src="./assets/js/site_readability_pass33.js?v=20260502-pass34-freeze-fix"></script>
-  <script src="./admin.js?v=20260502-pass34-freeze-fix"></script>
+  <script src="./assets/js/holoverse_mech_pass14b.js?v=20260502-pass35-wide-dashboard"></script>
+  <script src="./assets/js/site_readability_pass33.js?v=20260502-pass35-wide-dashboard"></script>
+  <script src="./admin.js?v=20260502-pass35-wide-dashboard"></script>
 </body>
 </html>
