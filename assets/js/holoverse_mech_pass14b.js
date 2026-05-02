@@ -1,7 +1,7 @@
 (()=>{
   'use strict';
 
-  const LIVE_SCRIPT = './assets/js/holoverse_mini_ringworld_pass25.js?v=20260502-pass25-side-panel-dashboard';
+  const LIVE_SCRIPT = './assets/js/holoverse_mini_ringworld_pass26.js?v=20260502-pass26-slow-bot-minds';
   const TOP_LAYOUT_STYLE_ID = 'holoverse-featured-simulator-layout-pass25';
 
   function installTopLayoutStyle() {
@@ -97,11 +97,11 @@
     promoteDemoUnderHero();
     const demoCanvas = document.getElementById('demoCanvas');
     if (demoCanvas) window.canvas = demoCanvas;
-    if (document.querySelector('script[data-holoverse-pass25-loader="true"]')) return;
+    if (document.querySelector('script[data-holoverse-pass26-loader="true"]')) return;
     const script = document.createElement('script');
     script.src = LIVE_SCRIPT;
     script.async = false;
-    script.dataset.holoversePass25Loader = 'true';
+    script.dataset.holoversePass26Loader = 'true';
     document.head.appendChild(script);
   }
 
