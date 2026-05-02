@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLITCHED MATRIX Prototype Lab</title>
   <meta name="description" content="A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab." />
-  <link rel="stylesheet" href="./style.css?v=20260502-pass33-readable-site" />
-  <link rel="stylesheet" href="./assets/css/site_readability_pass33.css?v=20260502-pass33-readable-site" />
+  <link rel="stylesheet" href="./style.css?v=20260502-pass34-freeze-fix" />
+  <link rel="stylesheet" href="./assets/css/site_readability_pass33.css?v=20260502-pass34-freeze-fix" />
   <style id="pass15-gallery-cleanup">
     .media-gallery {
       display: grid !important;
@@ -190,22 +190,16 @@
         });
       }
 
-      function injectPatchNote() {
-        return;
-      }
-
       function runPass15Cleanup() {
         cleanGallery();
-        injectPatchNote();
       }
 
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', runPass15Cleanup);
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', runPass15Cleanup, { once: true });
       else runPass15Cleanup();
-      new MutationObserver(runPass15Cleanup).observe(document.documentElement, { childList: true, subtree: true });
     })();
   </script>
-  <script src="./assets/js/holoverse_mech_pass14b.js?v=20260502-pass33-readable-site"></script>
-  <script src="./assets/js/site_readability_pass33.js?v=20260502-pass33-readable-site"></script>
-  <script src="./admin.js?v=20260502-pass33-readable-site"></script>
+  <script src="./assets/js/holoverse_mech_pass14b.js?v=20260502-pass34-freeze-fix"></script>
+  <script src="./assets/js/site_readability_pass33.js?v=20260502-pass34-freeze-fix"></script>
+  <script src="./admin.js?v=20260502-pass34-freeze-fix"></script>
 </body>
 </html>
