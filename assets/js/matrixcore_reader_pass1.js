@@ -1,0 +1,280 @@
+(() => {
+  'use strict';
+
+  const DATA_URL = './assets/data/matrixcore_chapters.json?v=20260511-reader-pass1';
+  const SECTION_ID = 'matrixcoreLoreSection';
+  const STYLE_ID = 'matrixcore-lore-reader-pass1-style';
+
+  const fallbackChapters = [
+    {
+      id: '00',
+      title: 'The Utopia Project',
+      summary: 'Utopia was built as a promise and sold as a cure. The island became a controlled machine where medicine, governance, simulations, and hidden systems intertwined.',
+      body: 'The Utopia Project\n\nUtopia was built as a promise and sold as a cure. Nations in decline pooled talent, money, and desperation to raise an artificial island in the Atlantic and test what a managed future might look like. Its public miracle was health, order, and stability. Its hidden cost was dependency on systems that could observe, influence, and eventually endanger the people inside it.\n\nThis reader is loading the full chapter data. If this fallback remains visible after refresh, the chapter data file did not load yet.'
+    }
+  ];
+
+  function installStyle() {
+    if (document.getElementById(STYLE_ID)) return;
+    const style = document.createElement('style');
+    style.id = STYLE_ID;
+    style.textContent = `
+      .matrixcore-lore-section {
+        margin-top: clamp(18px, 1.4vw, 30px) !important;
+        padding: clamp(18px, 1.4vw, 30px) !important;
+        border-color: rgba(190, 20, 30, .28) !important;
+        background: linear-gradient(180deg, rgba(12, 5, 7, .98), rgba(3, 7, 10, .98)) !important;
+      }
+      .matrixcore-lore-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+      .matrixcore-lore-head h2 {
+        margin: 8px 0 0;
+        font-size: clamp(2rem, 2vw, 4rem);
+        line-height: 1.02;
+      }
+      .matrixcore-lore-head p {
+        margin: 10px 0 0;
+        color: var(--muted, #b8b8b8);
+        max-width: 105ch;
+        line-height: 1.6;
+      }
+      .matrixcore-reader-layout {
+        display: grid;
+        grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+        gap: clamp(14px, 1.2vw, 22px);
+        align-items: stretch;
+      }
+      .matrixcore-chapter-list,
+      .matrixcore-reader-panel,
+      .matrixcore-side-panel {
+        border: 1px solid rgba(255, 60, 70, .16);
+        border-radius: 16px;
+        background: rgba(0, 10, 14, .56);
+      }
+      .matrixcore-chapter-list {
+        display: grid;
+        align-content: start;
+        gap: 8px;
+        max-height: min(78vh, 760px);
+        overflow: auto;
+        padding: 12px;
+      }
+      .matrixcore-chapter-button {
+        display: grid;
+        gap: 4px;
+        width: 100%;
+        text-align: left;
+        color: #e9f7fb;
+        border: 1px solid rgba(255,255,255,.07);
+        background: rgba(255,255,255,.035);
+        border-radius: 12px;
+        padding: 12px;
+        cursor: pointer;
+      }
+      .matrixcore-chapter-button:hover,
+      .matrixcore-chapter-button.active {
+        border-color: rgba(255, 58, 58, .48);
+        background: rgba(170, 20, 26, .18);
+      }
+      .matrixcore-chapter-button strong {
+        font-size: .98rem;
+        line-height: 1.25;
+      }
+      .matrixcore-chapter-button span {
+        color: var(--muted, #b8b8b8);
+        font-size: .82rem;
+        line-height: 1.35;
+      }
+      .matrixcore-reader-shell {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+        gap: clamp(14px, 1vw, 20px);
+        min-width: 0;
+      }
+      .matrixcore-reader-panel {
+        padding: clamp(18px, 1.4vw, 28px);
+        min-height: 520px;
+        max-height: min(82vh, 820px);
+        overflow: auto;
+      }
+      .matrixcore-reader-panel h3 {
+        margin: 0 0 12px;
+        font-size: clamp(1.8rem, 1.7vw, 3rem);
+        line-height: 1.05;
+      }
+      .matrixcore-reader-meta {
+        color: #ff5058;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        font-size: .78rem;
+        margin-bottom: 12px;
+      }
+      .matrixcore-reader-body {
+        white-space: pre-wrap;
+        color: #dbe6ea;
+        line-height: 1.72;
+        font-size: clamp(1rem, .76vw, 1.16rem);
+      }
+      .matrixcore-side-panel {
+        padding: clamp(16px, 1vw, 22px);
+        display: grid;
+        gap: 14px;
+        align-content: start;
+      }
+      .matrixcore-side-panel h3 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+      .matrixcore-side-panel p,
+      .matrixcore-side-panel li {
+        color: var(--muted, #b8b8b8);
+        line-height: 1.55;
+      }
+      .matrixcore-side-panel ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .matrixcore-search {
+        width: 100%;
+        padding: 12px 14px;
+        color: #fff;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(0,0,0,.42);
+        margin-bottom: 10px;
+      }
+      @media (max-width: 1180px) {
+        .matrixcore-reader-layout,
+        .matrixcore-reader-shell {
+          grid-template-columns: 1fr;
+        }
+        .matrixcore-chapter-list,
+        .matrixcore-reader-panel {
+          max-height: none;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function makeSection() {
+    let section = document.getElementById(SECTION_ID);
+    if (section) return section;
+    section = document.createElement('section');
+    section.id = SECTION_ID;
+    section.className = 'panel content-card matrixcore-lore-section';
+    section.innerHTML = `
+      <div class="matrixcore-lore-head">
+        <div>
+          <span class="section-label">Lore Archive</span>
+          <h2>MatrixCore Chapters</h2>
+          <p>Read the recovered chapter archive behind HoloVerse, HoloCore, Gleebs, Utopia, and the prototype realities. This section is built for slower reading instead of cramped patch-note cards.</p>
+        </div>
+      </div>
+      <div class="matrixcore-reader-layout">
+        <aside>
+          <input id="matrixcoreSearch" class="matrixcore-search" type="search" placeholder="Search chapters..." aria-label="Search MatrixCore chapters" />
+          <div id="matrixcoreChapterList" class="matrixcore-chapter-list"></div>
+        </aside>
+        <div class="matrixcore-reader-shell">
+          <article id="matrixcoreReaderPanel" class="matrixcore-reader-panel"></article>
+          <aside class="matrixcore-side-panel">
+            <h3>Archive Notes</h3>
+            <p>HoloCore should remain mysterious on the public site, but the chapter archive gives readers a deeper path once they choose to look beneath the surface.</p>
+            <ul>
+              <li>Use the chapter list to switch entries.</li>
+              <li>Search filters titles and summaries.</li>
+              <li>The reading panel uses the extra page width instead of compressing the text.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>`;
+    const main = document.querySelector('main.main-shell') || document.querySelector('main') || document.body;
+    main.appendChild(section);
+    const nav = document.querySelector('.nav');
+    if (nav && !nav.querySelector('a[href="#matrixcoreLoreSection"]')) {
+      const link = document.createElement('a');
+      link.href = '#matrixcoreLoreSection';
+      link.textContent = 'Lore';
+      nav.appendChild(link);
+    }
+    return section;
+  }
+
+  function renderChapter(chapter) {
+    const panel = document.getElementById('matrixcoreReaderPanel');
+    if (!panel) return;
+    panel.innerHTML = `
+      <div class="matrixcore-reader-meta">Chapter ${escapeHtml(chapter.id || '')}</div>
+      <h3>${escapeHtml(chapter.title || 'Untitled')}</h3>
+      <div class="matrixcore-reader-body">${escapeHtml(chapter.body || chapter.summary || '')}</div>`;
+  }
+
+  function renderList(chapters, activeId) {
+    const host = document.getElementById('matrixcoreChapterList');
+    if (!host) return;
+    host.innerHTML = '';
+    chapters.forEach((chapter) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'matrixcore-chapter-button' + (chapter.id === activeId ? ' active' : '');
+      button.innerHTML = `<strong>${escapeHtml(chapter.id)} — ${escapeHtml(chapter.title)}</strong><span>${escapeHtml(chapter.summary || '')}</span>`;
+      button.addEventListener('click', () => {
+        renderChapter(chapter);
+        renderList(chapters, chapter.id);
+      });
+      host.appendChild(button);
+    });
+  }
+
+  function bindSearch(allChapters) {
+    const search = document.getElementById('matrixcoreSearch');
+    if (!search) return;
+    search.addEventListener('input', () => {
+      const q = search.value.trim().toLowerCase();
+      const filtered = allChapters.filter((chapter) =>
+        `${chapter.id} ${chapter.title} ${chapter.summary} ${chapter.body}`.toLowerCase().includes(q)
+      );
+      renderList(filtered, filtered[0] && filtered[0].id);
+      if (filtered[0]) renderChapter(filtered[0]);
+    });
+  }
+
+  async function loadChapters() {
+    try {
+      const res = await fetch(DATA_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`Chapter data returned ${res.status}`);
+      const data = await res.json();
+      return Array.isArray(data.chapters) && data.chapters.length ? data.chapters : fallbackChapters;
+    } catch (err) {
+      console.warn('MatrixCore reader fallback:', err);
+      return fallbackChapters;
+    }
+  }
+
+  async function boot() {
+    installStyle();
+    makeSection();
+    const chapters = await loadChapters();
+    renderList(chapters, chapters[0] && chapters[0].id);
+    if (chapters[0]) renderChapter(chapters[0]);
+    bindSearch(chapters);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
+  else boot();
+})();
