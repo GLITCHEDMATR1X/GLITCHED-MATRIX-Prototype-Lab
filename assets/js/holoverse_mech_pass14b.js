@@ -1,36 +1,36 @@
 (()=>{
 'use strict';
-const LIVE_SCRIPT='./assets/js/holoverse_dashboard_pass35.js?v=20260511-pass36-vector-holocore-copy';
-const STYLE_ID='holoverse-pass36-loader-style';
+const LIVE_SCRIPT='./assets/js/holoverse_dashboard_pass35.js?v=20260511-pass39-vector-arena-enhanced';
+const STYLE_ID='vector-wars-loader-pass39-style';
 const publicUpdates=[
-  {group:'HoloVerse',title:'Living World Direction',meta:'2026-05-11',bullets:[
-    'HoloVerse remains the visible world of the Prototype Lab: regions, bots, dimensions, hidden systems, and playable fragments connected inside one digital shell.',
-    'The public site now presents the world more cleanly: a readable HoloVerse command map first, with stronger emphasis on what players can enter and discover.',
-    'Current direction focuses on region identity, clearer player routes, stronger hub presentation, and mystery around the systems operating beneath the world.'
+  {group:'Vector Wars',title:'Urban Arena Preview',meta:'2026-05-11',bullets:[
+    'Vector Wars is now the main public preview: Sable’s Urban arena with capture posts, cover lanes, drones, mechs, and machine pressure.',
+    'The old ring/bullseye dashboard has been removed from the Vector Wars slot.',
+    'Next direction is turning this preview into a lightweight playable browser slice.'
   ]},
-  {group:'Vector Wars',title:'Urban Warzone Preview',meta:'2026-05-11',bullets:[
-    'Vector Wars is the public action hook for the site: Sable’s Urban region as a machine-war combat layer inside HoloVerse.',
-    'The browser view is framed as a command-map preview while the full combat systems remain part of the desktop HoloVerse build.',
-    'Future passes can make the preview more interactive with capture posts, waves, drones, mechs, score pressure, and clearer Urban battlefield identity.'
+  {group:'HoloVerse',title:'World Shell',meta:'2026-05-11',bullets:[
+    'HoloVerse remains the visible world around the games and regions.',
+    'The site now keeps the action hook in front while using HoloVerse as the larger setting.',
+    'Region identity and bot-owned activities remain the main long-term structure.'
   ]},
-  {group:'HoloCore',title:'Hidden System',meta:'2026-05-11',bullets:[
-    'HoloCore is being framed as the mind beneath HoloVerse, not as a normal game mode.',
-    'Some worlds are built, some are recovered, and some only appear after HoloCore decides the player is ready.',
-    'The site will keep HoloCore mysterious while letting HoloVerse and Vector Wars carry the visible player-facing presentation.'
+  {group:'HoloCore',title:'Hidden Mind',meta:'2026-05-11',bullets:[
+    'HoloCore is framed as the mind beneath HoloVerse, not as a normal arcade mode.',
+    'It should feel like something observing, timing, and unlocking deeper systems.',
+    'The public site keeps it mysterious while Vector Wars carries the visible gameplay preview.'
   ]}
 ];
 const publicCopy={roadmap:[
-  'Build HoloVerse into a richer explorable hub with clearer regions, stronger characters, and more memorable discoveries.',
-  'Use Vector Wars as the most direct playable hook: Urban combat, Sable, machines, capture pressure, and visible score-driven action.',
-  'Keep HoloCore mysterious: the hidden mind beneath HoloVerse that observes, remembers, and unlocks deeper systems over time.',
-  'Polish the strongest prototypes into experiences that players can understand quickly and remember afterward.'
+  'Turn Vector Wars from animated preview into a playable browser combat slice.',
+  'Add movement, fire, capture-post pressure, drone waves, and score readouts.',
+  'Keep HoloCore mysterious as the hidden mind beneath HoloVerse.',
+  'Use HoloVerse as the world shell for region identity, bots, and future activities.'
 ]};
-function installLayoutStyle(){if(document.getElementById(STYLE_ID))return;const s=document.createElement('style');s.id=STYLE_ID;s.textContent='body.holoverse-dashboard-layout .stats-grid.below-featured-demo{display:none!important}.single-holoverse-section.demo-featured-top{overflow:hidden!important}';document.head.appendChild(s)}
-function promoteDemo(){const hero=document.querySelector('.hero'),demo=document.getElementById('demos'),stats=document.querySelector('.stats-grid');if(!hero||!demo)return;if(hero.nextElementSibling!==demo)hero.insertAdjacentElement('afterend',demo);demo.classList.add('demo-featured-top');document.body.classList.add('holoverse-demo-featured-top','holoverse-dashboard-layout','site-pass36-vector-holocore');if(stats)stats.classList.add('below-featured-demo')}
+function installLayoutStyle(){if(document.getElementById(STYLE_ID))return;const s=document.createElement('style');s.id=STYLE_ID;s.textContent='body.vector-wars-site .stats-grid.below-featured-demo{display:none!important}.single-holoverse-section.demo-featured-top{overflow:hidden!important}';document.head.appendChild(s)}
+function promoteDemo(){const hero=document.querySelector('.hero'),demo=document.getElementById('demos'),stats=document.querySelector('.stats-grid');if(!hero||!demo)return;if(hero.nextElementSibling!==demo)hero.insertAdjacentElement('afterend',demo);demo.classList.add('demo-featured-top');document.body.classList.add('vector-wars-site','holoverse-demo-featured-top');if(stats)stats.classList.add('below-featured-demo')}
 function setKey(k,v){document.querySelectorAll(`.editable[data-key="${k}"]`).forEach(e=>e.textContent=v)}
 function setText(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
 function list(id,items){const h=document.getElementById(id);if(!h)return;h.innerHTML='';items.forEach(t=>{const li=document.createElement('li');li.textContent=t;h.appendChild(li)})}
-function updates(){const h=document.getElementById('updatesList');if(!h||h.dataset.publicUpdatesVersion==='pass36')return;h.innerHTML='';publicUpdates.forEach(e=>{const a=document.createElement('article');a.className='update-card public-update-card';a.innerHTML=`<span class="update-group">${e.group}</span><h3 class="update-heading">${e.title}</h3><div class="update-meta">${e.meta}</div><ul class="update-bullets">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`;h.appendChild(a)});h.dataset.publicUpdatesVersion='pass36'}
+function updates(){const h=document.getElementById('updatesList');if(!h||h.dataset.publicUpdatesVersion==='pass39')return;h.innerHTML='';publicUpdates.forEach(e=>{const a=document.createElement('article');a.className='update-card public-update-card';a.innerHTML=`<span class="update-group">${e.group}</span><h3 class="update-heading">${e.title}</h3><div class="update-meta">${e.meta}</div><ul class="update-bullets">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`;h.appendChild(a)});h.dataset.publicUpdatesVersion='pass39'}
 function copy(){
   const meta=document.querySelector('meta[name="description"]');
   if(meta)meta.content='A dark connected arcade where HoloVerse, Vector Wars, HoloCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab.';
@@ -51,17 +51,14 @@ function copy(){
   setKey('directionTitle','What the current release is about');
   setKey('directionBody1','GLITCHED MATRIX Prototype Lab is a dark sci-fi collection of connected experiments: HoloVerse, Vector Wars, HoloCore, Gleebs, bots, playable prototypes, and creation tools inside one evolving lab.');
   setKey('directionBody2','The current public focus is clarity: stronger presentation, cleaner information, a clearer playable hook, and mystery around the hidden system beneath HoloVerse.');
-  setKey('updatesLabel','Updates');
-  setKey('updatesTitle','Public Update Notes');
-  setKey('updatesNote','Player-facing progress, world direction, Vector Wars, HoloCore mystery, and major Prototype Lab updates.');
-  setKey('metaTitle','Core identity');
-  setKey('communityTitle','Players, tinkerers, and creators');
-  setText('demoSectionTitle','Vector Wars — Urban Warzone Preview');
-  setText('demoSectionIntro','A command-map preview of Sable’s Urban region: the machine-war layer inside HoloVerse where combat, drones, mechs, capture pressure, and score-driven action will take focus.');
-  setText('demoSectionNote','Site pass 36: Vector Wars is now the public playable hook, HoloCore is treated as the hidden mind beneath HoloVerse, and public copy avoids deeper archive-system naming.');
-  setText('demoObjective','Survey the HoloVerse command map, focus Urban, and preview the battlefield layer that will become Vector Wars.');
-  setText('demoControls','Click a region. Drag to pan. Wheel zooms. F fits the world. H returns home.');
-  setText('demoDetails','This browser preview is a lightweight command-map presentation. The full Urban Warzone runtime remains part of the desktop HoloVerse build.');
+  setKey('updatesLabel','Updates');setKey('updatesTitle','Public Update Notes');setKey('updatesNote','Player-facing progress, world direction, Vector Wars, HoloCore mystery, and major Prototype Lab updates.');
+  setKey('metaTitle','Core identity');setKey('communityTitle','Players, tinkerers, and creators');
+  setText('demoSectionTitle','Vector Wars — Urban Arena Preview');
+  setText('demoSectionIntro','A direct Urban Vector Wars preview: posts, cover lanes, Sable, drones, mechs, and machine pressure inside HoloVerse.');
+  setText('demoSectionNote','Site pass 39: enhanced the Vector Wars arena preview and locked the site copy away from the old ring dashboard framing.');
+  setText('demoObjective','Preview Sable’s Urban Vector Wars arena.');
+  setText('demoControls','Preview only for now. Future pass: move, fire, capture posts, survive waves.');
+  setText('demoDetails','This browser preview represents Vector Wars directly instead of showing the HoloVerse ring map.');
   list('roadmapList',publicCopy.roadmap);updates();
   const secondary=document.getElementById('secondaryCta');if(secondary){secondary.textContent='Vector Wars Preview';secondary.href='#demos'}
 }
