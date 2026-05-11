@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  const VERSION = 'pass34-readable-site-freeze-fix';
-  const STYLE_ID = 'site-readability-pass34-runtime-style';
+  const VERSION = 'pass36-vector-holocore-copy';
+  const STYLE_ID = 'site-readability-pass36-runtime-style';
   const STRIP_ID = 'siteReadabilityStrip';
 
   const runtimeStyle = `
@@ -55,10 +55,10 @@
   `;
 
   const cards = [
-    ['Readable layout', 'The page uses more of the screen instead of squeezing the lab into a tiny center column.'],
-    ['Large demo view', 'The HoloVerse canvas stays prominent without forcing a massive browser workload.'],
-    ['Cleaner panels', 'Side information has larger type, stronger contrast, and no trapped mini scroll boxes.'],
-    ['Controls', 'Click the demo, then drag or use WASD. Shift pans faster, wheel zooms, F fits, H returns home.']
+    ['Vector Wars preview', 'Urban is now framed as the public action hook: Sable, machines, capture pressure, and battlefield identity.'],
+    ['Readable world map', 'The HoloVerse command map stays prominent without forcing a massive browser workload.'],
+    ['HoloCore mystery', 'HoloCore is presented as the hidden mind beneath HoloVerse, not as a normal game mode.'],
+    ['Controls', 'Click a region, drag to pan, use the wheel to zoom, F to fit, and H to return home.']
   ];
 
   function installRuntimeStyle() {
@@ -104,18 +104,18 @@
   }
 
   function simplifyPublicCopy() {
-    setText('demoSectionTitle', 'HoloVerse Demo — Readable Living World');
+    setText('demoSectionTitle', 'Vector Wars — Urban Warzone Preview');
     setText(
       'demoSectionIntro',
-      'A wider, cleaner browser HoloVerse view with distinct regions, active bots, visible structures, readable side panels, and controls that are easy to understand.'
+      'A command-map preview of Sable’s Urban region: the machine-war layer inside HoloVerse where combat, drones, mechs, capture pressure, and score-driven action will take focus.'
     );
     setText(
       'demoSectionNote',
-      'Readable-site pass: the demo is now presented as the main feature with a larger canvas, stronger contrast, wider panels, less cramped text, and no page-freezing observer loop.'
+      'Site pass 36: Vector Wars is now the public playable hook, HoloCore is treated as the hidden mind beneath HoloVerse, and public copy avoids deeper archive-system naming.'
     );
     setText(
       'demoControls',
-      'Click the demo. Drag or WASD to pan. Shift moves faster. Wheel zooms. F fits the world. H returns home. Click objects or bots to inspect.'
+      'Click a region. Drag to pan. Wheel zooms. F fits the world. H returns home.'
     );
   }
 
