@@ -4,39 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GLITCHED MATRIX Prototype Lab</title>
-  <meta name="description" content="A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab." />
-  <link rel="stylesheet" href="./style.css?v=20260502-pass35-wide-dashboard" />
-  <link rel="stylesheet" href="./assets/css/site_readability_pass33.css?v=20260502-pass35-wide-dashboard" />
-  <link rel="stylesheet" href="./assets/css/site_layout_pass35.css?v=20260502-pass35-wide-dashboard" />
-  <style id="pass15-gallery-cleanup">
-    .media-gallery {
-      display: grid !important;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) !important;
-      gap: 14px !important;
-      align-items: stretch !important;
-    }
-    .gallery-item {
-      aspect-ratio: 16 / 9;
-      min-height: 0;
-      padding: 8px !important;
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-    }
-    .gallery-item img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      border-radius: 10px;
-    }
-    .gallery-item:has(.image-load-fallback),
-    .image-load-fallback { display: none !important; }
-    @media (max-width: 1080px) {
-      .media-gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; }
-    }
-    @media (max-width: 560px) {
-      .media-gallery { grid-template-columns: 1fr !important; }
-    }
+  <meta name="description" content="A dark connected arcade where HoloVerse, Vector Wars, HoloCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab." />
+  <link rel="stylesheet" href="./style.css?v=20260511-pass36-vector-holocore-clean" />
+  <link rel="stylesheet" href="./assets/css/site_readability_pass33.css?v=20260511-pass36-vector-holocore-clean" />
+  <link rel="stylesheet" href="./assets/css/site_layout_pass35.css?v=20260511-pass36-vector-holocore-clean" />
+  <style id="pass36-clean-public-site">
+    .demo-loading-overlay,.demo-noscript-note,.block-busters-shell::before,.block-busters-shell::after{display:none!important;visibility:hidden!important;pointer-events:none!important;opacity:0!important}.media-gallery{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))!important;gap:14px!important;align-items:stretch!important}.gallery-item{aspect-ratio:16/9;min-height:0;padding:8px!important;display:flex;align-items:stretch;justify-content:stretch}.gallery-item img{width:100%!important;height:100%!important;object-fit:cover!important;border-radius:10px}.gallery-item:has(.image-load-fallback),.image-load-fallback{display:none!important}@media(max-width:560px){.media-gallery{grid-template-columns:1fr!important}}
   </style>
 </head>
 <body>
@@ -48,14 +21,12 @@
   <header class="topbar shell">
     <div class="brand-block">
       <span class="micro overline editable" data-key="microLabel">GLITCHED MATRIX</span>
-      <a class="brand-link" href="#top">
-        <img id="navLogo" class="nav-logo" src="assets/images/capsule_small.png" alt="GLITCHED MATRIX Prototype Lab logo" />
-      </a>
+      <a class="brand-link" href="#top"><img id="navLogo" class="nav-logo" src="assets/images/capsule_small.png" alt="GLITCHED MATRIX Prototype Lab logo" /></a>
     </div>
     <nav class="nav">
       <a href="#about">About</a>
       <a href="#features">Inside the Lab</a>
-      <a href="#demos">HoloVerse Demo</a>
+      <a href="#demos">Vector Wars</a>
       <a href="#roadmap">Plans</a>
       <a href="#media">Media</a>
       <a href="#community">Players + Creators</a>
@@ -70,12 +41,12 @@
         <div class="hero-gradient"></div>
       </div>
       <div class="hero-copy">
-        <div class="eyebrow editable" data-key="heroEyebrow">&gt; HoloVerse + Prototype Arcade &lt;</div>
+        <div class="eyebrow editable" data-key="heroEyebrow">&gt; HoloVerse + Vector Wars &lt;</div>
         <h1 class="editable" data-key="heroTitle">GLITCHED MATRIX Prototype Lab</h1>
-        <p class="lead editable" data-key="heroLead">A dark connected arcade where HoloVerse, MatrixCore, Gleebs, playable prototypes, bots, creator tools, and mod-friendly experiments keep evolving inside one digital lab.</p>
+        <p class="lead editable" data-key="heroLead">Explore HoloVerse, a living digital world built from recovered systems, prototype games, hidden archives, and the strange mind beneath it all: HoloCore.</p>
         <div class="cta-row">
           <a id="primaryCta" class="btn btn-primary" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">View on Steam</a>
-          <a id="secondaryCta" class="btn btn-secondary" href="#demos">HoloVerse Demo</a>
+          <a id="secondaryCta" class="btn btn-secondary" href="#demos">Vector Wars Preview</a>
         </div>
         <div id="heroTags" class="tag-cloud"></div>
       </div>
@@ -84,7 +55,7 @@
     <section class="stats-grid">
       <article class="panel stat-card"><span class="stat-label editable" data-key="stat1Label">Status</span><strong class="stat-value editable" data-key="stat1Value">Active Prototype Lab</strong></article>
       <article class="panel stat-card"><span class="stat-label editable" data-key="stat2Label">What You Do</span><strong class="stat-value editable" data-key="stat2Value">Explore • Play • Build</strong></article>
-      <article class="panel stat-card"><span class="stat-label editable" data-key="stat3Label">Core Appeal</span><strong class="stat-value editable" data-key="stat3Value">HoloVerse + prototype arcade</strong></article>
+      <article class="panel stat-card"><span class="stat-label editable" data-key="stat3Label">Core Appeal</span><strong class="stat-value editable" data-key="stat3Value">HoloVerse + Vector Wars</strong></article>
       <article class="panel stat-card"><span class="stat-label editable" data-key="stat4Label">Built For</span><strong class="stat-value editable" data-key="stat4Value">Players, tinkerers, creators</strong></article>
     </section>
 
@@ -93,15 +64,15 @@
         <section id="about" class="split-grid">
           <article class="panel content-card">
             <span class="section-label editable" data-key="aboutLabel">About</span>
-            <h2 class="editable" data-key="aboutTitle">A connected digital world built for discovery</h2>
-            <p class="editable" data-key="aboutBody1">GLITCHED MATRIX Prototype Lab is a dark sci-fi hub where HoloVerse, MatrixCore, bots, standalone prototypes, and creation tools all live inside one evolving system.</p>
-            <p class="editable" data-key="aboutBody2">The current build focuses on turning separate experiments into connected places: a walkable HoloVerse, in-world dimension runtimes, site-replaceable media, and a growing library of playable prototypes.</p>
+            <h2 class="editable" data-key="aboutTitle">A connected digital world with something watching underneath</h2>
+            <p class="editable" data-key="aboutBody1">GLITCHED MATRIX Prototype Lab is a dark sci-fi hub where HoloVerse, Vector Wars, bots, standalone prototypes, and creation tools all live inside one evolving system.</p>
+            <p class="editable" data-key="aboutBody2">The current build focuses on turning separate experiments into connected places: a walkable HoloVerse, in-world region runtimes, site-replaceable media, and stronger playable previews.</p>
           </article>
           <aside class="panel content-card tone-card">
-            <span class="section-label editable" data-key="fictionLabel">Lore</span>
-            <h2 class="editable" data-key="fictionTitle">MatrixCore, Gleebs, and the recovered system</h2>
-            <p class="editable" data-key="fictionBody1">After the Utopia Project fractured, MatrixCore began preserving recoverable worlds, tools, and prototype fragments inside the lab. HoloVerse now acts as the living shell around those fragments.</p>
-            <p class="editable" data-key="fictionBody2">Gleebs, IO, Sable, Archivist, and the other region bots help guide players through the digital wreckage, opening experiments, lore paths, and region-specific systems as the project grows.</p>
+            <span class="section-label editable" data-key="fictionLabel">HoloCore</span>
+            <h2 class="editable" data-key="fictionTitle">The hidden mind beneath HoloVerse</h2>
+            <p class="editable" data-key="fictionBody1">HoloCore is not simply another place to enter. It is the buried intelligence under HoloVerse: watching, remembering, and deciding when deeper systems should surface.</p>
+            <p class="editable" data-key="fictionBody2">Gleebs, IO, Sable, Archivist, and the other region bots guide players through fragments of the digital wreckage while HoloCore remains mostly unseen. Some regions are built. Some are recovered. Some only appear when HoloCore allows it.</p>
           </aside>
         </section>
 
@@ -114,37 +85,36 @@
         <section id="demos" class="panel content-card demo-section single-holoverse-section">
           <div class="demo-head">
             <div>
-              <span class="section-label">Playable Demo</span>
-              <h2 id="demoSectionTitle">HoloVerse Demo — Full World Dashboard</h2>
-              <p id="demoSectionIntro" class="demo-section-intro">A calm full-width HoloVerse map: the whole world is visible first, with readable side panels and no forced zoom into one giant ring.</p>
+              <span class="section-label">Playable Preview</span>
+              <h2 id="demoSectionTitle">Vector Wars — Urban Warzone Preview</h2>
+              <p id="demoSectionIntro" class="demo-section-intro">A command-map preview of Sable’s Urban region: the machine-war layer inside HoloVerse where combat, drones, mechs, capture pressure, and score-driven action will take focus.</p>
             </div>
           </div>
           <div class="demo-player-layout single-demo-layout">
             <aside class="demo-info-panel demo-info-left">
-              <span id="demoStatus" class="demo-status">Readable Survey</span>
-              <h3 id="demoTitle">Visible Living HoloVerse</h3>
-              <p id="demoSummary">Survey the HoloVerse as a full-world dashboard: inspect regions, bots, structures, roads, resources, and Dyson construction without eye-strain or giant cropped rings.</p>
-              <div id="demoTags" class="demo-tags"></div>
+              <span id="demoStatus" class="demo-status">Command Preview</span>
+              <h3 id="demoTitle">Vector Wars</h3>
+              <p id="demoSummary">Urban is the public action hook: Sable, machines, cover lanes, capture pressure, drones, mechs, and score-driven combat inside the HoloVerse grid.</p>
+              <div id="demoTags" class="demo-tags"><span>Vector Wars</span><span>Urban</span><span>HoloVerse</span><span>HoloCore?</span></div>
             </aside>
             <div class="demo-canvas-shell">
-              <canvas id="demoCanvas" class="demo-canvas holoverse-demo-canvas" width="1280" height="720" tabindex="0" aria-label="Playable HoloVerse web demo"></canvas>
-              <div id="demoLoadingOverlay" class="demo-loading-overlay">Loading HoloVerse Demo…<span>If this stays visible, refresh once after GitHub Pages deploy finishes.</span></div>
+              <canvas id="demoCanvas" class="demo-canvas holoverse-demo-canvas vector-wars-preview-canvas" width="1280" height="720" tabindex="0" aria-label="Vector Wars Urban Warzone preview map"></canvas>
             </div>
             <aside class="demo-info-panel demo-info-right">
               <h3>Brief Help</h3>
               <dl class="demo-help-list">
-                <dt>Objective</dt><dd id="demoObjective">Survey the whole world first, then click a region to inspect it.</dd>
+                <dt>Objective</dt><dd id="demoObjective">Survey the HoloVerse command map, focus Urban, and preview the battlefield layer that will become Vector Wars.</dd>
                 <dt>Controls</dt><dd id="demoControls">Click a region. Drag to pan. Wheel zooms. F fits the world. H returns home.</dd>
-                <dt>Build note</dt><dd id="demoDetails">This page now uses a calmer dashboard runtime instead of the old animated zoomed-ring view.</dd>
+                <dt>Build note</dt><dd id="demoDetails">This browser preview is a lightweight command-map presentation. The full Urban Warzone runtime remains part of the desktop HoloVerse build.</dd>
               </dl>
             </aside>
           </div>
-          <p id="demoSectionNote" class="demo-note">Pass 35: full-world dashboard view, reduced motion, clearer panels, and lighter first-load behavior.</p>
+          <p id="demoSectionNote" class="demo-note">Site pass 36: Vector Wars is the public playable hook, while HoloCore stays mysterious as the hidden mind beneath HoloVerse.</p>
         </section>
 
         <section id="roadmap" class="split-grid split-grid-roadmap">
-          <article class="panel content-card"><span class="section-label editable" data-key="roadmapLabel">Direction</span><h2 class="editable" data-key="roadmapTitle">How the lab can grow</h2><ul id="roadmapList" class="bullet-list"></ul></article>
-          <article class="panel content-card"><span class="section-label editable" data-key="directionLabel">Right Now</span><h2 class="editable" data-key="directionTitle">What the current release emphasizes</h2><p class="editable" data-key="directionBody1">The current release emphasizes HoloVerse route cleanup, MatrixCore/Gleebs guidance, better prototype documentation, more reliable points/UI behavior, and clearer presentation of what is actually inside the lab.</p><p class="editable" data-key="directionBody2">Urban Warzone and Metropolis are the most important verification paths: Sable should activate the live Urban runtime, while Archivist should stay in Metropolis as a robot selector.</p></article>
+          <article class="panel content-card"><span class="section-label editable" data-key="roadmapLabel">Future</span><h2 class="editable" data-key="roadmapTitle">Where the lab is going</h2><ul id="roadmapList" class="bullet-list"></ul></article>
+          <article class="panel content-card"><span class="section-label editable" data-key="directionLabel">Now</span><h2 class="editable" data-key="directionTitle">What the current release is about</h2><p class="editable" data-key="directionBody1">GLITCHED MATRIX Prototype Lab is a dark sci-fi collection of connected experiments: HoloVerse, Vector Wars, HoloCore, Gleebs, bots, playable prototypes, and creation tools inside one evolving lab.</p><p class="editable" data-key="directionBody2">The current public focus is clarity: stronger presentation, cleaner information, a clearer playable hook, and mystery around the hidden system beneath HoloVerse.</p></article>
         </section>
 
         <section id="media" class="panel content-card media-section">
@@ -158,13 +128,13 @@
 
       <aside id="updatesPanel" class="panel updates-panel">
         <div class="updates-head"><div><span class="section-label editable" data-key="updatesLabel">Updates</span><h2 class="editable" data-key="updatesTitle">Public Update Notes</h2></div></div>
-        <p class="updates-note editable" data-key="updatesNote">Player-facing progress, world direction, and major Prototype Lab updates.</p>
+        <p class="updates-note editable" data-key="updatesNote">Player-facing progress, world direction, Vector Wars, HoloCore mystery, and major Prototype Lab updates.</p>
         <div id="updatesList" class="updates-list" aria-live="polite"></div>
       </aside>
     </div>
   </main>
 
-  <footer class="shell footer"><div class="footer-left"><img id="footerLogo" class="footer-logo" src="assets/images/capsule_small.png" alt="GLITCHED MATRIX Prototype Lab footer logo" /><p class="footer-copy editable" data-key="footerCopy">© GLITCHED MATRIX — Prototype Lab</p></div><div class="footer-links"><a href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Steam</a><a href="#demos">HoloVerse Demo</a><a href="#media">Media</a><a href="#community">Players + Creators</a></div></footer>
+  <footer class="shell footer"><div class="footer-left"><img id="footerLogo" class="footer-logo" src="assets/images/capsule_small.png" alt="GLITCHED MATRIX Prototype Lab footer logo" /><p class="footer-copy editable" data-key="footerCopy">© GLITCHED MATRIX — Prototype Lab</p></div><div class="footer-links"><a href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Steam</a><a href="#demos">Vector Wars</a><a href="#media">Media</a><a href="#community">Players + Creators</a></div></footer>
 
   <div id="lightbox" class="lightbox" aria-hidden="true"><div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Expanded image viewer"><button id="lightboxClose" class="lightbox-close" type="button" aria-label="Close image viewer">×</button><img id="lightboxImage" class="lightbox-image" src="" alt="" /></div></div>
 
@@ -192,8 +162,8 @@
       else cleanGallery();
     })();
   </script>
-  <script src="./assets/js/holoverse_mech_pass14b.js?v=20260502-pass35-wide-dashboard"></script>
-  <script src="./assets/js/site_readability_pass33.js?v=20260502-pass35-wide-dashboard"></script>
-  <script src="./admin.js?v=20260502-pass35-wide-dashboard"></script>
+  <script src="./assets/js/holoverse_mech_pass14b.js?v=20260511-pass36-vector-holocore-clean"></script>
+  <script src="./assets/js/site_readability_pass33.js?v=20260511-pass36-vector-holocore-clean"></script>
+  <script src="./admin.js?v=20260511-pass36-vector-holocore-clean"></script>
 </body>
 </html>
