@@ -3,7 +3,7 @@
 
   const DATA_URL = './assets/data/matrixcore_chapters.json?v=20260511-reader-pass2-full-text';
   const SECTION_ID = 'matrixcoreLoreSection';
-  const STYLE_ID = 'matrixcore-lore-reader-pass2-style';
+  const STYLE_ID = 'matrixcore-lore-reader-no-notes-style';
   const bodyCache = new Map();
   let activeChapterId = '';
 
@@ -26,30 +26,30 @@
       .matrixcore-lore-head h2 { margin: 8px 0 0; font-size: clamp(2rem, 2vw, 4rem); line-height: 1.02; }
       .matrixcore-lore-head p { margin: 10px 0 0; color: var(--muted, #b8b8b8); max-width: 105ch; line-height: 1.6; }
       .matrixcore-reader-layout { display: grid; grid-template-columns: minmax(260px, 360px) minmax(0, 1fr); gap: clamp(14px, 1.2vw, 22px); align-items: stretch; }
-      .matrixcore-chapter-list, .matrixcore-reader-panel, .matrixcore-side-panel { border: 1px solid rgba(255, 60, 70, .16); border-radius: 16px; background: rgba(0, 10, 14, .56); }
+      .matrixcore-chapter-list, .matrixcore-reader-panel { border: 1px solid rgba(255, 60, 70, .16); border-radius: 16px; background: rgba(0, 10, 14, .56); }
       .matrixcore-chapter-list { display: grid; align-content: start; gap: 8px; max-height: min(78vh, 760px); overflow: auto; padding: 12px; }
       .matrixcore-chapter-button { display: grid; gap: 4px; width: 100%; text-align: left; color: #e9f7fb; border: 1px solid rgba(255,255,255,.07); background: rgba(255,255,255,.035); border-radius: 12px; padding: 12px; cursor: pointer; }
       .matrixcore-chapter-button:hover, .matrixcore-chapter-button.active { border-color: rgba(255, 58, 58, .48); background: rgba(170, 20, 26, .18); }
       .matrixcore-chapter-button strong { font-size: .98rem; line-height: 1.25; }
       .matrixcore-chapter-button span { color: var(--muted, #b8b8b8); font-size: .82rem; line-height: 1.35; }
-      .matrixcore-reader-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 340px); gap: clamp(14px, 1vw, 20px); min-width: 0; }
       .matrixcore-reader-panel { padding: clamp(18px, 1.4vw, 28px); min-height: 520px; max-height: min(82vh, 820px); overflow: auto; }
       .matrixcore-reader-panel h3 { margin: 0 0 12px; font-size: clamp(1.8rem, 1.7vw, 3rem); line-height: 1.05; }
       .matrixcore-reader-meta { color: #ff5058; letter-spacing: .14em; text-transform: uppercase; font-size: .78rem; margin-bottom: 12px; }
       .matrixcore-reader-body { white-space: pre-wrap; color: #dbe6ea; line-height: 1.72; font-size: clamp(1rem, .76vw, 1.16rem); max-width: 112ch; }
       .matrixcore-loading { color: #ff7b7b; letter-spacing: .08em; text-transform: uppercase; font-size: .85rem; }
-      .matrixcore-side-panel { padding: clamp(16px, 1vw, 22px); display: grid; gap: 14px; align-content: start; }
-      .matrixcore-side-panel h3 { margin: 0; font-size: 1.25rem; }
-      .matrixcore-side-panel p, .matrixcore-side-panel li { color: var(--muted, #b8b8b8); line-height: 1.55; }
-      .matrixcore-side-panel ul { margin: 0; padding-left: 18px; }
       .matrixcore-search { width: 100%; padding: 12px 14px; color: #fff; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.42); margin-bottom: 10px; }
-      @media (max-width: 1180px) { .matrixcore-reader-layout, .matrixcore-reader-shell { grid-template-columns: 1fr; } .matrixcore-chapter-list, .matrixcore-reader-panel { max-height: none; } }
+      @media (max-width: 1180px) { .matrixcore-reader-layout { grid-template-columns: 1fr; } .matrixcore-chapter-list, .matrixcore-reader-panel { max-height: none; } }
     `;
     document.head.appendChild(style);
   }
 
   function escapeHtml(value) {
-    return String(value || '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    return String(value || '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
   }
 
   function makeSection() {
@@ -59,13 +59,28 @@
     section.id = SECTION_ID;
     section.className = 'panel content-card matrixcore-lore-section';
     section.innerHTML = `
-      <div class="matrixcore-lore-head"><div><span class="section-label">Lore Archive</span><h2>MatrixCore Chapters</h2><p>Read the recovered chapter archive behind HoloVerse, HoloCore, Gleebs, Utopia, and the prototype realities. This section is built for slower reading instead of cramped patch-note cards.</p></div></div>
-      <div class="matrixcore-reader-layout"><aside><input id="matrixcoreSearch" class="matrixcore-search" type="search" placeholder="Search chapters..." aria-label="Search MatrixCore chapters" /><div id="matrixcoreChapterList" class="matrixcore-chapter-list"></div></aside><div class="matrixcore-reader-shell"><article id="matrixcoreReaderPanel" class="matrixcore-reader-panel"></article><aside class="matrixcore-side-panel"><h3>Archive Notes</h3><p>HoloCore should remain mysterious on the public site, but the chapter archive gives readers a deeper path once they choose to look beneath the surface.</p><ul><li>Use the chapter list to switch entries.</li><li>Full story text loads into the main reading panel.</li><li>Search filters titles and summaries.</li></ul></aside></div></div>`;
+      <div class="matrixcore-lore-head">
+        <div>
+          <span class="section-label">Lore Archive</span>
+          <h2>MatrixCore Chapters</h2>
+          <p>Read the recovered chapter archive behind HoloVerse, HoloCore, Gleebs, Utopia, and the prototype realities.</p>
+        </div>
+      </div>
+      <div class="matrixcore-reader-layout">
+        <aside>
+          <input id="matrixcoreSearch" class="matrixcore-search" type="search" placeholder="Search chapters..." aria-label="Search MatrixCore chapters" />
+          <div id="matrixcoreChapterList" class="matrixcore-chapter-list"></div>
+        </aside>
+        <article id="matrixcoreReaderPanel" class="matrixcore-reader-panel"></article>
+      </div>`;
     const main = document.querySelector('main.main-shell') || document.querySelector('main') || document.body;
     main.appendChild(section);
     const nav = document.querySelector('.nav');
     if (nav && !nav.querySelector('a[href="#matrixcoreLoreSection"]')) {
-      const link = document.createElement('a'); link.href = '#matrixcoreLoreSection'; link.textContent = 'Lore'; nav.appendChild(link);
+      const link = document.createElement('a');
+      link.href = '#matrixcoreLoreSection';
+      link.textContent = 'Lore';
+      nav.appendChild(link);
     }
     return section;
   }
@@ -106,7 +121,10 @@
       button.type = 'button';
       button.className = 'matrixcore-chapter-button' + (chapter.id === activeId ? ' active' : '');
       button.innerHTML = `<strong>${escapeHtml(chapter.id)} — ${escapeHtml(chapter.title)}</strong><span>${escapeHtml(chapter.summary || '')}</span>`;
-      button.addEventListener('click', () => { renderList(chapters, chapter.id); renderChapter(chapter); });
+      button.addEventListener('click', () => {
+        renderList(chapters, chapter.id);
+        renderChapter(chapter);
+      });
       host.appendChild(button);
     });
   }
