@@ -43,6 +43,27 @@
     document.head.appendChild(style);
   }
 
+  function sanitizePublicCopy() {
+    document.querySelectorAll('.gallery-note').forEach((el) => {
+      const text = el.textContent || '';
+      if (/assets\/images|replace files|click any image/i.test(text)) {
+        el.textContent = 'Prototype media and screenshots from GLITCHED MATRIX Prototype Lab.';
+      }
+    });
+    document.querySelectorAll('.tag-cloud span, .tag-cloud-secondary span').forEach((el) => {
+      if (/route cleanup|setup instructions|site-replaceable/i.test(el.textContent || '')) {
+        el.remove();
+      }
+    });
+    document.querySelectorAll('[data-key="aboutBody2"], [data-key="roadmapTitle"], [data-key="roadmapLabel"]').forEach((el) => {
+      el.textContent = (el.textContent || '').replace('site-replaceable media', 'new public media');
+    });
+  }
+
+  function schedulePublicCopyCleanup() {
+    [0, 120, 500, 1200, 2600, 5200].forEach((delay) => window.setTimeout(sanitizePublicCopy, delay));
+  }
+
   function escapeHtml(value) {
     return String(value || '')
       .replaceAll('&', '&amp;')
@@ -155,6 +176,7 @@
   async function boot() {
     installStyle();
     makeSection();
+    schedulePublicCopyCleanup();
     const chapters = await loadChapters();
     renderList(chapters, chapters[0] && chapters[0].id);
     if (chapters[0]) renderChapter(chapters[0]);
