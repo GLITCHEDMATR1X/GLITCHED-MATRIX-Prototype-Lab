@@ -1,0 +1,199 @@
+/* GLITCHED MATRIX Prototype Lab — July 2026 public refresh
+   Additive presentation layer. Existing HoloMap, lore reader, and media systems remain intact. */
+
+:root {
+  --refresh-cyan: #58e7ff;
+  --refresh-violet: #b58cff;
+  --refresh-amber: #ffbd69;
+  --refresh-panel: rgba(9, 15, 24, 0.92);
+  --refresh-line: rgba(88, 231, 255, 0.24);
+}
+
+body.site-refresh-july2026 .hero {
+  border-color: rgba(88, 231, 255, 0.32);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42), inset 0 0 70px rgba(88, 231, 255, 0.035);
+}
+
+body.site-refresh-july2026 .hero-copy {
+  max-width: 760px;
+}
+
+body.site-refresh-july2026 .hero-copy .lead {
+  max-width: 68ch;
+}
+
+body.site-refresh-july2026 .topbar {
+  backdrop-filter: blur(16px);
+}
+
+body.site-refresh-july2026 .nav {
+  flex-wrap: wrap;
+}
+
+.refresh-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 7px 11px;
+  border: 1px solid rgba(88, 231, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(88, 231, 255, 0.06);
+  color: var(--refresh-cyan);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.refresh-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.refresh-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(88, 231, 255, 0.045), transparent 42%, rgba(181, 140, 255, 0.035));
+}
+
+.refresh-section-head {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.refresh-section-head p {
+  max-width: 68ch;
+  margin: 8px 0 0;
+  color: var(--muted, #aeb7c7);
+}
+
+.prototype-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.prototype-card {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--refresh-line);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(14, 22, 34, 0.96), rgba(7, 10, 17, 0.92));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.prototype-card:hover {
+  border-color: rgba(88, 231, 255, 0.5);
+  transform: translateY(-2px);
+  transition: transform 140ms ease, border-color 140ms ease;
+}
+
+.prototype-card .prototype-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.prototype-card .prototype-meta span {
+  padding: 4px 7px;
+  border: 1px solid rgba(181, 140, 255, 0.22);
+  border-radius: 999px;
+  color: #d9c8ff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.prototype-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.04rem;
+}
+
+.prototype-card p {
+  margin: 0;
+  color: var(--muted, #aeb7c7);
+  line-height: 1.55;
+}
+
+.refresh-update-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.refresh-update-card {
+  padding: 18px;
+  border: 1px solid rgba(255, 189, 105, 0.22);
+  border-radius: 14px;
+  background: rgba(18, 15, 18, 0.74);
+}
+
+.refresh-update-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--refresh-amber);
+}
+
+.refresh-update-card p {
+  margin: 0;
+  color: var(--muted, #aeb7c7);
+  line-height: 1.55;
+}
+
+body.site-refresh-july2026 .demo-section {
+  margin-top: 0;
+}
+
+body.site-refresh-july2026 .demo-status::after {
+  content: " · Browser experiment";
+  color: var(--refresh-cyan);
+}
+
+body.site-refresh-july2026 .updates-panel {
+  display: none !important;
+}
+
+body.site-refresh-july2026 .main-grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+body.site-refresh-july2026 .content-flow {
+  min-width: 0;
+}
+
+body.site-refresh-july2026 .stats-grid {
+  display: grid !important;
+}
+
+body.site-refresh-july2026 .footer-links {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .prototype-grid,
+  .refresh-update-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .refresh-section-head {
+    display: block;
+  }
+}
+
+@media (max-width: 620px) {
+  .prototype-card,
+  .refresh-update-card {
+    padding: 15px;
+  }
+}
