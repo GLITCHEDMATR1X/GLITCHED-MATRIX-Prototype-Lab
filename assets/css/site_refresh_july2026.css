@@ -1,5 +1,4 @@
-/* GLITCHED MATRIX Prototype Lab — July 2026 public refresh
-   Additive presentation layer. Existing HoloMap, lore reader, and media systems remain intact. */
+/* GLITCHED MATRIX Prototype Lab public presentation layer. */
 
 :root {
   --refresh-cyan: #58e7ff;
@@ -10,11 +9,40 @@
 }
 
 body.site-refresh-july2026 .hero {
+  align-items: stretch !important;
   border-color: rgba(88, 231, 255, 0.32);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42), inset 0 0 70px rgba(88, 231, 255, 0.035);
 }
 
+body.site-refresh-july2026 .hero-visual {
+  position: relative !important;
+  display: block !important;
+  align-self: stretch !important;
+  min-height: clamp(260px, 24vw, 520px) !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  border-bottom: 0 !important;
+  background: #050506;
+}
+
+body.site-refresh-july2026 .hero-header-art {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+body.site-refresh-july2026 .hero-gradient {
+  z-index: 1;
+}
+
 body.site-refresh-july2026 .hero-copy {
+  z-index: 2;
   max-width: 760px;
 }
 
@@ -125,41 +153,6 @@ body.site-refresh-july2026 .nav {
   line-height: 1.55;
 }
 
-.refresh-update-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.refresh-update-card {
-  padding: 18px;
-  border: 1px solid rgba(255, 189, 105, 0.22);
-  border-radius: 14px;
-  background: rgba(18, 15, 18, 0.74);
-}
-
-.refresh-update-card strong {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--refresh-amber);
-}
-
-.refresh-update-card p {
-  margin: 0;
-  color: var(--muted, #aeb7c7);
-  line-height: 1.55;
-}
-
-body.site-refresh-july2026 .demo-section {
-  margin-top: 0;
-}
-
-body.site-refresh-july2026 .demo-status::after {
-  content: " · Browser experiment";
-  color: var(--refresh-cyan);
-}
-
 body.site-refresh-july2026 .updates-panel {
   display: none !important;
 }
@@ -180,9 +173,28 @@ body.site-refresh-july2026 .footer-links {
   flex-wrap: wrap;
 }
 
+@media (max-width: 1280px) {
+  body.site-refresh-july2026 .hero.panel {
+    grid-template-columns: minmax(300px, 0.65fr) minmax(0, 1fr) !important;
+  }
+
+  body.site-refresh-july2026 .hero-visual {
+    display: block !important;
+  }
+}
+
 @media (max-width: 900px) {
-  .prototype-grid,
-  .refresh-update-grid {
+  body.site-refresh-july2026 .hero.panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.site-refresh-july2026 .hero-visual {
+    display: block !important;
+    min-height: 240px !important;
+    height: 240px !important;
+  }
+
+  .prototype-grid {
     grid-template-columns: 1fr;
   }
 
@@ -192,8 +204,12 @@ body.site-refresh-july2026 .footer-links {
 }
 
 @media (max-width: 620px) {
-  .prototype-card,
-  .refresh-update-card {
+  body.site-refresh-july2026 .hero-visual {
+    min-height: 200px !important;
+    height: 200px !important;
+  }
+
+  .prototype-card {
     padding: 15px;
   }
 }
