@@ -7,12 +7,12 @@
       marker: 'data-matrixcore-story-fix-pass42e'
     },
     {
-      src: './assets/js/holomap_rts_pass43.js?v=20260529-pass43-holomap-rts',
-      marker: 'data-holomap-rts-pass43'
-    },
-    {
       src: './assets/js/site_refresh_july2026.js?v=20260731-site-refresh',
       marker: 'data-site-refresh-july2026'
+    },
+    {
+      src: './assets/js/itch_game_grid.js?v=20260804-itch-game-grid',
+      marker: 'data-itch-game-grid'
     }
   ];
 
