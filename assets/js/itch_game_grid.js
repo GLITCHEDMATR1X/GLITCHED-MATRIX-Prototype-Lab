@@ -8,13 +8,14 @@
   const LOAD_INTERVAL_MS = 1400;
 
   const releases = [
-    { title: 'GLITCHED MATRIX: Prototype Lab', id: 4480673, slug: 'glitched-matrix-prototype-lab' },
     { title: 'Apocalypse Run', id: 4857214, slug: 'apocalypse-run' },
     { title: 'Block Busters', id: 4859561, slug: 'block-busters' },
     { title: 'Doomsday Battle', id: 4858100, slug: 'doomsday-battle' },
     { title: 'Duck n Cover', id: 4861852, slug: 'duck-n-cover' },
+    { title: 'Entropy', id: 4864777, slug: 'entropy' },
     { title: 'Ghost Signal', id: 4861877, slug: 'ghost-signal' },
     { title: 'Glitch TV', id: 4861310, slug: 'glitch-tv' },
+    { title: 'GLITCHED MATRIX: Prototype Lab', id: 4480673, slug: 'glitched-matrix-prototype-lab' },
     { title: 'Greebles', id: 4861925, slug: 'greebles' },
     { title: 'HEX Contract', id: 4861960, slug: 'hex-contract' },
     { title: 'Isometric World Machine', id: 4858222, slug: 'isometric-world-machine' },
