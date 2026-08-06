@@ -5,7 +5,9 @@
   const ITCH_COLLECTION = 'https://glitched-matrix.itch.io/@GitHub';
   const WIDGET_WIDTH = 552;
   const WIDGET_HEIGHT = 167;
-  const LOAD_INTERVAL_MS = 1400;
+  const MAX_CONCURRENT_LOADS = 4;
+  const WIDGET_LOAD_TIMEOUT_MS = 15000;
+  const OBSERVER_ROOT_MARGIN = '800px 0px';
 
   const releases = [
     { title: 'Apocalypse Run', id: 4857214, slug: 'apocalypse-run' },
@@ -31,7 +33,7 @@
   ];
 
   const loadQueue = [];
-  let loadTimer = null;
+  let activeLoads = 0;
   let widgetObserver = null;
   let resizeObserver = null;
 
@@ -41,6 +43,24 @@
 
   function widgetUrl(release) {
     return `https://itch.io/embed/${release.id}?dark=true`;
+  }
+
+  function installConnectionHints() {
+    const hints = [
+      ['preconnect', 'https://itch.io'],
+      ['preconnect', 'https://img.itch.zone'],
+      ['dns-prefetch', '//itch.io'],
+      ['dns-prefetch', '//img.itch.zone']
+    ];
+
+    hints.forEach(([rel, href]) => {
+      if (document.head.querySelector(`link[rel="${rel}"][href="${href}"]`)) return;
+      const link = document.createElement('link');
+      link.rel = rel;
+      link.href = href;
+      if (rel === 'preconnect') link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    });
   }
 
   function installStyles() {
@@ -57,7 +77,7 @@
       .itch-games-count{display:inline-flex;align-items:center;min-height:24px;margin-left:7px;padding:2px 7px;border:1px solid rgba(239,66,66,.42);border-radius:999px;background:rgba(204,20,20,.09);color:#ffb2b2;font-size:.64rem;letter-spacing:.06em;vertical-align:middle}
       .itch-games-head .btn{flex:0 0 auto!important;width:auto!important;min-width:0!important;min-height:0!important;padding:6px 9px!important;border-radius:6px!important;font-size:.68rem!important;line-height:1!important;letter-spacing:.03em!important;white-space:nowrap!important}
       .itch-games-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:start;max-width:100%;overflow:hidden}
-      .itch-release-card{display:flex;width:100%;max-width:${WIDGET_WIDTH}px;min-width:0;box-sizing:border-box;justify-self:center;flex-direction:column;border:1px solid rgba(255,255,255,.11);border-radius:9px;overflow:hidden;background:linear-gradient(145deg,rgba(19,8,10,.96),rgba(5,5,8,.96));transition:border-color .18s ease,box-shadow .18s ease}
+      .itch-release-card{display:flex;width:100%;max-width:${WIDGET_WIDTH}px;min-width:0;box-sizing:border-box;justify-self:center;flex-direction:column;border:1px solid rgba(255,255,255,.11);border-radius:9px;overflow:hidden;background:linear-gradient(145deg,rgba(19,8,10,.96),rgba(5,5,8,.96));transition:border-color .18s ease,box-shadow .18s ease;content-visibility:auto;contain-intrinsic-size:0 205px}
       .itch-release-card:hover,.itch-release-card:focus-within{border-color:rgba(235,48,48,.68);box-shadow:0 12px 24px rgba(0,0,0,.28)}
       .itch-widget-shell{width:100%;max-width:${WIDGET_WIDTH}px;min-width:0;box-sizing:border-box;background:#0a0505;overflow:hidden}
       .itch-widget-stage{position:relative;width:100%;aspect-ratio:${WIDGET_WIDTH}/${WIDGET_HEIGHT};overflow:hidden;background:radial-gradient(circle at 70% 20%,rgba(204,20,20,.12),transparent 38%),#0a0505}
@@ -73,7 +93,8 @@
       .itch-release-link,.itch-widget-retry{border:0;background:none;padding:0;font:inherit;font-size:.57rem;letter-spacing:.06em;text-transform:uppercase;color:#ff9a9a;text-decoration:none;cursor:pointer}
       .itch-release-link:hover,.itch-release-link:focus-visible,.itch-widget-retry:hover,.itch-widget-retry:focus-visible{color:#fff;text-decoration:underline}
       .itch-widget-shell[data-widget-state="idle"]~.itch-release-meta .itch-widget-retry,
-      .itch-widget-shell[data-widget-state="queued"]~.itch-release-meta .itch-widget-retry{display:none}
+      .itch-widget-shell[data-widget-state="queued"]~.itch-release-meta .itch-widget-retry,
+      .itch-widget-shell[data-widget-state="loading"]~.itch-release-meta .itch-widget-retry{display:none}
       @media(max-width:1700px){.itch-games-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
       @media(max-width:1120px){.itch-games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
       @media(max-width:720px){.itch-games-head{align-items:flex-start;flex-direction:column}.itch-games-head .btn{width:auto!important}.itch-games-grid{grid-template-columns:1fr}.itch-release-card{max-width:${WIDGET_WIDTH}px}.itch-release-meta{min-height:34px}}
@@ -121,13 +142,35 @@
     iframe.style.transform = `scale(${scale})`;
   }
 
+  function finishWidgetLoad(shell, iframe, succeeded) {
+    if (!shell || shell.dataset.widgetState !== 'loading') return;
+
+    window.clearTimeout(Number(shell.dataset.widgetTimeout || 0));
+    delete shell.dataset.widgetTimeout;
+    activeLoads = Math.max(0, activeLoads - 1);
+
+    if (succeeded) {
+      shell.dataset.widgetState = 'loaded';
+    } else {
+      shell.dataset.widgetState = 'error';
+      const stage = shell.querySelector('.itch-widget-stage');
+      if (stage && stage.contains(iframe)) {
+        stage.innerHTML = placeholderMarkup(shell.dataset.widgetTitle, 'Preview delayed — try again');
+      }
+    }
+
+    processQueue();
+  }
+
   function loadWidget(shell) {
-    if (!shell || shell.dataset.widgetState === 'loaded') return;
+    if (!shell || shell.dataset.widgetState !== 'queued') return;
 
     const stage = shell.querySelector('.itch-widget-stage');
     if (!stage) return;
 
-    shell.dataset.widgetState = 'loaded';
+    shell.dataset.widgetState = 'loading';
+    activeLoads += 1;
+
     const iframe = document.createElement('iframe');
     iframe.src = shell.dataset.widgetSrc;
     iframe.width = String(WIDGET_WIDTH);
@@ -135,6 +178,7 @@
     iframe.title = `${shell.dataset.widgetTitle} on itch.io`;
     iframe.loading = 'eager';
     iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.setAttribute('fetchpriority', shell.dataset.widgetPriority === 'high' ? 'high' : 'low');
     iframe.setAttribute('allowfullscreen', '');
 
     const fallback = document.createElement('a');
@@ -142,26 +186,31 @@
     fallback.textContent = `${shell.dataset.widgetTitle} by Glitched Matrix Prototypes`;
     iframe.appendChild(fallback);
 
+    iframe.addEventListener('load', () => finishWidgetLoad(shell, iframe, true), { once: true });
+    iframe.addEventListener('error', () => finishWidgetLoad(shell, iframe, false), { once: true });
+
     stage.replaceChildren(iframe);
     fitWidget(shell);
     resizeObserver?.observe(stage);
+
+    shell.dataset.widgetTimeout = String(window.setTimeout(
+      () => finishWidgetLoad(shell, iframe, false),
+      WIDGET_LOAD_TIMEOUT_MS
+    ));
   }
 
   function processQueue() {
-    if (loadTimer || loadQueue.length === 0) return;
-
-    const shell = loadQueue.shift();
-    if (shell?.dataset.widgetState === 'queued') loadWidget(shell);
-
-    loadTimer = window.setTimeout(() => {
-      loadTimer = null;
-      processQueue();
-    }, LOAD_INTERVAL_MS);
+    while (activeLoads < MAX_CONCURRENT_LOADS && loadQueue.length > 0) {
+      const shell = loadQueue.shift();
+      if (shell?.dataset.widgetState === 'queued') loadWidget(shell);
+    }
   }
 
   function queueWidget(shell, priority = false) {
-    if (!shell || shell.dataset.widgetState !== 'idle') return;
+    if (!shell || (shell.dataset.widgetState !== 'idle' && shell.dataset.widgetState !== 'error')) return;
+
     shell.dataset.widgetState = 'queued';
+    shell.dataset.widgetPriority = priority ? 'high' : 'low';
     if (priority) loadQueue.unshift(shell);
     else loadQueue.push(shell);
     processQueue();
@@ -198,12 +247,12 @@
           queueWidget(entry.target);
           widgetObserver.unobserve(entry.target);
         });
-      }, { rootMargin: '240px 0px', threshold: 0.01 });
+      }, { rootMargin: OBSERVER_ROOT_MARGIN, threshold: 0.01 });
 
       section.querySelectorAll('.itch-widget-shell').forEach((shell) => widgetObserver.observe(shell));
     } else {
       section.querySelectorAll('.itch-widget-shell').forEach((shell, index) => {
-        if (index < 4) queueWidget(shell);
+        if (index < MAX_CONCURRENT_LOADS) queueWidget(shell);
       });
     }
 
@@ -276,6 +325,7 @@
   }
 
   function mountGrid() {
+    installConnectionHints();
     installStyles();
 
     const oldDemo = document.getElementById('demos');
@@ -317,5 +367,5 @@
     mount();
   }
 
-  [250, 900, 1800, 4000, 8000].forEach((delay) => window.setTimeout(mount, delay));
+  [300, 1200, 4000].forEach((delay) => window.setTimeout(mount, delay));
 })();
