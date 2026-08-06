@@ -2,65 +2,32 @@
   'use strict';
 
   const ITCH_PROFILE = 'https://glitched-matrix.itch.io/';
-  const ITCH_COLLECTION = 'https://glitched-matrix.itch.io/@GitHub';
-  const WIDGET_WIDTH = 552;
-  const WIDGET_HEIGHT = 167;
-  const MAX_CONCURRENT_LOADS = 4;
-  const WIDGET_LOAD_TIMEOUT_MS = 15000;
-  const OBSERVER_ROOT_MARGIN = '800px 0px';
 
   const releases = [
-    { title: 'Apocalypse Run', id: 4857214, slug: 'apocalypse-run' },
-    { title: 'Block Busters', id: 4859561, slug: 'block-busters' },
-    { title: 'Doomsday Battle', id: 4858100, slug: 'doomsday-battle' },
-    { title: 'Duck n Cover', id: 4861852, slug: 'duck-n-cover' },
-    { title: 'Entropy', id: 4864777, slug: 'entropy' },
-    { title: 'Ghost Signal', id: 4861877, slug: 'ghost-signal' },
-    { title: 'Glitch TV', id: 4861310, slug: 'glitch-tv' },
-    { title: 'GLITCHED MATRIX: Prototype Lab', id: 4480673, slug: 'glitched-matrix-prototype-lab' },
-    { title: 'Greebles', id: 4861925, slug: 'greebles' },
-    { title: 'HEX Contract', id: 4861960, slug: 'hex-contract' },
-    { title: 'Isometric World Machine', id: 4858222, slug: 'isometric-world-machine' },
-    { title: 'Journey of 2', id: 4861983, slug: 'journey-of-2' },
-    { title: 'Journey of 4', id: 4862006, slug: 'journey-of-4' },
-    { title: 'Lost Forests', id: 4861908, slug: 'lost-forests' },
-    { title: 'Mewtants', id: 4861896, slug: 'mewtants' },
-    { title: 'MonkeyStranded', id: 4861683, slug: 'monkeystranded' },
-    { title: 'Radar Hell', id: 4858241, slug: 'radar-hell' },
-    { title: 'Sky and Ground', id: 4862043, slug: 'sky-and-ground' },
-    { title: 'Vector Wars', id: 4858596, slug: 'vector-wars' },
-    { title: "Where's Renaldo?", id: 4861943, slug: 'wheres-renaldo' }
+    { title: 'Apocalypse Run', slug: 'apocalypse-run' },
+    { title: 'Block Busters', slug: 'block-busters' },
+    { title: 'Doomsday Battle', slug: 'doomsday-battle' },
+    { title: 'Duck n Cover', slug: 'duck-n-cover' },
+    { title: 'Entropy', slug: 'entropy' },
+    { title: 'Ghost Signal', slug: 'ghost-signal' },
+    { title: 'Glitch TV', slug: 'glitch-tv' },
+    { title: 'GLITCHED MATRIX: Prototype Lab', slug: 'glitched-matrix-prototype-lab' },
+    { title: 'Greebles', slug: 'greebles' },
+    { title: 'HEX Contract', slug: 'hex-contract' },
+    { title: 'Isometric World Machine', slug: 'isometric-world-machine' },
+    { title: 'Journey of 2', slug: 'journey-of-2' },
+    { title: 'Journey of 4', slug: 'journey-of-4' },
+    { title: 'Lost Forests', slug: 'lost-forests' },
+    { title: 'Mewtants', slug: 'mewtants' },
+    { title: 'MonkeyStranded', slug: 'monkeystranded' },
+    { title: 'Radar Hell', slug: 'radar-hell' },
+    { title: 'Sky and Ground', slug: 'sky-and-ground' },
+    { title: 'Vector Wars', slug: 'vector-wars' },
+    { title: "Where's Renaldo?", slug: 'wheres-renaldo' }
   ];
-
-  const loadQueue = [];
-  let activeLoads = 0;
-  let widgetObserver = null;
-  let resizeObserver = null;
 
   function projectUrl(release) {
     return `${ITCH_PROFILE}${release.slug}`;
-  }
-
-  function widgetUrl(release) {
-    return `https://itch.io/embed/${release.id}?dark=true`;
-  }
-
-  function installConnectionHints() {
-    const hints = [
-      ['preconnect', 'https://itch.io'],
-      ['preconnect', 'https://img.itch.zone'],
-      ['dns-prefetch', '//itch.io'],
-      ['dns-prefetch', '//img.itch.zone']
-    ];
-
-    hints.forEach(([rel, href]) => {
-      if (document.head.querySelector(`link[rel="${rel}"][href="${href}"]`)) return;
-      const link = document.createElement('link');
-      link.rel = rel;
-      link.href = href;
-      if (rel === 'preconnect') link.crossOrigin = 'anonymous';
-      document.head.appendChild(link);
-    });
   }
 
   function installStyles() {
@@ -70,210 +37,33 @@
     style.id = 'itch-game-grid-styles';
     style.textContent = `
       .itch-games-section{position:relative;max-width:100%;overflow:hidden}
-      .itch-games-head{display:flex;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:16px}
+      .itch-games-head{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
       .itch-games-head-copy{min-width:0}
       .itch-games-head h2{margin-bottom:.35rem}
-      .itch-games-head p{max-width:720px;margin:0;opacity:.8;line-height:1.5}
+      .itch-games-head p{max-width:760px;margin:0;opacity:.8;line-height:1.55}
       .itch-games-count{display:inline-flex;align-items:center;min-height:24px;margin-left:7px;padding:2px 7px;border:1px solid rgba(239,66,66,.42);border-radius:999px;background:rgba(204,20,20,.09);color:#ffb2b2;font-size:.64rem;letter-spacing:.06em;vertical-align:middle}
-      .itch-games-head .btn{flex:0 0 auto!important;width:auto!important;min-width:0!important;min-height:0!important;padding:6px 9px!important;border-radius:6px!important;font-size:.68rem!important;line-height:1!important;letter-spacing:.03em!important;white-space:nowrap!important}
-      .itch-games-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:start;max-width:100%;overflow:hidden}
-      .itch-release-card{display:flex;width:100%;max-width:${WIDGET_WIDTH}px;min-width:0;box-sizing:border-box;justify-self:center;flex-direction:column;border:1px solid rgba(255,255,255,.11);border-radius:9px;overflow:hidden;background:linear-gradient(145deg,rgba(19,8,10,.96),rgba(5,5,8,.96));transition:border-color .18s ease,box-shadow .18s ease;content-visibility:auto;contain-intrinsic-size:0 205px}
-      .itch-release-card:hover,.itch-release-card:focus-within{border-color:rgba(235,48,48,.68);box-shadow:0 12px 24px rgba(0,0,0,.28)}
-      .itch-widget-shell{width:100%;max-width:${WIDGET_WIDTH}px;min-width:0;box-sizing:border-box;background:#0a0505;overflow:hidden}
-      .itch-widget-stage{position:relative;width:100%;aspect-ratio:${WIDGET_WIDTH}/${WIDGET_HEIGHT};overflow:hidden;background:radial-gradient(circle at 70% 20%,rgba(204,20,20,.12),transparent 38%),#0a0505}
-      .itch-widget-stage iframe{position:absolute;top:0;display:block;width:${WIDGET_WIDTH}px;height:${WIDGET_HEIGHT}px;border:0;background:#0a0505;transform-origin:top left}
-      .itch-widget-placeholder{position:absolute;inset:0;display:grid;place-items:center;padding:10px;text-align:center;color:rgba(255,255,255,.72);background:linear-gradient(135deg,rgba(28,9,12,.95),rgba(6,6,9,.98))}
-      .itch-widget-placeholder-inner{display:grid;gap:6px;justify-items:center}
-      .itch-widget-placeholder strong{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:#ffd0d0}
-      .itch-widget-placeholder span{font-size:.68rem;opacity:.7}
-      .itch-widget-load{border:1px solid rgba(239,66,66,.5);border-radius:5px;padding:4px 7px;background:rgba(204,20,20,.12);color:#fff;font:inherit;font-size:.62rem;line-height:1;cursor:pointer}
-      .itch-release-meta{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:36px;padding:7px 8px;border-top:1px solid rgba(255,255,255,.07)}
-      .itch-release-title{min-width:0;margin:0;font-size:.74rem;line-height:1.2;overflow-wrap:anywhere}
-      .itch-release-actions{display:flex;align-items:center;gap:7px;flex:0 0 auto}
-      .itch-release-link,.itch-widget-retry{border:0;background:none;padding:0;font:inherit;font-size:.57rem;letter-spacing:.06em;text-transform:uppercase;color:#ff9a9a;text-decoration:none;cursor:pointer}
-      .itch-release-link:hover,.itch-release-link:focus-visible,.itch-widget-retry:hover,.itch-widget-retry:focus-visible{color:#fff;text-decoration:underline}
-      .itch-widget-shell[data-widget-state="idle"]~.itch-release-meta .itch-widget-retry,
-      .itch-widget-shell[data-widget-state="queued"]~.itch-release-meta .itch-widget-retry,
-      .itch-widget-shell[data-widget-state="loading"]~.itch-release-meta .itch-widget-retry{display:none}
-      @media(max-width:1700px){.itch-games-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-      @media(max-width:1120px){.itch-games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-      @media(max-width:720px){.itch-games-head{align-items:flex-start;flex-direction:column}.itch-games-head .btn{width:auto!important}.itch-games-grid{grid-template-columns:1fr}.itch-release-card{max-width:${WIDGET_WIDTH}px}.itch-release-meta{min-height:34px}}
+      .itch-games-head .btn{flex:0 0 auto!important;width:auto!important;min-width:0!important;white-space:nowrap!important}
+      .itch-games-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:100%}
+      .itch-game-link{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0;min-height:58px;padding:12px 14px;border:1px solid rgba(255,255,255,.11);border-radius:9px;background:linear-gradient(145deg,rgba(19,8,10,.96),rgba(5,5,8,.96));text-decoration:none;transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}
+      .itch-game-link:hover,.itch-game-link:focus-visible{border-color:rgba(235,48,48,.72);box-shadow:0 10px 22px rgba(0,0,0,.28);transform:translateY(-1px);outline:none}
+      .itch-game-title{min-width:0;color:#f4eded;font-size:.84rem;font-weight:700;line-height:1.25;overflow-wrap:anywhere}
+      .itch-game-action{flex:0 0 auto;color:#ff9a9a;font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+      .itch-game-link:hover .itch-game-action,.itch-game-link:focus-visible .itch-game-action{color:#fff}
+      @media(max-width:1500px){.itch-games-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+      @media(max-width:1050px){.itch-games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+      @media(max-width:680px){.itch-games-head{align-items:flex-start;flex-direction:column}.itch-games-grid{grid-template-columns:1fr}.itch-game-link{min-height:54px}}
+      @media(prefers-reduced-motion:reduce){.itch-game-link{transition:none}.itch-game-link:hover,.itch-game-link:focus-visible{transform:none}}
     `;
     document.head.appendChild(style);
   }
 
-  function placeholderMarkup(title, message = 'Preview ready') {
-    return `
-      <div class="itch-widget-placeholder">
-        <div class="itch-widget-placeholder-inner">
-          <strong>${title}</strong>
-          <span>${message}</span>
-          <button class="itch-widget-load" type="button">Show game</button>
-        </div>
-      </div>`;
-  }
-
-  function releaseCard(release) {
+  function releaseLink(release) {
     const url = projectUrl(release);
     return `
-      <article class="itch-release-card">
-        <div class="itch-widget-shell" data-widget-src="${widgetUrl(release)}" data-widget-title="${release.title}" data-widget-url="${url}" data-widget-state="idle">
-          <div class="itch-widget-stage">${placeholderMarkup(release.title)}</div>
-        </div>
-        <div class="itch-release-meta">
-          <h3 class="itch-release-title">${release.title}</h3>
-          <div class="itch-release-actions">
-            <button class="itch-widget-retry" type="button" title="Refresh this preview">Refresh</button>
-            <a class="itch-release-link" href="${url}" target="_blank" rel="noopener noreferrer">View game</a>
-          </div>
-        </div>
-      </article>`;
-  }
-
-  function fitWidget(shell) {
-    const stage = shell.querySelector('.itch-widget-stage');
-    const iframe = stage?.querySelector('iframe');
-    if (!stage || !iframe) return;
-
-    const available = Math.max(1, stage.clientWidth);
-    const scale = Math.min(1, available / WIDGET_WIDTH);
-    const renderedWidth = WIDGET_WIDTH * scale;
-    iframe.style.left = `${Math.max(0, (available - renderedWidth) / 2)}px`;
-    iframe.style.transform = `scale(${scale})`;
-  }
-
-  function finishWidgetLoad(shell, iframe, succeeded) {
-    if (!shell || shell.dataset.widgetState !== 'loading') return;
-
-    window.clearTimeout(Number(shell.dataset.widgetTimeout || 0));
-    delete shell.dataset.widgetTimeout;
-    activeLoads = Math.max(0, activeLoads - 1);
-
-    if (succeeded) {
-      shell.dataset.widgetState = 'loaded';
-    } else {
-      shell.dataset.widgetState = 'error';
-      const stage = shell.querySelector('.itch-widget-stage');
-      if (stage && stage.contains(iframe)) {
-        stage.innerHTML = placeholderMarkup(shell.dataset.widgetTitle, 'Preview delayed — try again');
-      }
-    }
-
-    processQueue();
-  }
-
-  function loadWidget(shell) {
-    if (!shell || shell.dataset.widgetState !== 'queued') return;
-
-    const stage = shell.querySelector('.itch-widget-stage');
-    if (!stage) return;
-
-    shell.dataset.widgetState = 'loading';
-    activeLoads += 1;
-
-    const iframe = document.createElement('iframe');
-    iframe.src = shell.dataset.widgetSrc;
-    iframe.width = String(WIDGET_WIDTH);
-    iframe.height = String(WIDGET_HEIGHT);
-    iframe.title = `${shell.dataset.widgetTitle} on itch.io`;
-    iframe.loading = 'eager';
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-    iframe.setAttribute('fetchpriority', shell.dataset.widgetPriority === 'high' ? 'high' : 'low');
-    iframe.setAttribute('allowfullscreen', '');
-
-    const fallback = document.createElement('a');
-    fallback.href = shell.dataset.widgetUrl;
-    fallback.textContent = `${shell.dataset.widgetTitle} by Glitched Matrix Prototypes`;
-    iframe.appendChild(fallback);
-
-    iframe.addEventListener('load', () => finishWidgetLoad(shell, iframe, true), { once: true });
-    iframe.addEventListener('error', () => finishWidgetLoad(shell, iframe, false), { once: true });
-
-    stage.replaceChildren(iframe);
-    fitWidget(shell);
-    resizeObserver?.observe(stage);
-
-    shell.dataset.widgetTimeout = String(window.setTimeout(
-      () => finishWidgetLoad(shell, iframe, false),
-      WIDGET_LOAD_TIMEOUT_MS
-    ));
-  }
-
-  function processQueue() {
-    while (activeLoads < MAX_CONCURRENT_LOADS && loadQueue.length > 0) {
-      const shell = loadQueue.shift();
-      if (shell?.dataset.widgetState === 'queued') loadWidget(shell);
-    }
-  }
-
-  function queueWidget(shell, priority = false) {
-    if (!shell || (shell.dataset.widgetState !== 'idle' && shell.dataset.widgetState !== 'error')) return;
-
-    shell.dataset.widgetState = 'queued';
-    shell.dataset.widgetPriority = priority ? 'high' : 'low';
-    if (priority) loadQueue.unshift(shell);
-    else loadQueue.push(shell);
-    processQueue();
-  }
-
-  function resetWidget(shell) {
-    if (!shell) return;
-    const stage = shell.querySelector('.itch-widget-stage');
-    if (!stage) return;
-
-    resizeObserver?.unobserve(stage);
-    shell.dataset.widgetState = 'idle';
-    stage.innerHTML = placeholderMarkup(shell.dataset.widgetTitle, 'Preview ready');
-    queueWidget(shell, true);
-  }
-
-  function installWidgetLoader(section) {
-    if (section.dataset.widgetLoaderReady === 'true') return;
-    section.dataset.widgetLoaderReady = 'true';
-
-    if ('ResizeObserver' in window) {
-      resizeObserver = new ResizeObserver((entries) => {
-        entries.forEach((entry) => {
-          const shell = entry.target.closest('.itch-widget-shell');
-          if (shell) fitWidget(shell);
-        });
-      });
-    }
-
-    if ('IntersectionObserver' in window) {
-      widgetObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          queueWidget(entry.target);
-          widgetObserver.unobserve(entry.target);
-        });
-      }, { rootMargin: OBSERVER_ROOT_MARGIN, threshold: 0.01 });
-
-      section.querySelectorAll('.itch-widget-shell').forEach((shell) => widgetObserver.observe(shell));
-    } else {
-      section.querySelectorAll('.itch-widget-shell').forEach((shell, index) => {
-        if (index < MAX_CONCURRENT_LOADS) queueWidget(shell);
-      });
-    }
-
-    section.addEventListener('click', (event) => {
-      const loadButton = event.target.closest('.itch-widget-load');
-      if (loadButton) {
-        const shell = loadButton.closest('.itch-widget-shell');
-        queueWidget(shell, true);
-        return;
-      }
-
-      const retryButton = event.target.closest('.itch-widget-retry');
-      if (retryButton) {
-        const shell = retryButton.closest('.itch-release-card')?.querySelector('.itch-widget-shell');
-        resetWidget(shell);
-      }
-    });
-
-    window.addEventListener('resize', () => {
-      section.querySelectorAll('.itch-widget-shell').forEach(fitWidget);
-    }, { passive: true });
+      <a class="itch-game-link" href="${url}" target="_blank" rel="noopener noreferrer">
+        <span class="itch-game-title">${release.title}</span>
+        <span class="itch-game-action" aria-hidden="true">Open ↗</span>
+      </a>`;
   }
 
   function normalizeNavigation() {
@@ -324,8 +114,7 @@
     }
   }
 
-  function mountGrid() {
-    installConnectionHints();
+  function mountList() {
     installStyles();
 
     const oldDemo = document.getElementById('demos');
@@ -335,16 +124,6 @@
       section = document.createElement('section');
       section.id = 'itchGames';
       section.className = 'panel content-card itch-games-section';
-      section.innerHTML = `
-        <div class="itch-games-head">
-          <div class="itch-games-head-copy">
-            <span class="section-label">Available on itch.io</span>
-            <h2>Games from GLITCHED MATRIX <span class="itch-games-count">${releases.length} releases</span></h2>
-            <p>Explore games, experiments, creative tools, and strange worlds from the Prototype Lab. Open any release for screenshots, details, and downloads.</p>
-          </div>
-          <a class="btn btn-secondary" href="${ITCH_COLLECTION}" target="_blank" rel="noopener noreferrer">All releases</a>
-        </div>
-        <div class="itch-games-grid">${releases.map(releaseCard).join('')}</div>`;
 
       const showcase = document.getElementById('prototypeShowcase');
       const anchor = oldDemo || showcase;
@@ -352,20 +131,29 @@
       else document.querySelector('.content-flow')?.appendChild(section);
     }
 
+    if (section.dataset.linkListReady !== 'true') {
+      section.dataset.linkListReady = 'true';
+      section.innerHTML = `
+        <div class="itch-games-head">
+          <div class="itch-games-head-copy">
+            <span class="section-label">Available on itch.io</span>
+            <h2>Games from GLITCHED MATRIX <span class="itch-games-count">${releases.length} releases</span></h2>
+            <p>Open any game directly on itch.io for screenshots, details, and downloads. No embedded game pages are loaded here.</p>
+          </div>
+          <a class="btn btn-secondary" href="${ITCH_PROFILE}" target="_blank" rel="noopener noreferrer">All releases</a>
+        </div>
+        <div class="itch-games-grid">${releases.map(releaseLink).join('')}</div>`;
+    }
+
     if (oldDemo) oldDemo.remove();
-    installWidgetLoader(section);
     normalizeNavigation();
   }
 
-  function mount() {
-    mountGrid();
-  }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', mount, { once: true });
+    document.addEventListener('DOMContentLoaded', mountList, { once: true });
   } else {
-    mount();
+    mountList();
   }
 
-  [300, 1200, 4000].forEach((delay) => window.setTimeout(mount, delay));
+  window.setTimeout(mountList, 500);
 })();
