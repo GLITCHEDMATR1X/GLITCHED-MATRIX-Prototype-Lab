@@ -12,6 +12,7 @@
     html{scroll-behavior:smooth}
     body{margin:0;background:linear-gradient(180deg,#13080a 0,#070708 28rem);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}
     a{color:inherit}
+    img{max-width:100%}
     .shell{width:min(calc(100% - 32px),var(--shell));margin-inline:auto}
     header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid var(--line)}
     .brand{font-weight:900;letter-spacing:.08em;text-decoration:none}.brand span{color:var(--accent)}
@@ -25,21 +26,26 @@
     .button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border:1px solid #7e262c;border-radius:10px;background:#bd1f28;color:#fff;font-weight:800;text-decoration:none}.button.secondary{background:#17171d;border-color:#393940}.button:hover{filter:brightness(1.12)}
     section{margin-top:24px;padding:clamp(20px,3vw,32px);border:1px solid var(--line);border-radius:18px;background:var(--panel)}
     h2{margin:.35rem 0 .6rem;font-size:clamp(1.7rem,3vw,2.6rem);line-height:1.05}.section-copy{max-width:780px;margin:0;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:20px}
+    .storefront{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:20px;padding:18px;border:1px solid #4a2529;border-radius:12px;background:linear-gradient(135deg,#211014,#111116)}.storefront-copy{max-width:740px}.storefront strong{display:block;margin-bottom:4px;font-size:1.05rem}.storefront p{margin:0;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}
     .game{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:12px 14px;border:1px solid #2c2c34;border-radius:10px;background:var(--panel2);text-decoration:none}.game:hover{border-color:#a92d35;background:#1d1518}.game strong{font-size:.88rem;overflow-wrap:anywhere}.game span{flex:0 0 auto;color:#ff9298;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
     .projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}.card{padding:18px;border:1px solid #2c2c34;border-radius:12px;background:var(--panel2)}.card h3{margin:0 0 7px;font-size:1rem}.card p{margin:0;color:var(--muted)}
+    .media-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:18px;margin-top:20px;align-items:start}
+    .trailer{overflow:hidden;border:1px solid #34282b;border-radius:14px;background:#09090c}.trailer-frame{position:relative;aspect-ratio:16/9;background:#08080a}.trailer-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.trailer-copy{padding:14px 16px;color:var(--muted);font-size:.92rem}.trailer-copy strong{color:var(--text)}
+    .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.gallery a{display:block;overflow:hidden;aspect-ratio:16/10;border:1px solid #2c2c34;border-radius:10px;background:#0b0b0f}.gallery a:hover{border-color:#a92d35}.gallery img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .18s ease}.gallery a:hover img{transform:scale(1.025)}
+    .gallery-note{grid-column:1/-1;margin:2px 0 0;color:var(--muted);font-size:.86rem}
     .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.plain-link{padding:10px 13px;border:1px solid #34343c;border-radius:9px;background:#15151a;text-decoration:none}.plain-link:hover{border-color:#a92d35}
     footer{display:flex;justify-content:space-between;gap:20px;padding:24px 0 36px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-    @media(max-width:980px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media(max-width:720px){header{align-items:flex-start;flex-direction:column}.grid,.projects{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:480px){.shell{width:min(calc(100% - 20px),var(--shell))}.grid,.projects{grid-template-columns:1fr}.hero,section{border-radius:14px}.game{min-height:52px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media(max-width:980px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.media-layout{grid-template-columns:1fr}}
+    @media(max-width:720px){header{align-items:flex-start;flex-direction:column}.grid,.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.storefront{align-items:flex-start;flex-direction:column}}
+    @media(max-width:480px){.shell{width:min(calc(100% - 20px),var(--shell))}.grid,.projects,.gallery{grid-template-columns:1fr}.hero,section{border-radius:14px}.game{min-height:52px}.gallery-note{grid-column:auto}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gallery img{transition:none}}
   </style>
 </head>
 <body>
   <header class="shell">
     <a class="brand" href="#top">GLITCHED <span>MATRIX</span></a>
-    <nav aria-label="Primary navigation"><a href="#about">About</a><a href="#games">Games</a><a href="#projects">Projects</a><a href="#archive">Archive</a></nav>
+    <nav aria-label="Primary navigation"><a href="#about">About</a><a href="#games">Games</a><a href="#projects">Projects</a><a href="#media">Media</a><a href="#archive">Archive</a></nav>
   </header>
 
   <main id="top" class="shell">
@@ -48,7 +54,7 @@
       <h1>GLITCHED MATRIX Prototype Lab</h1>
       <p class="lead">A connected arcade of games, creative tools, original music, hidden archives, and strange playable worlds.</p>
       <div class="actions">
-        <a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse itch.io releases</a>
+        <a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse all games on itch.io</a>
         <a class="button secondary" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">View on Steam</a>
         <a class="button secondary" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">The Utopia Project</a>
       </div>
@@ -57,13 +63,17 @@
     <section id="about">
       <div class="label">About</div>
       <h2>One lab, many playable experiments</h2>
-      <p class="section-copy">GLITCHED MATRIX Prototype Lab brings together standalone games, creator utilities, music, lore, and connected worlds. This public page is intentionally lightweight: no embedded stores, no autoplay media, no canvas simulation, and no background application code.</p>
+      <p class="section-copy">GLITCHED MATRIX Prototype Lab brings together standalone games, creator utilities, music, lore, and connected worlds. The public page stays lightweight: the game catalog uses direct links, while images and the trailer load only when visitors scroll toward them.</p>
     </section>
 
     <section id="games">
       <div class="label">Available on itch.io</div>
       <h2>Games and releases</h2>
-      <p class="section-copy">Every entry opens its full itch.io page for screenshots, details, and downloads.</p>
+      <p class="section-copy">The individual storefront embeds are gone. Every title still opens its own itch.io page, while the main GLITCHED MATRIX profile remains the one-click route to the complete catalog.</p>
+      <div class="storefront">
+        <div class="storefront-copy"><strong>All GLITCHED MATRIX games</strong><p>Open the main itch.io profile to browse the whole release library together.</p></div>
+        <a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">See all games ↗</a>
+      </div>
       <div class="grid">
         <a class="game" href="https://glitched-matrix.itch.io/apocalypse-run" target="_blank" rel="noopener noreferrer"><strong>Apocalypse Run</strong><span>Open ↗</span></a>
         <a class="game" href="https://glitched-matrix.itch.io/block-busters" target="_blank" rel="noopener noreferrer"><strong>Block Busters</strong><span>Open ↗</span></a>
@@ -101,19 +111,42 @@
       </div>
     </section>
 
+    <section id="media">
+      <div class="label">Media</div>
+      <h2>Trailer and gallery</h2>
+      <p class="section-copy">The trailer does not autoplay, and gallery images are lazy-loaded. Click any image to open the full-size file.</p>
+      <div class="media-layout">
+        <article class="trailer">
+          <div class="trailer-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/d78EOS1a1-8" title="GLITCHED MATRIX Prototype Lab trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="trailer-copy"><strong>Prototype Lab trailer</strong><br>Embedded with YouTube privacy-enhanced mode and no autoplay.</div>
+        </article>
+        <div class="gallery" aria-label="Prototype Lab image gallery">
+          <a href="assets/images/CAPSULE%20HEADER.png" target="_blank" rel="noopener"><img src="assets/images/CAPSULE%20HEADER.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX capsule header artwork"></a>
+          <a href="assets/images/MATRIXOS%20WINDOW.png" target="_blank" rel="noopener"><img src="assets/images/MATRIXOS%20WINDOW.png" loading="lazy" decoding="async" alt="Matrix OS interface screenshot"></a>
+          <a href="assets/images/SCREENSHOT.png" target="_blank" rel="noopener"><img src="assets/images/SCREENSHOT.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX Prototype Lab screenshot"></a>
+          <a href="assets/images/C1.png" target="_blank" rel="noopener"><img src="assets/images/C1.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX project artwork"></a>
+          <a href="assets/images/CAPSULE%20MAIN.png" target="_blank" rel="noopener"><img src="assets/images/CAPSULE%20MAIN.png" loading="lazy" decoding="async" alt="Prototype Lab capsule artwork"></a>
+          <a href="assets/images/business_card.png" target="_blank" rel="noopener"><img src="assets/images/business_card.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX artwork"></a>
+          <p class="gallery-note">Gallery maintenance is intentionally simple: add an image under <code>assets/images/</code>, then add one matching gallery link here. No external gallery script is required.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="archive">
-      <div class="label">Media and archive</div>
+      <div class="label">Archive</div>
       <h2>Continue beyond this page</h2>
-      <p class="section-copy">External media stays off the initial page so it cannot delay loading.</p>
+      <p class="section-copy">The main catalog, Steam page, book, and direct trailer link remain available outside the embedded media.</p>
       <div class="links">
         <a class="plain-link" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">Open The Utopia Project ↗</a>
         <a class="plain-link" href="https://www.youtube.com/watch?v=d78EOS1a1-8" target="_blank" rel="noopener noreferrer">Watch the trailer on YouTube ↗</a>
-        <a class="plain-link" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Open the full itch.io profile ↗</a>
+        <a class="plain-link" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Open all games on itch.io ↗</a>
         <a class="plain-link" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Open the Steam page ↗</a>
       </div>
     </section>
   </main>
 
-  <footer class="shell"><span>© GLITCHED MATRIX — Prototype Lab</span><span>Static public build · no third-party embeds</span></footer>
+  <footer class="shell"><span>© GLITCHED MATRIX — Prototype Lab</span><span>Lightweight media build · no individual store embeds</span></footer>
 </body>
 </html>
