@@ -45,6 +45,8 @@
     .gallery a:hover{border-color:#a92d35}
     .gallery img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .18s ease}
     .gallery a:hover img{transform:scale(1.018)}
+    .gallery-shot{display:block;overflow:hidden;aspect-ratio:16/9;border:1px solid #2f2f38;border-radius:12px;background-color:#0b0b0f;background-image:url('assets/images/gallery_current.jpg');background-repeat:no-repeat;background-size:500% 400%}
+    .gallery-shot:hover{border-color:#a92d35}
     .gallery-note{margin:0;color:var(--muted);font-size:.88rem}
     .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
     .plain-link{padding:10px 13px;border:1px solid #34343c;border-radius:9px;background:#15151a;text-decoration:none}.plain-link:hover{border-color:#a92d35}
@@ -104,51 +106,15 @@
       <h2>What we have been building lately</h2>
       <p class="section-copy">These are the projects currently defining the lab. Some are release candidates, some are still evolving prototypes, and some are becoming reusable foundations for future games.</p>
       <div class="projects">
-        <article class="card">
-          <div class="card-label">Voxel World</div>
-          <h3>The World Beneath</h3>
-          <p>An expanding voxel world with stacked biomes, mining and building, persistent companions, world-cell streaming, fast block updates, and an increasingly strict rendering-reliability standard.</p>
-        </article>
-        <article class="card">
-          <div class="card-label">Education</div>
-          <h3>Osmosis University</h3>
-          <p>A standalone game-development school with 15 subjects, 150 certified lessons, Expert Workspace, R-01, real reference files, and 10 certified student games that appear in a personal Game Test Lab.</p>
-        </article>
-        <article class="card">
-          <div class="card-label">Cyberpunk</div>
-          <h3>GHOST SIGNAL: UTOPIA</h3>
-          <p>Andrew exists inside Utopia's network and captures the city building by building while Gleebs counters dangerous intrusion methods with readable security rules, ejection, and persistent lockouts.</p>
-        </article>
-        <article class="card">
-          <div class="card-label">Fantasy Adventure</div>
-          <h3>Swords &amp; Sorcery: World of Mythologies</h3>
-          <p>A lost Utopia adventure simulator set in Malor, with quests, roads, wild regions, combat, defensive companions, shoulder and first-person cameras, and region-specific audio and atmosphere.</p>
-        </article>
-        <article class="card">
-          <div class="card-label">Tactical Simulation</div>
-          <h3>HEX CONTRACT</h3>
-          <p>Autonomous heroes take on dangerous contracts and sovereign bosses across authored broken-maze battlegrounds, with persistent strain, relationships, equipment choices, destructible routes, and tactical setpieces.</p>
-        </article>
-        <article class="card">
-          <div class="card-label">Life Simulation</div>
-          <h3>Catnip Island</h3>
-          <p>A cat-centered island simulation with switchable residents, kittens, daily routines, favorite places, social behavior, playful interruptions, and personalities expressed through how each cat uses the world.</p>
-        </article>
-        <article class="card">
-          <div class="card-label">Emergent Ecology</div>
-          <h3>Army Ants</h3>
-          <p>A two-colony survival simulation built around decentralized army-ant behavior, trails, prey, tunnels, bivouac survival, territory pressure, and conflicts that emerge from the colonies' needs rather than scripted war.</p>
-        </article>
-        <article class="card">
-          <div class="card-label">Observation Game</div>
-          <h3>Alien Geographic</h3>
-          <p>A field-research game organized into ecological chapters, with camera sites, persistent evidence, environmental cycles, species behavior, and research questions that are resolved from what the player actually observes.</p>
-        </article>
-        <article class="card">
-          <div class="card-label">Planetary Exploration</div>
-          <h3>Operation: StarFall</h3>
-          <p>Planetary fieldwork across Saturn's moons using drones, rovers, sampling, missions, resources, transport links, and world-specific environmental profiles rather than treating every destination as the same planet with a new color.</p>
-        </article>
+        <article class="card"><div class="card-label">Voxel World</div><h3>The World Beneath</h3><p>An expanding voxel world with stacked biomes, mining and building, persistent companions, world-cell streaming, fast block updates, and an increasingly strict rendering-reliability standard.</p></article>
+        <article class="card"><div class="card-label">Education</div><h3>Osmosis University</h3><p>A standalone game-development school with 15 subjects, 150 certified lessons, Expert Workspace, R-01, real reference files, and 10 certified student games that appear in a personal Game Test Lab.</p></article>
+        <article class="card"><div class="card-label">Cyberpunk</div><h3>GHOST SIGNAL: UTOPIA</h3><p>Andrew exists inside Utopia's network and captures the city building by building while Gleebs counters dangerous intrusion methods with readable security rules, ejection, and persistent lockouts.</p></article>
+        <article class="card"><div class="card-label">Fantasy Adventure</div><h3>Swords &amp; Sorcery: World of Mythologies</h3><p>A lost Utopia adventure simulator set in Malor, with quests, roads, wild regions, combat, defensive companions, shoulder and first-person cameras, and region-specific audio and atmosphere.</p></article>
+        <article class="card"><div class="card-label">Tactical Simulation</div><h3>HEX CONTRACT</h3><p>Autonomous heroes take on dangerous contracts and sovereign bosses across authored broken-maze battlegrounds, with persistent strain, relationships, equipment choices, destructible routes, and tactical setpieces.</p></article>
+        <article class="card"><div class="card-label">Life Simulation</div><h3>Catnip Island</h3><p>A cat-centered island simulation with switchable residents, kittens, daily routines, favorite places, social behavior, playful interruptions, and personalities expressed through how each cat uses the world.</p></article>
+        <article class="card"><div class="card-label">Emergent Ecology</div><h3>Army Ants</h3><p>A two-colony survival simulation built around decentralized army-ant behavior, trails, prey, tunnels, bivouac survival, territory pressure, and conflicts that emerge from the colonies' needs rather than scripted war.</p></article>
+        <article class="card"><div class="card-label">Observation Game</div><h3>Alien Geographic</h3><p>A field-research game organized into ecological chapters, with camera sites, persistent evidence, environmental cycles, species behavior, and research questions that are resolved from what the player actually observes.</p></article>
+        <article class="card"><div class="card-label">Planetary Exploration</div><h3>Operation: StarFall</h3><p>Planetary fieldwork across Saturn's moons using drones, rovers, sampling, missions, resources, transport links, and world-specific environmental profiles rather than treating every destination as the same planet with a new color.</p></article>
       </div>
     </section>
 
@@ -158,15 +124,9 @@
       <p class="section-copy">The trailer now has the full width of the page, and the screenshot gallery has been expanded underneath it instead of being squeezed into a narrow side column.</p>
       <div class="media-stack">
         <article class="trailer">
-          <div class="trailer-frame">
-            <iframe src="https://www.youtube-nocookie.com/embed/fhKmr05TEgU" title="GLITCHED MATRIX Prototype Lab latest trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
-          <div class="trailer-copy">
-            <span><strong>Latest GLITCHED MATRIX trailer</strong><br>No autoplay. Privacy-enhanced YouTube embed.</span>
-            <a class="button secondary" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
-          </div>
+          <div class="trailer-frame"><iframe src="https://www.youtube-nocookie.com/embed/fhKmr05TEgU" title="GLITCHED MATRIX Prototype Lab latest trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+          <div class="trailer-copy"><span><strong>Latest GLITCHED MATRIX trailer</strong><br>No autoplay. Privacy-enhanced YouTube embed.</span><a class="button secondary" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></div>
         </article>
-
         <div class="gallery" aria-label="GLITCHED MATRIX screenshot gallery">
           <a href="assets/images/MATRIXOS%20WINDOW.png" target="_blank" rel="noopener"><img src="assets/images/MATRIXOS%20WINDOW.png" loading="lazy" decoding="async" alt="Screenshot of the MatrixOS window and GLITCHED MATRIX interface."></a>
           <a href="assets/images/SCREENSHOT.png" target="_blank" rel="noopener"><img src="assets/images/SCREENSHOT.png" loading="lazy" decoding="async" alt="Screenshot from the GLITCHED MATRIX Prototype Lab."></a>
@@ -174,27 +134,20 @@
           <a href="assets/images/C1.png" target="_blank" rel="noopener"><img src="assets/images/C1.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX project artwork from the current site media library."></a>
           <a href="assets/images/CAPSULE%20MAIN.png" target="_blank" rel="noopener"><img src="assets/images/CAPSULE%20MAIN.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX Prototype Lab capsule artwork."></a>
           <a href="assets/images/business_card.png" target="_blank" rel="noopener"><img src="assets/images/business_card.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX promotional artwork from the site media library."></a>
+          <div class="gallery-shot" role="img" aria-label="Osmosis University lesson interface" style="background-position:0% 0%"></div><div class="gallery-shot" role="img" aria-label="Osmosis University Game Test Lab" style="background-position:25% 0%"></div><div class="gallery-shot" role="img" aria-label="GHOST SIGNAL: UTOPIA city and hacking views" style="background-position:50% 0%"></div><div class="gallery-shot" role="img" aria-label="Utopia Conflict wireframe combat views" style="background-position:75% 0%"></div><div class="gallery-shot" role="img" aria-label="Holoutopia city world atlas" style="background-position:100% 0%"></div>
+          <div class="gallery-shot" role="img" aria-label="GLITCH TV broadcast interface" style="background-position:0% 33.3333%"></div><div class="gallery-shot" role="img" aria-label="Sound Fragments audio interface" style="background-position:25% 33.3333%"></div><div class="gallery-shot" role="img" aria-label="Post-apocalyptic living world dashboard" style="background-position:50% 33.3333%"></div><div class="gallery-shot" role="img" aria-label="Post-apocalyptic pixel society scene" style="background-position:75% 33.3333%"></div><div class="gallery-shot" role="img" aria-label="Space optics simulation" style="background-position:100% 33.3333%"></div>
+          <div class="gallery-shot" role="img" aria-label="Saturn system exploration scene" style="background-position:0% 66.6667%"></div><div class="gallery-shot" role="img" aria-label="Space flight prototype" style="background-position:25% 66.6667%"></div><div class="gallery-shot" role="img" aria-label="Orbital digital world prototype" style="background-position:50% 66.6667%"></div><div class="gallery-shot" role="img" aria-label="Dark first-person prototype environment" style="background-position:75% 66.6667%"></div><div class="gallery-shot" role="img" aria-label="HoloVerse forest experiment" style="background-position:100% 66.6667%"></div>
+          <div class="gallery-shot" role="img" aria-label="Neon prototype scene" style="background-position:0% 100%"></div><div class="gallery-shot" role="img" aria-label="GLITCHED MATRIX project interface" style="background-position:25% 100%"></div><div class="gallery-shot" role="img" aria-label="Minimal wireframe landscape experiment" style="background-position:50% 100%"></div>
         </div>
-        <p class="gallery-note">These are the screenshots and artwork already carried by the public repository. Click any image to open the full-size file.</p>
+        <p class="gallery-note">The gallery combines existing site media with additional current development screenshots. Images are presented without filename labels or filename-derived captions.</p>
       </div>
     </section>
 
     <section id="archive">
-      <div class="label">Continue Beyond the Site</div>
-      <h2>Games, story, trailer, and Steam</h2>
-      <p class="section-copy">The website is now a focused overview. The larger catalogs and releases stay on the services built to host them.</p>
-      <div class="links">
-        <a class="plain-link" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse all games on itch.io ↗</a>
-        <a class="plain-link" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch the latest trailer ↗</a>
-        <a class="plain-link" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Open the Steam page ↗</a>
-        <a class="plain-link" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">Open The Utopia Project ↗</a>
-      </div>
+      <div class="label">Continue Beyond the Site</div><h2>Games, story, trailer, and Steam</h2><p class="section-copy">The website is now a focused overview. The larger catalogs and releases stay on the services built to host them.</p>
+      <div class="links"><a class="plain-link" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse all games on itch.io ↗</a><a class="plain-link" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch the latest trailer ↗</a><a class="plain-link" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Open the Steam page ↗</a><a class="plain-link" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">Open The Utopia Project ↗</a></div>
     </section>
   </main>
-
-  <footer class="shell">
-    <span>© GLITCHED MATRIX — Prototype Lab</span>
-    <span>Games on itch.io · current work here · media kept lightweight</span>
-  </footer>
+  <footer class="shell"><span>© GLITCHED MATRIX — Prototype Lab</span><span>Games on itch.io · current work here · media kept lightweight</span></footer>
 </body>
 </html>
