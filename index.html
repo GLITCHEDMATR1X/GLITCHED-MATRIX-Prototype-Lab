@@ -40,20 +40,19 @@
     .trailer-copy{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 17px;color:var(--muted);font-size:.92rem}
     .trailer-copy strong{color:var(--text)}
     .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .gallery a{display:block;overflow:hidden;aspect-ratio:16/9;border:1px solid #2f2f38;border-radius:12px;background:#0b0b0f}
-    .gallery a:first-child{grid-column:1/-1;aspect-ratio:16/7.6}
-    .gallery a:hover{border-color:#a92d35}
-    .gallery img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .18s ease}
-    .gallery a:hover img{transform:scale(1.018)}
-    .gallery-shot{display:block;overflow:hidden;aspect-ratio:16/9;border:1px solid #2f2f38;border-radius:12px;background-color:#0b0b0f;background-image:url('assets/images/gallery_current.jpg');background-repeat:no-repeat;background-size:500% 400%}
-    .gallery-shot:hover{border-color:#a92d35}
+    .gallery-item{display:block;overflow:hidden;aspect-ratio:16/9;border:1px solid #2f2f38;border-radius:12px;background:#0b0b0f}
+    .gallery-item.featured{grid-column:1/-1;aspect-ratio:16/7.6}
+    .gallery-item:hover{border-color:#a92d35}
+    .gallery-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .18s ease}
+    .gallery-photo:hover img{transform:scale(1.018)}
+    .gallery-shot{background-color:#0b0b0f;background-image:url('assets/images/gallery_current.jpg');background-repeat:no-repeat;background-size:500% 400%}
     .gallery-note{margin:0;color:var(--muted);font-size:.88rem}
     .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
     .plain-link{padding:10px 13px;border:1px solid #34343c;border-radius:9px;background:#15151a;text-decoration:none}.plain-link:hover{border-color:#a92d35}
     footer{display:flex;justify-content:space-between;gap:20px;padding:24px 0 36px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
     @media(max-width:980px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.storefront{grid-template-columns:1fr;justify-items:start}}
     @media(max-width:720px){header{align-items:flex-start;flex-direction:column}.projects{grid-template-columns:1fr}.trailer-copy{align-items:flex-start;flex-direction:column}}
-    @media(max-width:560px){.shell{width:min(calc(100% - 20px),var(--shell))}.gallery{grid-template-columns:1fr}.gallery a:first-child{grid-column:auto;aspect-ratio:16/9}.hero,section{border-radius:14px}footer{flex-direction:column}}
+    @media(max-width:560px){.shell{width:min(calc(100% - 20px),var(--shell))}.gallery{grid-template-columns:1fr}.gallery-item.featured{grid-column:auto;aspect-ratio:16/9}.hero,section{border-radius:14px}footer{flex-direction:column}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gallery img{transition:none}}
   </style>
 </head>
@@ -127,27 +126,105 @@
           <div class="trailer-frame"><iframe src="https://www.youtube-nocookie.com/embed/fhKmr05TEgU" title="GLITCHED MATRIX Prototype Lab latest trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
           <div class="trailer-copy"><span><strong>Latest GLITCHED MATRIX trailer</strong><br>No autoplay. Privacy-enhanced YouTube embed.</span><a class="button secondary" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></div>
         </article>
-        <div class="gallery" aria-label="GLITCHED MATRIX screenshot gallery">
-          <a href="assets/images/MATRIXOS%20WINDOW.png" target="_blank" rel="noopener"><img src="assets/images/MATRIXOS%20WINDOW.png" loading="lazy" decoding="async" alt="Screenshot of the MatrixOS window and GLITCHED MATRIX interface."></a>
-          <a href="assets/images/SCREENSHOT.png" target="_blank" rel="noopener"><img src="assets/images/SCREENSHOT.png" loading="lazy" decoding="async" alt="Screenshot from the GLITCHED MATRIX Prototype Lab."></a>
-          <a href="assets/images/CAPSULE%20HEADER.png" target="_blank" rel="noopener"><img src="assets/images/CAPSULE%20HEADER.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX capsule header artwork used for the project."></a>
-          <a href="assets/images/C1.png" target="_blank" rel="noopener"><img src="assets/images/C1.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX project artwork from the current site media library."></a>
-          <a href="assets/images/CAPSULE%20MAIN.png" target="_blank" rel="noopener"><img src="assets/images/CAPSULE%20MAIN.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX Prototype Lab capsule artwork."></a>
-          <a href="assets/images/business_card.png" target="_blank" rel="noopener"><img src="assets/images/business_card.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX promotional artwork from the site media library."></a>
-          <div class="gallery-shot" role="img" aria-label="Osmosis University lesson interface" style="background-position:0% 0%"></div><div class="gallery-shot" role="img" aria-label="Osmosis University Game Test Lab" style="background-position:25% 0%"></div><div class="gallery-shot" role="img" aria-label="GHOST SIGNAL: UTOPIA city and hacking views" style="background-position:50% 0%"></div><div class="gallery-shot" role="img" aria-label="Utopia Conflict wireframe combat views" style="background-position:75% 0%"></div><div class="gallery-shot" role="img" aria-label="Holoutopia city world atlas" style="background-position:100% 0%"></div>
-          <div class="gallery-shot" role="img" aria-label="GLITCH TV broadcast interface" style="background-position:0% 33.3333%"></div><div class="gallery-shot" role="img" aria-label="Sound Fragments audio interface" style="background-position:25% 33.3333%"></div><div class="gallery-shot" role="img" aria-label="Post-apocalyptic living world dashboard" style="background-position:50% 33.3333%"></div><div class="gallery-shot" role="img" aria-label="Post-apocalyptic pixel society scene" style="background-position:75% 33.3333%"></div><div class="gallery-shot" role="img" aria-label="Space optics simulation" style="background-position:100% 33.3333%"></div>
-          <div class="gallery-shot" role="img" aria-label="Saturn system exploration scene" style="background-position:0% 66.6667%"></div><div class="gallery-shot" role="img" aria-label="Space flight prototype" style="background-position:25% 66.6667%"></div><div class="gallery-shot" role="img" aria-label="Orbital digital world prototype" style="background-position:50% 66.6667%"></div><div class="gallery-shot" role="img" aria-label="Dark first-person prototype environment" style="background-position:75% 66.6667%"></div><div class="gallery-shot" role="img" aria-label="HoloVerse forest experiment" style="background-position:100% 66.6667%"></div>
-          <div class="gallery-shot" role="img" aria-label="Neon prototype scene" style="background-position:0% 100%"></div><div class="gallery-shot" role="img" aria-label="GLITCHED MATRIX project interface" style="background-position:25% 100%"></div><div class="gallery-shot" role="img" aria-label="Minimal wireframe landscape experiment" style="background-position:50% 100%"></div>
-        </div>
-        <p class="gallery-note">The gallery combines existing site media with additional current development screenshots. Images are presented without filename labels or filename-derived captions.</p>
+
+        <div id="mediaGallery" class="gallery" aria-label="Randomized GLITCHED MATRIX screenshot gallery"></div>
+        <noscript>
+          <div class="gallery" aria-label="GLITCHED MATRIX screenshot gallery">
+            <div class="gallery-item gallery-photo"><img src="assets/images/MATRIXOS%20WINDOW.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX interface screenshot."></div>
+            <div class="gallery-item gallery-photo"><img src="assets/images/SCREENSHOT.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX Prototype Lab screenshot."></div>
+          </div>
+        </noscript>
+        <p class="gallery-note">A limited selection is chosen at random on each page load from the current media pool. Images are presented without filename labels or filename-derived captions.</p>
       </div>
     </section>
 
     <section id="archive">
-      <div class="label">Continue Beyond the Site</div><h2>Games, story, trailer, and Steam</h2><p class="section-copy">The website is now a focused overview. The larger catalogs and releases stay on the services built to host them.</p>
-      <div class="links"><a class="plain-link" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse all games on itch.io ↗</a><a class="plain-link" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch the latest trailer ↗</a><a class="plain-link" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Open the Steam page ↗</a><a class="plain-link" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">Open The Utopia Project ↗</a></div>
+      <div class="label">Continue Beyond the Site</div>
+      <h2>Games, story, trailer, and Steam</h2>
+      <p class="section-copy">The website is now a focused overview. The larger catalogs and releases stay on the services built to host them.</p>
+      <div class="links">
+        <a class="plain-link" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse all games on itch.io ↗</a>
+        <a class="plain-link" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch the latest trailer ↗</a>
+        <a class="plain-link" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Open the Steam page ↗</a>
+        <a class="plain-link" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">Open The Utopia Project ↗</a>
+      </div>
     </section>
   </main>
-  <footer class="shell"><span>© GLITCHED MATRIX — Prototype Lab</span><span>Games on itch.io · current work here · media kept lightweight</span></footer>
+
+  <footer class="shell">
+    <span>© GLITCHED MATRIX — Prototype Lab</span>
+    <span>Games on itch.io · current work here · media kept lightweight</span>
+  </footer>
+
+  <script>
+    (() => {
+      const gallery = document.getElementById('mediaGallery');
+      if (!gallery) return;
+
+      const visibleCount = 8;
+      const imagePool = [
+        {type:'image', src:'assets/images/MATRIXOS%20WINDOW.png', alt:'GLITCHED MATRIX interface screenshot.'},
+        {type:'image', src:'assets/images/SCREENSHOT.png', alt:'GLITCHED MATRIX Prototype Lab screenshot.'},
+        {type:'image', src:'assets/images/CAPSULE%20HEADER.png', alt:'GLITCHED MATRIX project artwork.'},
+        {type:'image', src:'assets/images/C1.png', alt:'GLITCHED MATRIX project artwork.'},
+        {type:'image', src:'assets/images/CAPSULE%20MAIN.png', alt:'GLITCHED MATRIX Prototype Lab artwork.'},
+        {type:'image', src:'assets/images/business_card.png', alt:'GLITCHED MATRIX promotional artwork.'},
+        {type:'atlas', pos:'0% 0%', alt:'Osmosis University lesson interface.'},
+        {type:'atlas', pos:'25% 0%', alt:'Osmosis University Game Test Lab.'},
+        {type:'atlas', pos:'50% 0%', alt:'GHOST SIGNAL: UTOPIA city and hacking views.'},
+        {type:'atlas', pos:'75% 0%', alt:'Utopia Conflict wireframe combat views.'},
+        {type:'atlas', pos:'100% 0%', alt:'Holoutopia city world atlas.'},
+        {type:'atlas', pos:'0% 33.3333%', alt:'GLITCH TV broadcast interface.'},
+        {type:'atlas', pos:'25% 33.3333%', alt:'Sound Fragments audio interface.'},
+        {type:'atlas', pos:'50% 33.3333%', alt:'Post-apocalyptic living world dashboard.'},
+        {type:'atlas', pos:'75% 33.3333%', alt:'Post-apocalyptic pixel society scene.'},
+        {type:'atlas', pos:'100% 33.3333%', alt:'Space optics simulation.'},
+        {type:'atlas', pos:'0% 66.6667%', alt:'Saturn system exploration scene.'},
+        {type:'atlas', pos:'25% 66.6667%', alt:'Space flight prototype.'},
+        {type:'atlas', pos:'50% 66.6667%', alt:'Orbital digital world prototype.'},
+        {type:'atlas', pos:'75% 66.6667%', alt:'Dark first-person prototype environment.'},
+        {type:'atlas', pos:'100% 66.6667%', alt:'HoloVerse forest experiment.'},
+        {type:'atlas', pos:'0% 100%', alt:'Neon prototype scene.'},
+        {type:'atlas', pos:'25% 100%', alt:'GLITCHED MATRIX project interface.'},
+        {type:'atlas', pos:'50% 100%', alt:'Minimal wireframe landscape experiment.'}
+      ];
+
+      function shuffle(items) {
+        const out = items.slice();
+        for (let i = out.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [out[i], out[j]] = [out[j], out[i]];
+        }
+        return out;
+      }
+
+      function render(pool) {
+        gallery.replaceChildren();
+        shuffle(pool).slice(0, Math.min(visibleCount, pool.length)).forEach((item, index) => {
+          const frame = document.createElement('div');
+          frame.className = `gallery-item ${item.type === 'atlas' ? 'gallery-shot' : 'gallery-photo'}${index === 0 ? ' featured' : ''}`;
+          if (item.type === 'atlas') {
+            frame.setAttribute('role', 'img');
+            frame.setAttribute('aria-label', item.alt);
+            frame.style.backgroundPosition = item.pos;
+          } else {
+            const img = document.createElement('img');
+            img.src = item.src;
+            img.alt = item.alt;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.addEventListener('error', () => frame.remove(), {once:true});
+            frame.appendChild(img);
+          }
+          gallery.appendChild(frame);
+        });
+      }
+
+      const atlasProbe = new Image();
+      atlasProbe.onload = () => render(imagePool);
+      atlasProbe.onerror = () => render(imagePool.filter(item => item.type === 'image'));
+      atlasProbe.src = 'assets/images/gallery_current.jpg';
+    })();
+  </script>
 </body>
 </html>
