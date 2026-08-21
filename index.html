@@ -32,7 +32,10 @@
     .storefront strong{display:block;margin-bottom:6px;font-size:1.15rem}.storefront p{max-width:780px;margin:0;color:var(--muted)}
     .projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
     .card{min-height:180px;padding:19px;border:1px solid #2c2c34;border-radius:13px;background:linear-gradient(180deg,#19191f,#141419)}
-    .card.featured-project{grid-column:1/-1;min-height:auto;border-color:#4a2529;background:linear-gradient(135deg,#211014,#141419 60%,#101014)}
+    .card.featured-project{grid-column:1/-1;min-height:auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);align-items:center;gap:22px;border-color:#4a2529;background:linear-gradient(135deg,#211014,#141419 60%,#101014)}
+    .featured-project-copy{min-width:0}
+    .featured-project-image{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid #4a2529;border-radius:10px;background:#09090c}
+    .featured-project-image:not([src]){display:none}
     .card h3{margin:7px 0 8px;font-size:1.08rem}.card p{margin:0;color:var(--muted);font-size:.94rem}
     .media-stack{display:grid;gap:18px;margin-top:22px}
     .trailer{overflow:hidden;border:1px solid #432b2f;border-radius:15px;background:#09090c}
@@ -51,7 +54,7 @@
     .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
     .plain-link{padding:10px 13px;border:1px solid #34343c;border-radius:9px;background:#15151a;text-decoration:none}.plain-link:hover{border-color:#a92d35}
     footer{display:flex;justify-content:space-between;gap:20px;padding:24px 0 36px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-    @media(max-width:980px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.storefront{grid-template-columns:1fr;justify-items:start}}
+    @media(max-width:980px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.storefront{grid-template-columns:1fr;justify-items:start}.card.featured-project{grid-template-columns:1fr}}
     @media(max-width:720px){header{align-items:flex-start;flex-direction:column}.projects{grid-template-columns:1fr}.trailer-copy{align-items:flex-start;flex-direction:column}}
     @media(max-width:560px){.shell{width:min(calc(100% - 20px),var(--shell))}.gallery{grid-template-columns:1fr}.gallery-item.featured{grid-column:auto;aspect-ratio:16/9}.hero,section{border-radius:14px}footer{flex-direction:column}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gallery img{transition:none}}
@@ -95,7 +98,7 @@
       <div class="storefront">
         <div>
           <strong>GLITCHED MATRIX on itch.io</strong>
-          <p>Use one page to browse the current release library. New standalone projects — uncluding the Osmosis University release — san join the same catalog without turning this site into another storefront list.</p>
+          <p>Use one page to browse the current release library. New standalone projects — including the Osmosis University release — can join the same catalog without turning this site into another storefront list.</p>
         </div>
         <a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Open the itch.io library ↗</a>
       </div>
@@ -106,7 +109,14 @@
       <h2>What we have been building lately</h2>
       <p class="section-copy">These are the projects currently defining the lab. Some are release candidates, some are still evolving prototypes, and some are becoming reusable foundations for future games.</p>
       <div class="projects">
-        <article class="card featured-project"><div class="card-label">Causal Afterlife Adventure</div><h3>Afterlife of IO — The Entropy Archives</h3><p>The Exile is trapped inside an artificial afterlife created by IO, an ancient species whose surviving data is discovered by Gleebs far later. The journey spans two persistent states of the same afterlife: its Beginning and a ruined far-future present hundreds of trillions of years later. Discoveries in the Future reveal what must be changed in the Past; stationary Entities can be confronted in dedicated turn-based lantern battles, and defeating them rewrites history so Shrines and Obelisks emerge in the Future. The archive builds toward escape, the truth of IO, and the events that precede Entropy.</p></article>
+        <article class="card featured-project">
+          <div class="featured-project-copy">
+            <div class="card-label">Causal Afterlife Adventure</div>
+            <h3>Afterlife of IO — The Entropy Archives</h3>
+            <p>The Exile is trapped inside an artificial afterlife created by IO, an ancient species whose surviving data is discovered by Gleebs far later. The journey spans two persistent states of the same afterlife: its Beginning and a ruined far-future present hundreds of trillions of years later. Discoveries in the Future reveal what must be changed in the Past; stationary Entities can be confronted in dedicated turn-based lantern battles, and defeating them rewrites history so Shrines and Obelisks emerge in the Future. The archive builds toward escape, the truth of IO, and the events that precede Entropy.</p>
+          </div>
+          <img id="afterlifeFeatureImage" class="featured-project-image" alt="Afterlife of IO — The Entropy Archives screenshot." decoding="async">
+        </article>
         <article class="card"><div class="card-label">Voxel World</div><h3>The World Beneath</h3><p>An expanding voxel world with stacked biomes, mining and building, persistent companions, world-cell streaming, fast block updates, and an increasingly strict rendering-reliability standard.</p></article>
         <article class="card"><div class="card-label">Education</div><h3>Osmosis University</h3><p>A standalone game-development school with 15 subjects, 150 certified lessons, Expert Workspace, R-01, real reference files, and 10 certified student games that appear in a personal Game Test Lab.</p></article>
         <article class="card"><div class="card-label">Cyberpunk</div><h3>GHOST SIGNAL: UTOPIA</h3><p>Andrew exists inside Utopia's network and captures the city building by building while Gleebs counters dangerous intrusion methods with readable security rules, ejection, and persistent lockouts.</p></article>
@@ -132,8 +142,7 @@
         <div id="mediaGallery" class="gallery" aria-label="Randomized GLITCHED MATRIX screenshot gallery"></div>
         <noscript>
           <div class="gallery" aria-label="GLITCHED MATRIX screenshot gallery">
-            <div class="gallery-item gallery-photo featured"><img src="assets/images/afterlife_of_io_entropy_archives.jpg" loading="lazy" decoding="async" alt="Afterlife of IO — The Entropy Archives screenshot."></div>
-            <div class="gallery-item gallery-photo"><img src="assets/images/MATRIXOS%20WINDOW.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX interface screenshot."></div>
+            <div class="gallery-item gallery-photo featured"><img src="assets/images/MATRIXOS%20WINDOW.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX interface screenshot."></div>
             <div class="gallery-item gallery-photo"><img src="assets/images/SCREENSHOT.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX Prototype Lab screenshot."></div>
           </div>
         </noscript>
@@ -162,10 +171,21 @@
   <script>
     (() => {
       const gallery = document.getElementById('mediaGallery');
+      const featureImage = document.getElementById('afterlifeFeatureImage');
       if (!gallery) return;
 
       const visibleCount = 8;
-      const pinnedImage = {type:'image', src:'assets/images/afterlife_of_io_entropy_archives.jpg', alt:'Afterlife of IO — The Entropy Archives screenshot.'};
+      const pinnedImage = {type:'image', src:'', alt:'Afterlife of IO — The Entropy Archives screenshot.'};
+      const pinnedParts = [
+        'assets/images/afterlife_io/head01a.txt',
+        'assets/images/afterlife_io/head01b.txt',
+        'assets/images/afterlife_io/head02.txt',
+        'assets/images/afterlife_io/part02.txt',
+        'assets/images/afterlife_io/part03.txt',
+        'assets/images/afterlife_io/part04.txt',
+        'assets/images/afterlife_io/part05.txt',
+        'assets/images/afterlife_io/part06.txt'
+      ];
       const imagePool = [
         {type:'image', src:'assets/images/MATRIXOS%20WINDOW.png', alt:'GLITCHED MATRIX interface screenshot.'},
         {type:'image', src:'assets/images/SCREENSHOT.png', alt:'GLITCHED MATRIX Prototype Lab screenshot.'},
@@ -216,7 +236,7 @@
             const img = document.createElement('img');
             img.src = item.src;
             img.alt = item.alt;
-            img.loading = 'lazy';
+            img.loading = index === 0 ? 'eager' : 'lazy';
             img.decoding = 'async';
             img.addEventListener('error', () => frame.remove(), {once:true});
             frame.appendChild(img);
@@ -225,10 +245,38 @@
         });
       }
 
-      const atlasProbe = new Image();
-      atlasProbe.onload = () => render(imagePool);
-      atlasProbe.onerror = () => render(imagePool.filter(item => item.type === 'image'));
-      atlasProbe.src = 'assets/images/gallery_current.jpg';
+      async function loadPinnedImage() {
+        const chunks = await Promise.all(pinnedParts.map(async path => {
+          const response = await fetch(path, {cache:'force-cache'});
+          if (!response.ok) throw new Error(`Image data unavailable: ${path}`);
+          return response.text();
+        }));
+        return `data:image/jpeg;base64,${chunks.join('').replace(/\s+/g,'')}`;
+      }
+
+      function probeAtlas() {
+        return new Promise(resolve => {
+          const atlasProbe = new Image();
+          atlasProbe.onload = () => resolve(true);
+          atlasProbe.onerror = () => resolve(false);
+          atlasProbe.src = 'assets/images/gallery_current.jpg';
+        });
+      }
+
+      async function startGallery() {
+        try {
+          pinnedImage.src = await loadPinnedImage();
+          if (featureImage) featureImage.src = pinnedImage.src;
+        } catch (error) {
+          console.warn('Afterlife of IO gallery image could not be reconstructed.', error);
+          pinnedImage.src = 'assets/images/SCREENSHOT.png';
+          if (featureImage) featureImage.src = pinnedImage.src;
+        }
+        const atlasAvailable = await probeAtlas();
+        render(atlasAvailable ? imagePool : imagePool.filter(item => item.type === 'image'));
+      }
+
+      startGallery();
     })();
   </script>
 </body>
