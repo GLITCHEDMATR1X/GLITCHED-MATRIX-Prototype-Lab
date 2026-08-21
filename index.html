@@ -32,6 +32,7 @@
     .storefront strong{display:block;margin-bottom:6px;font-size:1.15rem}.storefront p{max-width:780px;margin:0;color:var(--muted)}
     .projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
     .card{min-height:180px;padding:19px;border:1px solid #2c2c34;border-radius:13px;background:linear-gradient(180deg,#19191f,#141419)}
+    .card.featured-project{grid-column:1/-1;min-height:auto;border-color:#4a2529;background:linear-gradient(135deg,#211014,#141419 60%,#101014)}
     .card h3{margin:7px 0 8px;font-size:1.08rem}.card p{margin:0;color:var(--muted);font-size:.94rem}
     .media-stack{display:grid;gap:18px;margin-top:22px}
     .trailer{overflow:hidden;border:1px solid #432b2f;border-radius:15px;background:#09090c}
@@ -94,7 +95,7 @@
       <div class="storefront">
         <div>
           <strong>GLITCHED MATRIX on itch.io</strong>
-          <p>Use one page to browse the current release library. New standalone projects — including the Osmosis University release — can join the same catalog without turning this site into another storefront list.</p>
+          <p>Use one page to browse the current release library. New standalone projects — uncluding the Osmosis University release — san join the same catalog without turning this site into another storefront list.</p>
         </div>
         <a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Open the itch.io library ↗</a>
       </div>
@@ -105,6 +106,7 @@
       <h2>What we have been building lately</h2>
       <p class="section-copy">These are the projects currently defining the lab. Some are release candidates, some are still evolving prototypes, and some are becoming reusable foundations for future games.</p>
       <div class="projects">
+        <article class="card featured-project"><div class="card-label">Causal Afterlife Adventure</div><h3>Afterlife of IO — The Entropy Archives</h3><p>The Exile is trapped inside an artificial afterlife created by IO, an ancient species whose surviving data is discovered by Gleebs far later. The journey spans two persistent states of the same afterlife: its Beginning and a ruined far-future present hundreds of trillions of years later. Discoveries in the Future reveal what must be changed in the Past; stationary Entities can be confronted in dedicated turn-based lantern battles, and defeating them rewrites history so Shrines and Obelisks emerge in the Future. The archive builds toward escape, the truth of IO, and the events that precede Entropy.</p></article>
         <article class="card"><div class="card-label">Voxel World</div><h3>The World Beneath</h3><p>An expanding voxel world with stacked biomes, mining and building, persistent companions, world-cell streaming, fast block updates, and an increasingly strict rendering-reliability standard.</p></article>
         <article class="card"><div class="card-label">Education</div><h3>Osmosis University</h3><p>A standalone game-development school with 15 subjects, 150 certified lessons, Expert Workspace, R-01, real reference files, and 10 certified student games that appear in a personal Game Test Lab.</p></article>
         <article class="card"><div class="card-label">Cyberpunk</div><h3>GHOST SIGNAL: UTOPIA</h3><p>Andrew exists inside Utopia's network and captures the city building by building while Gleebs counters dangerous intrusion methods with readable security rules, ejection, and persistent lockouts.</p></article>
@@ -130,11 +132,12 @@
         <div id="mediaGallery" class="gallery" aria-label="Randomized GLITCHED MATRIX screenshot gallery"></div>
         <noscript>
           <div class="gallery" aria-label="GLITCHED MATRIX screenshot gallery">
+            <div class="gallery-item gallery-photo featured"><img src="assets/images/afterlife_of_io_entropy_archives.jpg" loading="lazy" decoding="async" alt="Afterlife of IO — The Entropy Archives screenshot."></div>
             <div class="gallery-item gallery-photo"><img src="assets/images/MATRIXOS%20WINDOW.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX interface screenshot."></div>
             <div class="gallery-item gallery-photo"><img src="assets/images/SCREENSHOT.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX Prototype Lab screenshot."></div>
           </div>
         </noscript>
-        <p class="gallery-note">A limited selection is chosen at random on each page load from the current media pool. Images are presented without filename labels or filename-derived captions.</p>
+        <p class="gallery-note">Afterlife of IO — The Entropy Archives is pinned first; the remaining selection is chosen at random on each page load from the current media pool. Images are presented without filename labels or filename-derived captions.</p>
       </div>
     </section>
 
@@ -162,6 +165,7 @@
       if (!gallery) return;
 
       const visibleCount = 8;
+      const pinnedImage = {type:'image', src:'assets/images/afterlife_of_io_entropy_archives.jpg', alt:'Afterlife of IO — The Entropy Archives screenshot.'};
       const imagePool = [
         {type:'image', src:'assets/images/MATRIXOS%20WINDOW.png', alt:'GLITCHED MATRIX interface screenshot.'},
         {type:'image', src:'assets/images/SCREENSHOT.png', alt:'GLITCHED MATRIX Prototype Lab screenshot.'},
@@ -200,7 +204,8 @@
 
       function render(pool) {
         gallery.replaceChildren();
-        shuffle(pool).slice(0, Math.min(visibleCount, pool.length)).forEach((item, index) => {
+        const randomItems = shuffle(pool).slice(0, Math.min(Math.max(visibleCount - 1, 0), pool.length));
+        [pinnedImage, ...randomItems].forEach((item, index) => {
           const frame = document.createElement('div');
           frame.className = `gallery-item ${item.type === 'atlas' ? 'gallery-shot' : 'gallery-photo'}${index === 0 ? ' featured' : ''}`;
           if (item.type === 'atlas') {
