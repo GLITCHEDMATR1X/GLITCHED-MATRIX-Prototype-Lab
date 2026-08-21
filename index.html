@@ -35,7 +35,6 @@
     .card.featured-project{grid-column:1/-1;min-height:auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);align-items:center;gap:22px;border-color:#4a2529;background:linear-gradient(135deg,#211014,#141419 60%,#101014)}
     .featured-project-copy{min-width:0}
     .featured-project-image{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid #4a2529;border-radius:10px;background:#09090c}
-    .featured-project-image:not([src]){display:none}
     .card h3{margin:7px 0 8px;font-size:1.08rem}.card p{margin:0;color:var(--muted);font-size:.94rem}
     .media-stack{display:grid;gap:18px;margin-top:22px}
     .trailer{overflow:hidden;border:1px solid #432b2f;border-radius:15px;background:#09090c}
@@ -115,7 +114,7 @@
             <h3>Afterlife of IO — The Entropy Archives</h3>
             <p>The Exile is trapped inside an artificial afterlife created by IO, an ancient species whose surviving data is discovered by Gleebs far later. The journey spans two persistent states of the same afterlife: its Beginning and a ruined far-future present hundreds of trillions of years later. Discoveries in the Future reveal what must be changed in the Past; stationary Entities can be confronted in dedicated turn-based lantern battles, and defeating them rewrites history so Shrines and Obelisks emerge in the Future. The archive builds toward escape, the truth of IO, and the events that precede Entropy.</p>
           </div>
-          <img id="afterlifeFeatureImage" class="featured-project-image" alt="Afterlife of IO — The Entropy Archives screenshot." decoding="async">
+          <img id="afterlifeFeatureImage" class="featured-project-image" src="assets/images/easy_swap/afterlife_io_feature.jpg" alt="Afterlife of IO — The Entropy Archives artwork." decoding="async">
         </article>
         <article class="card"><div class="card-label">Voxel World</div><h3>The World Beneath</h3><p>An expanding voxel world with stacked biomes, mining and building, persistent companions, world-cell streaming, fast block updates, and an increasingly strict rendering-reliability standard.</p></article>
         <article class="card"><div class="card-label">Education</div><h3>Osmosis University</h3><p>A standalone game-development school with 15 subjects, 150 certified lessons, Expert Workspace, R-01, real reference files, and 10 certified student games that appear in a personal Game Test Lab.</p></article>
@@ -142,11 +141,11 @@
         <div id="mediaGallery" class="gallery" aria-label="Randomized GLITCHED MATRIX screenshot gallery"></div>
         <noscript>
           <div class="gallery" aria-label="GLITCHED MATRIX screenshot gallery">
-            <div class="gallery-item gallery-photo featured"><img src="assets/images/MATRIXOS%20WINDOW.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX interface screenshot."></div>
+            <div class="gallery-item gallery-photo featured"><img src="assets/images/easy_swap/afterlife_io_feature.jpg" loading="eager" decoding="async" alt="Afterlife of IO — The Entropy Archives artwork."></div>
             <div class="gallery-item gallery-photo"><img src="assets/images/SCREENSHOT.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX Prototype Lab screenshot."></div>
           </div>
         </noscript>
-        <p class="gallery-note">Afterlife of IO — The Entropy Archives is pinned first; the remaining selection is chosen at random on each page load from the current media pool. Images are presented without filename labels or filename-derived captions.</p>
+        <p class="gallery-note">Afterlife of IO — The Entropy Archives is pinned first; the remaining selection is chosen at random on each page load from the current media pool. Featured artwork now uses a normal direct-replace image file.</p>
       </div>
     </section>
 
@@ -171,21 +170,10 @@
   <script>
     (() => {
       const gallery = document.getElementById('mediaGallery');
-      const featureImage = document.getElementById('afterlifeFeatureImage');
       if (!gallery) return;
 
       const visibleCount = 8;
-      const pinnedImage = {type:'image', src:'', alt:'Afterlife of IO — The Entropy Archives screenshot.'};
-      const pinnedParts = [
-        'assets/images/afterlife_io/head01a.txt',
-        'assets/images/afterlife_io/head01b.txt',
-        'assets/images/afterlife_io/head02.txt',
-        'assets/images/afterlife_io/part02.txt',
-        'assets/images/afterlife_io/part03.txt',
-        'assets/images/afterlife_io/part04.txt',
-        'assets/images/afterlife_io/part05.txt',
-        'assets/images/afterlife_io/part06.txt'
-      ];
+      const pinnedImage = {type:'image', src:'assets/images/easy_swap/afterlife_io_feature.jpg', alt:'Afterlife of IO — The Entropy Archives artwork.'};
       const imagePool = [
         {type:'image', src:'assets/images/MATRIXOS%20WINDOW.png', alt:'GLITCHED MATRIX interface screenshot.'},
         {type:'image', src:'assets/images/SCREENSHOT.png', alt:'GLITCHED MATRIX Prototype Lab screenshot.'},
@@ -245,38 +233,10 @@
         });
       }
 
-      async function loadPinnedImage() {
-        const chunks = await Promise.all(pinnedParts.map(async path => {
-          const response = await fetch(path, {cache:'force-cache'});
-          if (!response.ok) throw new Error(`Image data unavailable: ${path}`);
-          return response.text();
-        }));
-        return `data:image/jpeg;base64,${chunks.join('').replace(/\s+/g,'')}`;
-      }
-
-      function probeAtlas() {
-        return new Promise(resolve => {
-          const atlasProbe = new Image();
-          atlasProbe.onload = () => resolve(true);
-          atlasProbe.onerror = () => resolve(false);
-          atlasProbe.src = 'assets/images/gallery_current.jpg';
-        });
-      }
-
-      async function startGallery() {
-        try {
-          pinnedImage.src = await loadPinnedImage();
-          if (featureImage) featureImage.src = pinnedImage.src;
-        } catch (error) {
-          console.warn('Afterlife of IO gallery image could not be reconstructed.', error);
-          pinnedImage.src = 'assets/images/SCREENSHOT.png';
-          if (featureImage) featureImage.src = pinnedImage.src;
-        }
-        const atlasAvailable = await probeAtlas();
-        render(atlasAvailable ? imagePool : imagePool.filter(item => item.type === 'image'));
-      }
-
-      startGallery();
+      const atlasProbe = new Image();
+      atlasProbe.onload = () => render(imagePool);
+      atlasProbe.onerror = () => render(imagePool.filter(item => item.type === 'image'));
+      atlasProbe.src = 'assets/images/gallery_current.jpg';
     })();
   </script>
 </body>
