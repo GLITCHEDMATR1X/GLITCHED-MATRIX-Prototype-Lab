@@ -32,45 +32,37 @@
     .storefront strong{display:block;margin-bottom:6px;font-size:1.15rem}.storefront p{max-width:780px;margin:0;color:var(--muted)}
     .projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
     .card{min-height:180px;padding:19px;border:1px solid #2c2c34;border-radius:13px;background:linear-gradient(180deg,#19191f,#141419)}
-    .card.featured-project{grid-column:1/-1;min-height:auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);align-items:center;gap:22px;border-color:#4a2529;background:linear-gradient(135deg,#211014,#141419 60%,#101014)}
-    .featured-project-copy{min-width:0}
-    .featured-project-image{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid #4a2529;border-radius:10px;background:#09090c}
+    .card.featured-project{grid-column:1/-1;display:grid;grid-template-columns:1fr;gap:20px;padding:0;overflow:hidden;border-color:#4a2529;background:linear-gradient(135deg,#211014,#141419 60%,#101014)}
+    .featured-project-image{display:block;width:100%;height:auto;aspect-ratio:960/518;object-fit:contain;background:#050507;border-bottom:1px solid #4a2529}
+    .featured-project-copy{padding:0 22px 22px;max-width:1000px}
     .card h3{margin:7px 0 8px;font-size:1.08rem}.card p{margin:0;color:var(--muted);font-size:.94rem}
     .media-stack{display:grid;gap:18px;margin-top:22px}
     .trailer{overflow:hidden;border:1px solid #432b2f;border-radius:15px;background:#09090c}
     .trailer-frame{position:relative;aspect-ratio:16/9;background:#08080a}
     .trailer-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-    .trailer-copy{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 17px;color:var(--muted);font-size:.92rem}
-    .trailer-copy strong{color:var(--text)}
+    .trailer-copy{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 17px;color:var(--muted);font-size:.92rem}.trailer-copy strong{color:var(--text)}
     .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
     .gallery-item{display:block;overflow:hidden;aspect-ratio:16/9;border:1px solid #2f2f38;border-radius:12px;background:#0b0b0f}
-    .gallery-item.featured{grid-column:1/-1;aspect-ratio:16/7.6}
+    .gallery-item.featured{grid-column:1/-1;aspect-ratio:960/518}
     .gallery-item:hover{border-color:#a92d35}
     .gallery-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .18s ease}
+    .gallery-item.featured.gallery-photo img{object-fit:contain;background:#050507}
     .gallery-photo:hover img{transform:scale(1.018)}
     .gallery-shot{background-color:#0b0b0f;background-image:url('assets/images/gallery_current.jpg');background-repeat:no-repeat;background-size:500% 400%}
-    .gallery-note{margin:0;color:var(--muted);font-size:.88rem}
     .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
     .plain-link{padding:10px 13px;border:1px solid #34343c;border-radius:9px;background:#15151a;text-decoration:none}.plain-link:hover{border-color:#a92d35}
     footer{display:flex;justify-content:space-between;gap:20px;padding:24px 0 36px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-    @media(max-width:980px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.storefront{grid-template-columns:1fr;justify-items:start}.card.featured-project{grid-template-columns:1fr}}
+    @media(max-width:980px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.storefront{grid-template-columns:1fr;justify-items:start}}
     @media(max-width:720px){header{align-items:flex-start;flex-direction:column}.projects{grid-template-columns:1fr}.trailer-copy{align-items:flex-start;flex-direction:column}}
-    @media(max-width:560px){.shell{width:min(calc(100% - 20px),var(--shell))}.gallery{grid-template-columns:1fr}.gallery-item.featured{grid-column:auto;aspect-ratio:16/9}.hero,section{border-radius:14px}footer{flex-direction:column}}
+    @media(max-width:560px){.shell{width:min(calc(100% - 20px),var(--shell))}.gallery{grid-template-columns:1fr}.gallery-item.featured{grid-column:auto}.hero,section{border-radius:14px}footer{flex-direction:column}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gallery img{transition:none}}
   </style>
 </head>
 <body>
   <header class="shell">
     <a class="brand" href="#top">GLITCHED <span>MATRIX</span></a>
-    <nav aria-label="Primary navigation">
-      <a href="#about">About</a>
-      <a href="#games">Play</a>
-      <a href="#projects">Current Work</a>
-      <a href="#media">Media</a>
-      <a href="#archive">Links</a>
-    </nav>
+    <nav aria-label="Primary navigation"><a href="#about">About</a><a href="#games">Play</a><a href="#projects">Current Work</a><a href="#media">Media</a><a href="#archive">Links</a></nav>
   </header>
-
   <main id="top" class="shell">
     <div class="hero">
       <div class="eyebrow">Play · Build · Experiment · Evolve</div>
@@ -83,38 +75,22 @@
         <a class="button secondary" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">The Utopia Project</a>
       </div>
     </div>
-
     <section id="about">
-      <div class="label">About</div>
-      <h2>One lab, many kinds of games</h2>
+      <div class="label">About</div><h2>One lab, many kinds of games</h2>
       <p class="section-copy">GLITCHED MATRIX Prototype Lab is where we build and connect unusual games instead of forcing every experiment into one genre. Recent work ranges from voxel worlds and autonomous simulations to cyberpunk hacking, fantasy adventures, educational software, ecological observation, and tactical combat.</p>
     </section>
-
     <section id="games">
-      <div class="label">Play the releases</div>
-      <h2>The catalog lives on itch.io</h2>
-      <p class="section-copy">The old wall of individual game links has been removed from this page. Public standalone releases, experiments, updates, and new builds are organized together on the GLITCHED MATRIX itch.io profile.</p>
-      <div class="storefront">
-        <div>
-          <strong>GLITCHED MATRIX on itch.io</strong>
-          <p>Use one page to browse the current release library. New standalone projects — including the Osmosis University release — can join the same catalog without turning this site into another storefront list.</p>
-        </div>
-        <a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Open the itch.io library ↗</a>
-      </div>
+      <div class="label">Play the releases</div><h2>The catalog lives on itch.io</h2>
+      <p class="section-copy">Public releases, experiments, updates, and standalone builds are collected on the GLITCHED MATRIX itch.io profile.</p>
+      <div class="storefront"><div><strong>GLITCHED MATRIX on itch.io</strong><p>Browse current games, prototypes, educational projects, and new standalone releases in one place.</p></div><a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Open the itch.io library ↗</a></div>
     </section>
-
     <section id="projects">
-      <div class="label">Current Lab Work</div>
-      <h2>What we have been building lately</h2>
-      <p class="section-copy">These are the projects currently defining the lab. Some are release candidates, some are still evolving prototypes, and some are becoming reusable foundations for future games.</p>
+      <div class="label">Current Lab Work</div><h2>What we have been building lately</h2>
+      <p class="section-copy">A selection of worlds, simulations, games, and experiments currently shaping the GLITCHED MATRIX universe.</p>
       <div class="projects">
         <article class="card featured-project">
-          <div class="featured-project-copy">
-            <div class="card-label">Causal Afterlife Adventure</div>
-            <h3>Afterlife of IO — The Entropy Archives</h3>
-            <p>The Exile is trapped inside an artificial afterlife created by IO, an ancient species whose surviving data is discovered by Gleebs far later. The journey spans two persistent states of the same afterlife: its Beginning and a ruined far-future present hundreds of trillions of years later. Discoveries in the Future reveal what must be changed in the Past; stationary Entities can be confronted in dedicated turn-based lantern battles, and defeating them rewrites history so Shrines and Obelisks emerge in the Future. The archive builds toward escape, the truth of IO, and the events that precede Entropy.</p>
-          </div>
-          <img id="afterlifeFeatureImage" class="featured-project-image" src="assets/images/easy_swap/afterlife_io_feature.jpg" alt="Afterlife of IO — The Entropy Archives artwork." decoding="async">
+          <img class="featured-project-image" src="assets/images/gallery/afterlife_io.jpg" alt="Afterlife of IO — The Entropy Archives artwork." decoding="async">
+          <div class="featured-project-copy"><div class="card-label">Causal Afterlife Adventure</div><h3>Afterlife of IO — The Entropy Archives</h3><p>The Exile is trapped inside an artificial afterlife created by IO, an ancient species whose surviving data is discovered by Gleebs far later. The journey spans two persistent states of the same afterlife: its Beginning and a ruined far-future present hundreds of trillions of years later. Discoveries in the Future reveal what must be changed in the Past; stationary Entities can be confronted in dedicated turn-based lantern battles, and defeating them rewrites history so Shrines and Obelisks emerge in the Future. The archive builds toward escape, the truth of IO, and the events that precede Entropy.</p></div>
         </article>
         <article class="card"><div class="card-label">Voxel World</div><h3>The World Beneath</h3><p>An expanding voxel world with stacked biomes, mining and building, persistent companions, world-cell streaming, fast block updates, and an increasingly strict rendering-reliability standard.</p></article>
         <article class="card"><div class="card-label">Education</div><h3>Osmosis University</h3><p>A standalone game-development school with 15 subjects, 150 certified lessons, Expert Workspace, R-01, real reference files, and 10 certified student games that appear in a personal Game Test Lab.</p></article>
@@ -127,117 +103,24 @@
         <article class="card"><div class="card-label">Planetary Exploration</div><h3>Operation: StarFall</h3><p>Planetary fieldwork across Saturn's moons using drones, rovers, sampling, missions, resources, transport links, and world-specific environmental profiles rather than treating every destination as the same planet with a new color.</p></article>
       </div>
     </section>
-
     <section id="media">
-      <div class="label">Media</div>
-      <h2>Latest trailer and screenshots</h2>
-      <p class="section-copy">The trailer now has the full width of the page, and the screenshot gallery has been expanded underneath it instead of being squeezed into a narrow side column.</p>
+      <div class="label">Media</div><h2>Latest trailer and screenshots</h2>
+      <p class="section-copy">Watch the latest trailer and explore a rotating selection of images from across the Prototype Lab.</p>
       <div class="media-stack">
-        <article class="trailer">
-          <div class="trailer-frame"><iframe src="https://www.youtube-nocookie.com/embed/fhKmr05TEgU" title="GLITCHED MATRIX Prototype Lab latest trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-          <div class="trailer-copy"><span><strong>Latest GLITCHED MATRIX trailer</strong><br>No autoplay. Privacy-enhanced YouTube embed.</span><a class="button secondary" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></div>
-        </article>
-
-        <div id="mediaGallery" class="gallery" aria-label="Randomized GLITCHED MATRIX screenshot gallery"></div>
-        <noscript>
-          <div class="gallery" aria-label="GLITCHED MATRIX screenshot gallery">
-            <div class="gallery-item gallery-photo featured"><img src="assets/images/easy_swap/afterlife_io_feature.jpg" loading="eager" decoding="async" alt="Afterlife of IO — The Entropy Archives artwork."></div>
-            <div class="gallery-item gallery-photo"><img src="assets/images/SCREENSHOT.png" loading="lazy" decoding="async" alt="GLITCHED MATRIX Prototype Lab screenshot."></div>
-          </div>
-        </noscript>
-        <p class="gallery-note">Afterlife of IO — The Entropy Archives is pinned first; the remaining selection is chosen at random on each page load from the current media pool. Featured artwork now uses a normal direct-replace image file.</p>
+        <article class="trailer"><div class="trailer-frame"><iframe src="https://www.youtube-nocookie.com/embed/fhKmr05TEgU" title="GLITCHED MATRIX Prototype Lab latest trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="trailer-copy"><span><strong>Latest GLITCHED MATRIX trailer</strong></span><a class="button secondary" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></div></article>
+        <div id="mediaGallery" class="gallery" aria-label="GLITCHED MATRIX screenshot gallery"></div>
+        <noscript><div class="gallery"><div class="gallery-item gallery-photo featured"><img src="assets/images/gallery/afterlife_io.jpg" alt="Afterlife of IO — The Entropy Archives artwork."></div><div class="gallery-item gallery-photo"><img src="assets/images/SCREENSHOT.png" alt="GLITCHED MATRIX Prototype Lab screenshot."></div></div></noscript>
       </div>
     </section>
-
     <section id="archive">
-      <div class="label">Continue Beyond the Site</div>
-      <h2>Games, story, trailer, and Steam</h2>
-      <p class="section-copy">The website is now a focused overview. The larger catalogs and releases stay on the services built to host them.</p>
-      <div class="links">
-        <a class="plain-link" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse all games on itch.io ↗</a>
-        <a class="plain-link" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch the latest trailer ↗</a>
-        <a class="plain-link" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Open the Steam page ↗</a>
-        <a class="plain-link" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">Open The Utopia Project ↗</a>
-      </div>
+      <div class="label">Continue Beyond the Site</div><h2>Games, story, trailer, and Steam</h2>
+      <p class="section-copy">Explore the wider GLITCHED MATRIX catalog, story, and releases.</p>
+      <div class="links"><a class="plain-link" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse all games on itch.io ↗</a><a class="plain-link" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch the latest trailer ↗</a><a class="plain-link" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Open the Steam page ↗</a><a class="plain-link" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">Open The Utopia Project ↗</a></div>
     </section>
   </main>
-
-  <footer class="shell">
-    <span>© GLITCHED MATRIX — Prototype Lab</span>
-    <span>Games on itch.io · current work here · media kept lightweight</span>
-  </footer>
-
+  <footer class="shell"><span>© GLITCHED MATRIX — Prototype Lab</span><span>Games · worlds · experiments · stories</span></footer>
   <script>
-    (() => {
-      const gallery = document.getElementById('mediaGallery');
-      if (!gallery) return;
-
-      const visibleCount = 8;
-      const pinnedImage = {type:'image', src:'assets/images/easy_swap/afterlife_io_feature.jpg', alt:'Afterlife of IO — The Entropy Archives artwork.'};
-      const imagePool = [
-        {type:'image', src:'assets/images/MATRIXOS%20WINDOW.png', alt:'GLITCHED MATRIX interface screenshot.'},
-        {type:'image', src:'assets/images/SCREENSHOT.png', alt:'GLITCHED MATRIX Prototype Lab screenshot.'},
-        {type:'image', src:'assets/images/CAPSULE%20HEADER.png', alt:'GLITCHED MATRIX project artwork.'},
-        {type:'image', src:'assets/images/C1.png', alt:'GLITCHED MATRIX project artwork.'},
-        {type:'image', src:'assets/images/CAPSULE%20MAIN.png', alt:'GLITCHED MATRIX Prototype Lab artwork.'},
-        {type:'image', src:'assets/images/business_card.png', alt:'GLITCHED MATRIX promotional artwork.'},
-        {type:'atlas', pos:'0% 0%', alt:'Osmosis University lesson interface.'},
-        {type:'atlas', pos:'25% 0%', alt:'Osmosis University Game Test Lab.'},
-        {type:'atlas', pos:'50% 0%', alt:'GHOST SIGNAL: UTOPIA city and hacking views.'},
-        {type:'atlas', pos:'75% 0%', alt:'Utopia Conflict wireframe combat views.'},
-        {type:'atlas', pos:'100% 0%', alt:'Holoutopia city world atlas.'},
-        {type:'atlas', pos:'0% 33.3333%', alt:'GLITCH TV broadcast interface.'},
-        {type:'atlas', pos:'25% 33.3333%', alt:'Sound Fragments audio interface.'},
-        {type:'atlas', pos:'50% 33.3333%', alt:'Post-apocalyptic living world dashboard.'},
-        {type:'atlas', pos:'75% 33.3333%', alt:'Post-apocalyptic pixel society scene.'},
-        {type:'atlas', pos:'100% 33.3333%', alt:'Space optics simulation.'},
-        {type:'atlas', pos:'0% 66.6667%', alt:'Saturn system exploration scene.'},
-        {type:'atlas', pos:'25% 66.6667%', alt:'Space flight prototype.'},
-        {type:'atlas', pos:'50% 66.6667%', alt:'Orbital digital world prototype.'},
-        {type:'atlas', pos:'75% 66.6667%', alt:'Dark first-person prototype environment.'},
-        {type:'atlas', pos:'100% 66.6667%', alt:'HoloVerse forest experiment.'},
-        {type:'atlas', pos:'0% 100%', alt:'Neon prototype scene.'},
-        {type:'atlas', pos:'25% 100%', alt:'GLITCHED MATRIX project interface.'},
-        {type:'atlas', pos:'50% 100%', alt:'Minimal wireframe landscape experiment.'}
-      ];
-
-      function shuffle(items) {
-        const out = items.slice();
-        for (let i = out.length - 1; i > 0; i -= 1) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [out[i], out[j]] = [out[j], out[i]];
-        }
-        return out;
-      }
-
-      function render(pool) {
-        gallery.replaceChildren();
-        const randomItems = shuffle(pool).slice(0, Math.min(Math.max(visibleCount - 1, 0), pool.length));
-        [pinnedImage, ...randomItems].forEach((item, index) => {
-          const frame = document.createElement('div');
-          frame.className = `gallery-item ${item.type === 'atlas' ? 'gallery-shot' : 'gallery-photo'}${index === 0 ? ' featured' : ''}`;
-          if (item.type === 'atlas') {
-            frame.setAttribute('role', 'img');
-            frame.setAttribute('aria-label', item.alt);
-            frame.style.backgroundPosition = item.pos;
-          } else {
-            const img = document.createElement('img');
-            img.src = item.src;
-            img.alt = item.alt;
-            img.loading = index === 0 ? 'eager' : 'lazy';
-            img.decoding = 'async';
-            img.addEventListener('error', () => frame.remove(), {once:true});
-            frame.appendChild(img);
-          }
-          gallery.appendChild(frame);
-        });
-      }
-
-      const atlasProbe = new Image();
-      atlasProbe.onload = () => render(imagePool);
-      atlasProbe.onerror = () => render(imagePool.filter(item => item.type === 'image'));
-      atlasProbe.src = 'assets/images/gallery_current.jpg';
-    })();
+    (()=>{const gallery=document.getElementById('mediaGallery');if(!gallery)return;const visibleCount=8;const pinnedImage={type:'image',src:'assets/images/gallery/afterlife_io.jpg',alt:'Afterlife of IO — The Entropy Archives artwork.'};const imagePool=[{type:'image',src:'assets/images/MATRIXOS%20WINDOW.png',alt:'GLITCHED MATRIX interface screenshot.'},{type:'image',src:'assets/images/SCREENSHOT.png',alt:'GLITCHED MATRIX Prototype Lab screenshot.'},{type:'image',src:'assets/images/CAPSULE%20HEADER.png',alt:'GLITCHED MATRIX project artwork.'},{type:'image',src:'assets/images/C1.png',alt:'GLITCHED MATRIX project artwork.'},{type:'image',src:'assets/images/CAPSULE%20MAIN.png',alt:'GLITCHED MATRIX Prototype Lab artwork.'},{type:'image',src:'assets/images/business_card.png',alt:'GLITCHED MATRIX promotional artwork.'},{type:'atlas',pos:'0% 0%',alt:'Osmosis University lesson interface.'},{type:'atlas',pos:'25% 0%',alt:'Osmosis University Game Test Lab.'},{type:'atlas',pos:'50% 0%',alt:'GHOST SIGNAL: UTOPIA city and hacking views.'},{type:'atlas',pos:'75% 0%',alt:'Utopia Conflict wireframe combat views.'},{type:'atlas',pos:'100% 0%',alt:'Holoutopia city world atlas.'},{type:'atlas',pos:'0% 33.3333%',alt:'GLITCH TV broadcast interface.'},{type:'atlas',pos:'25% 33.3333%',alt:'Sound Fragments audio interface.'},{type:'atlas',pos:'50% 33.3333%',alt:'Post-apocalyptic living world dashboard.'},{type:'atlas',pos:'75% 33.3333%',alt:'Post-apocalyptic pixel society scene.'},{type:'atlas',pos:'100% 33.3333%',alt:'Space optics simulation.'},{type:'atlas',pos:'0% 66.6667%',alt:'Saturn system exploration scene.'},{type:'atlas',pos:'25% 66.6667%',alt:'Space flight prototype.'},{type:'atlas',pos:'50% 66.6667%',alt:'Orbital digital world prototype.'},{type:'atlas',pos:'75% 66.6667%',alt:'Dark first-person prototype environment.'},{type:'atlas',pos:'100% 66.6667%',alt:'HoloVerse forest experiment.'},{type:'atlas',pos:'0% 100%',alt:'Neon prototype scene.'},{type:'atlas',pos:'25% 100%',alt:'GLITCHED MATRIX project interface.'},{type:'atlas',pos:'50% 100%',alt:'Minimal wireframe landscape experiment.'}];function shuffle(items){const out=items.slice();for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]]}return out}function render(pool){gallery.replaceChildren();const randomItems=shuffle(pool).slice(0,Math.min(Math.max(visibleCount-1,0),pool.length));[pinnedImage,...randomItems].forEach((item,index)=>{const frame=document.createElement('div');frame.className=`gallery-item ${item.type==='atlas'?'gallery-shot':'gallery-photo'}${index===0?' featured':''}`;if(item.type==='atlas'){frame.setAttribute('role','img');frame.setAttribute('aria-label',item.alt);frame.style.backgroundPosition=item.pos}else{const img=document.createElement('img');img.src=item.src;img.alt=item.alt;img.loading=index===0?'eager':'lazy';img.decoding='async';img.addEventListener('error',()=>frame.remove(),{once:true});frame.appendChild(img)}gallery.appendChild(frame)})}const atlasProbe=new Image();atlasProbe.onload=()=>render(imagePool);atlasProbe.onerror=()=>render(imagePool.filter(item=>item.type==='image'));atlasProbe.src='assets/images/gallery_current.jpg'})();
   </script>
 </body>
 </html>
