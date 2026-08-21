@@ -19,6 +19,7 @@ The current site includes:
 
 ## Selected Prototype Lab projects
 
+- Afterlife of IO — The Entropy Archives
 - GHOST SIGNAL: UTOPIA
 - Swords & Sorcery: World of Mythologies
 - Alien Geographic
