@@ -1,4 +1,20 @@
 (()=>{
+  const gallery=document.getElementById('mediaGallery');
+  if(gallery){
+    const frame=document.createElement('div');
+    frame.className='gallery-item gallery-photo featured';
+    const image=document.createElement('img');
+    image.src='assets/images/gallery/prototype_lab_collage.svg';
+    image.alt='GLITCHED MATRIX Prototype Lab collage showing worlds, tools, simulations, and game prototypes.';
+    image.loading='eager';
+    image.decoding='async';
+    frame.appendChild(image);
+    gallery.replaceChildren(frame);
+    const mediaSection=gallery.closest('section');
+    const copy=mediaSection&&mediaSection.querySelector('.section-copy');
+    if(copy)copy.textContent='Watch the latest trailer and view the current Prototype Lab collage.';
+  }
+
   const trigger=document.getElementById('soundtrackButton');
   if(!trigger)return;
 
