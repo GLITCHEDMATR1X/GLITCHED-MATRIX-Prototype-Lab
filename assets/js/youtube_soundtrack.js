@@ -1,15 +1,27 @@
 (()=>{
-  const gallery=document.getElementById('mediaGallery');
-  if(gallery){
+  const oldGallery=document.getElementById('mediaGallery');
+  if(oldGallery){
+    // Replace the gallery node itself instead of only replacing its children.
+    // The original page keeps an async reference to the old node while its
+    // screenshot atlas loads; detaching that node prevents the old gallery
+    // callback from putting the removed images back afterward.
+    const gallery=document.createElement('div');
+    gallery.id='mediaGallery';
+    gallery.className='gallery';
+    gallery.setAttribute('aria-label','GLITCHED MATRIX Prototype Lab collage');
+
     const frame=document.createElement('div');
     frame.className='gallery-item gallery-photo featured';
     const image=document.createElement('img');
-    image.src='assets/images/gallery/prototype_lab_collage.svg';
+    image.src='assets/images/gallery/prototype_lab_collage.svg?v=20260916b';
     image.alt='GLITCHED MATRIX Prototype Lab collage showing worlds, tools, simulations, and game prototypes.';
     image.loading='eager';
     image.decoding='async';
     frame.appendChild(image);
-    gallery.replaceChildren(frame);
+    gallery.appendChild(frame);
+
+    oldGallery.replaceWith(gallery);
+
     const mediaSection=gallery.closest('section');
     const copy=mediaSection&&mediaSection.querySelector('.section-copy');
     if(copy)copy.textContent='Watch the latest trailer and view the current Prototype Lab collage.';
