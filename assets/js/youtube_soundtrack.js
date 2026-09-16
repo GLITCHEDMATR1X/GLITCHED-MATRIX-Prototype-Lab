@@ -1,43 +1,4 @@
 (()=>{
-  // Remove the obsolete local Sound Fragments section and its dead nav link.
-  const soundSection=document.getElementById('sound');
-  if(soundSection)soundSection.remove();
-  const listenLink=document.querySelector('nav a[href="#sound"]');
-  if(listenLink)listenLink.remove();
-
-  // Replace the async rotating gallery with exactly one real uploaded JPEG.
-  const oldGallery=document.getElementById('mediaGallery');
-  if(oldGallery){
-    const gallery=document.createElement('div');
-    gallery.id='mediaGallery';
-    gallery.className='gallery';
-    gallery.setAttribute('aria-label','GLITCHED MATRIX Prototype Lab collage');
-
-    const frame=document.createElement('div');
-    frame.className='gallery-item gallery-photo featured';
-    const image=document.createElement('img');
-    image.src='assets/images/gallery/prototype_lab_collage.jpg?v=20260916c';
-    image.alt='GLITCHED MATRIX Prototype Lab collage showing worlds, tools, simulations, and game prototypes.';
-    image.loading='eager';
-    image.decoding='async';
-    image.addEventListener('error',()=>{
-      frame.textContent='Prototype Lab collage could not be loaded.';
-      frame.style.display='grid';
-      frame.style.placeItems='center';
-      frame.style.minHeight='220px';
-      frame.style.color='#aaa3a6';
-    },{once:true});
-    frame.appendChild(image);
-    gallery.appendChild(frame);
-
-    // Replace the node itself so the old async gallery callback cannot repopulate it.
-    oldGallery.replaceWith(gallery);
-
-    const mediaSection=gallery.closest('section');
-    const copy=mediaSection&&mediaSection.querySelector('.section-copy');
-    if(copy)copy.textContent='Watch the latest trailer and view the current Prototype Lab collage.';
-  }
-
   const trigger=document.getElementById('soundtrackButton');
   if(!trigger)return;
 
@@ -79,7 +40,6 @@
 
   const closeButton=panel.querySelector('.gm-soundtrack-close');
   const status=panel.querySelector('#soundtrackStatus');
-
   function setStatus(text){status.textContent=text}
 
   function loadApi(){
@@ -91,8 +51,7 @@
         if(typeof previousReady==='function')previousReady();
         resolve();
       };
-      const existing=[...document.scripts].find(script=>script.src===API_SRC);
-      if(existing)return;
+      if([...document.scripts].some(script=>script.src===API_SRC))return;
       const script=document.createElement('script');
       script.src=API_SRC;
       script.async=true;
