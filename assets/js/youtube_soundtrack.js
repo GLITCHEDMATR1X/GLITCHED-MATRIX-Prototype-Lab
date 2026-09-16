@@ -1,10 +1,13 @@
 (()=>{
+  // Remove the obsolete local Sound Fragments section and its dead nav link.
+  const soundSection=document.getElementById('sound');
+  if(soundSection)soundSection.remove();
+  const listenLink=document.querySelector('nav a[href="#sound"]');
+  if(listenLink)listenLink.remove();
+
+  // Replace the async rotating gallery with exactly one real uploaded JPEG.
   const oldGallery=document.getElementById('mediaGallery');
   if(oldGallery){
-    // Replace the gallery node itself instead of only replacing its children.
-    // The original page keeps an async reference to the old node while its
-    // screenshot atlas loads; detaching that node prevents the old gallery
-    // callback from putting the removed images back afterward.
     const gallery=document.createElement('div');
     gallery.id='mediaGallery';
     gallery.className='gallery';
@@ -13,13 +16,21 @@
     const frame=document.createElement('div');
     frame.className='gallery-item gallery-photo featured';
     const image=document.createElement('img');
-    image.src='assets/images/gallery/prototype_lab_collage.svg?v=20260916b';
+    image.src='assets/images/gallery/prototype_lab_collage.jpg?v=20260916c';
     image.alt='GLITCHED MATRIX Prototype Lab collage showing worlds, tools, simulations, and game prototypes.';
     image.loading='eager';
     image.decoding='async';
+    image.addEventListener('error',()=>{
+      frame.textContent='Prototype Lab collage could not be loaded.';
+      frame.style.display='grid';
+      frame.style.placeItems='center';
+      frame.style.minHeight='220px';
+      frame.style.color='#aaa3a6';
+    },{once:true});
     frame.appendChild(image);
     gallery.appendChild(frame);
 
+    // Replace the node itself so the old async gallery callback cannot repopulate it.
     oldGallery.replaceWith(gallery);
 
     const mediaSection=gallery.closest('section');
