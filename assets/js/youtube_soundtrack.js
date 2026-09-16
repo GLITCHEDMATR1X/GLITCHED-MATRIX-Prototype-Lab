@@ -19,6 +19,8 @@
     .gm-soundtrack-frame{overflow:hidden;aspect-ratio:16/9;border:1px solid #24252b;border-radius:10px;background:#020203}
     .gm-soundtrack-frame iframe{display:block;width:100%;height:100%;border:0}
     .gm-soundtrack-status{margin-top:9px;color:#aaa3a6;font-size:.82rem;line-height:1.35}
+    .gm-soundtrack-footer{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 14px;border:1px solid var(--line,#351b1f);border-radius:10px;background:rgba(12,7,7,.94);color:var(--text,#fff);font:inherit;font-weight:700;cursor:pointer}
+    .gm-soundtrack-footer:hover{filter:brightness(1.13)}
     @media(max-width:560px){.gm-soundtrack-panel{right:10px;bottom:10px;width:calc(100vw - 20px)}}
   `;
   document.head.appendChild(style);
@@ -120,11 +122,25 @@
   }
 
   trigger.addEventListener('click',playRandom);
+
+  const footerLinks=document.querySelector('.footer-links');
+  let footerButton=document.getElementById('soundtrackButtonBottom');
+  if(footerLinks&&!footerButton){
+    footerButton=document.createElement('button');
+    footerButton.id='soundtrackButtonBottom';
+    footerButton.className='gm-soundtrack-footer';
+    footerButton.type='button';
+    footerButton.textContent='Soundtrack';
+    footerButton.setAttribute('aria-controls','soundtrackPanel');
+    footerLinks.appendChild(footerButton);
+  }
+  if(footerButton)footerButton.addEventListener('click',playRandom);
+
   closeButton.addEventListener('click',()=>{
     panel.hidden=true;
     trigger.setAttribute('aria-expanded','false');
     if(player&&typeof player.pauseVideo==='function')player.pauseVideo();
-    trigger.focus();
+    (footerButton||trigger).focus();
   });
   document.addEventListener('keydown',event=>{
     if(event.key==='Escape'&&!panel.hidden)closeButton.click();
