@@ -30,11 +30,6 @@
     .section-copy{max-width:850px;margin:0;color:var(--muted)}
     .storefront{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:22px;margin-top:22px;padding:22px;border:1px solid #351b1f;border-radius:14px;background:linear-gradient(135deg,#12090b,#08090a)}
     .storefront strong{display:block;margin-bottom:6px;font-size:1.15rem}.storefront p{max-width:780px;margin:0;color:var(--muted)}
-    .audio-deck{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px;margin-top:22px;padding:22px;border:1px solid #351b1f;border-radius:14px;background:linear-gradient(135deg,#0d080a,#050607)}
-    .audio-meta{min-width:0}.audio-meta strong{display:block;font-size:1.08rem}.audio-status{margin-top:5px;color:var(--muted);font-size:.94rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.audio-status[data-state="playing"]{color:#ddd7d9}.audio-status[data-state="offline"]{color:#8e8588}
-    .audio-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
-    #fragmentPlayer{grid-column:1/-1;width:100%;height:46px;margin-top:2px;color-scheme:dark;accent-color:var(--accent);filter:brightness(.78) saturate(.72)}
-    #fragmentPlayer[hidden]{display:none}
     .projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
     .card{min-height:180px;padding:19px;border:1px solid #22232a;border-radius:13px;background:linear-gradient(180deg,#0d0e12,#08090b)}
     .card.featured-project{grid-column:1/-1;display:grid;grid-template-columns:1fr;gap:20px;padding:0;overflow:hidden;border-color:#351b1f;background:linear-gradient(135deg,#10080a,#090a0d 60%,#060709)}
@@ -46,27 +41,22 @@
     .trailer-frame{position:relative;aspect-ratio:16/9;background:#020203}
     .trailer-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .trailer-copy{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 17px;color:var(--muted);font-size:.92rem}.trailer-copy strong{color:var(--text)}
-    .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .gallery-item{display:block;overflow:hidden;aspect-ratio:16/9;border:1px solid #24252b;border-radius:12px;background:#040507}
-    .gallery-item.featured{grid-column:1/-1;aspect-ratio:960/518}
-    .gallery-item:hover{border-color:#7f242b}
-    .gallery-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .18s ease}
-    .gallery-item.featured.gallery-photo img{object-fit:contain;background:#020203}
-    .gallery-photo:hover img{transform:scale(1.018)}
-    .gallery-shot{background-color:#040507;background-image:url('assets/images/gallery_current.jpg');background-repeat:no-repeat;background-size:500% 400%}
+    .gallery{display:block}
+    .gallery-item{display:block;overflow:hidden;border:1px solid #24252b;border-radius:12px;background:#040507}
+    .gallery-photo img{display:block;width:100%;height:auto;object-fit:contain;background:#020203}
     .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
     .plain-link{padding:10px 13px;border:1px solid #27282e;border-radius:9px;background:#090a0d;text-decoration:none}.plain-link:hover{border-color:#7f242b}
     footer{display:flex;justify-content:space-between;gap:20px;padding:24px 0 36px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-    @media(max-width:980px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.storefront,.audio-deck{grid-template-columns:1fr;justify-items:start}.audio-actions{justify-content:flex-start}}
+    @media(max-width:980px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.storefront{grid-template-columns:1fr;justify-items:start}}
     @media(max-width:720px){header{align-items:flex-start;flex-direction:column}.projects{grid-template-columns:1fr}.trailer-copy{align-items:flex-start;flex-direction:column}}
-    @media(max-width:560px){.shell{width:min(calc(100% - 20px),var(--shell))}.gallery{grid-template-columns:1fr}.gallery-item.featured{grid-column:auto}.hero,section{border-radius:14px}footer{flex-direction:column}.audio-actions{width:100%}.audio-actions .button{flex:1}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.gallery img{transition:none}}
+    @media(max-width:560px){.shell{width:min(calc(100% - 20px),var(--shell))}.hero,section{border-radius:14px}footer{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
 </head>
 <body>
   <header class="shell">
     <a class="brand" href="#top">GLITCHED <span>MATRIX</span></a>
-    <nav aria-label="Primary navigation"><a href="#about">About</a><a href="#games">Play</a><a href="#sound">Listen</a><a href="#projects">Current Work</a><a href="#media">Media</a><a href="#archive">Links</a></nav>
+    <nav aria-label="Primary navigation"><a href="#about">About</a><a href="#games">Play</a><a href="#projects">Current Work</a><a href="#media">Media</a><a href="#archive">Links</a></nav>
   </header>
   <main id="top" class="shell">
     <div class="hero">
@@ -81,24 +71,18 @@
         <button id="soundtrackButton" class="button secondary" type="button" aria-expanded="false" aria-controls="soundtrackPanel">Soundtrack</button>
       </div>
     </div>
+
     <section id="about">
       <div class="label">About</div><h2>One lab, many kinds of games</h2>
       <p class="section-copy">GLITCHED MATRIX Prototype Lab is where we build and connect unusual games instead of forcing every experiment into one genre. Recent work ranges from voxel worlds and autonomous simulations to cyberpunk hacking, fantasy adventures, educational software, ecological observation, and tactical combat.</p>
     </section>
+
     <section id="games">
       <div class="label">Play the releases</div><h2>The catalog lives on itch.io</h2>
       <p class="section-copy">Public releases, experiments, updates, and standalone builds are collected on the GLITCHED MATRIX itch.io profile.</p>
       <div class="storefront"><div><strong>GLITCHED MATRIX on itch.io</strong><p>Browse current games, prototypes, educational projects, and new standalone releases in one place.</p></div><a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Open the itch.io library ↗</a></div>
     </section>
-    <section id="sound">
-      <div class="label">Sound Fragments</div><h2>MatrixCore shuffle</h2>
-      <p class="section-copy">A rotating stream of GLITCHED MATRIX sound fragments.</p>
-      <div class="audio-deck">
-        <div class="audio-meta"><strong>Sound Fragments</strong><div id="fragmentStatus" class="audio-status" data-state="ready" aria-live="polite">Checking the archive…</div></div>
-        <div class="audio-actions"><button id="fragmentStart" class="button" type="button" disabled>Play shuffle</button><button id="fragmentNext" class="button secondary" type="button" disabled>Next</button></div>
-        <audio id="fragmentPlayer" controls preload="none" hidden></audio>
-      </div>
-    </section>
+
     <section id="projects">
       <div class="label">Current Lab Work</div><h2>What we have been building lately</h2>
       <p class="section-copy">A selection of worlds, simulations, games, and experiments currently shaping the GLITCHED MATRIX universe.</p>
@@ -118,15 +102,18 @@
         <article class="card"><div class="card-label">Planetary Exploration</div><h3>Operation: StarFall</h3><p>Planetary fieldwork across Saturn's moons using drones, rovers, sampling, missions, resources, transport links, and world-specific environmental profiles rather than treating every destination as the same planet with a new color.</p></article>
       </div>
     </section>
+
     <section id="media">
-      <div class="label">Media</div><h2>Latest trailer and screenshots</h2>
-      <p class="section-copy">Watch the latest trailer and explore a rotating selection of images from across the Prototype Lab.</p>
+      <div class="label">Media</div><h2>Latest trailer and Prototype Lab collage</h2>
+      <p class="section-copy">Watch the latest trailer and view the current Prototype Lab collage.</p>
       <div class="media-stack">
         <article class="trailer"><div class="trailer-frame"><iframe src="https://www.youtube-nocookie.com/embed/fhKmr05TEgU" title="GLITCHED MATRIX Prototype Lab latest trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="trailer-copy"><span><strong>Latest GLITCHED MATRIX trailer</strong></span><a class="button secondary" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></div></article>
-        <div id="mediaGallery" class="gallery" aria-label="GLITCHED MATRIX screenshot gallery"></div>
-        <noscript><div class="gallery"><div class="gallery-item gallery-photo featured"><img src="assets/images/gallery/afterlife_io.jpg" alt="Afterlife of IO — The Entropy Archives artwork."></div><div class="gallery-item gallery-photo"><img src="assets/images/SCREENSHOT.png" alt="GLITCHED MATRIX Prototype Lab screenshot."></div></div></noscript>
+        <div class="gallery" aria-label="GLITCHED MATRIX Prototype Lab collage">
+          <div class="gallery-item gallery-photo"><img src="assets/images/gallery/prototype_lab_collage.jpg?v=20260916-direct" alt="GLITCHED MATRIX Prototype Lab collage showing worlds, tools, simulations, and game prototypes." loading="eager" decoding="async"></div>
+        </div>
       </div>
     </section>
+
     <section id="archive">
       <div class="label">Continue Beyond the Site</div><h2>Games, story, trailer, and Steam</h2>
       <p class="section-copy">Explore the wider GLITCHED MATRIX catalog, story, and releases.</p>
@@ -134,10 +121,6 @@
     </section>
   </main>
   <footer class="shell"><span>© GLITCHED MATRIX — Prototype Lab</span><span>Games · worlds · experiments · stories</span></footer>
-  <script>
-    (()=>{const gallery=document.getElementById('mediaGallery');if(!gallery)return;const visibleCount=8;const pinnedImage={type:'image',src:'assets/images/gallery/afterlife_io.jpg',alt:'Afterlife of IO — The Entropy Archives artwork.'};const imagePool=[{type:'image',src:'assets/images/MATRIXOS%20WINDOW.png',alt:'GLITCHED MATRIX interface screenshot.'},{type:'image',src:'assets/images/SCREENSHOT.png',alt:'GLITCHED MATRIX Prototype Lab screenshot.'},{type:'image',src:'assets/images/CAPSULE%20HEADER.png',alt:'GLITCHED MATRIX project artwork.'},{type:'image',src:'assets/images/C1.png',alt:'GLITCHED MATRIX project artwork.'},{type:'image',src:'assets/images/CAPSULE%20MAIN.png',alt:'GLITCHED MATRIX Prototype Lab artwork.'},{type:'image',src:'assets/images/business_card.png',alt:'GLITCHED MATRIX promotional artwork.'},{type:'atlas',pos:'0% 0%',alt:'Osmosis University lesson interface.'},{type:'atlas',pos:'25% 0%',alt:'Osmosis University Game Test Lab.'},{type:'atlas',pos:'50% 0%',alt:'GHOST SIGNAL: UTOPIA city and hacking views.'},{type:'atlas',pos:'75% 0%',alt:'Utopia Conflict wireframe combat views.'},{type:'atlas',pos:'100% 0%',alt:'Holoutopia city world atlas.'},{type:'atlas',pos:'0% 33.3333%',alt:'GLITCH TV broadcast interface.'},{type:'atlas',pos:'25% 33.3333%',alt:'Sound Fragments audio interface.'},{type:'atlas',pos:'50% 33.3333%',alt:'Post-apocalyptic living world dashboard.'},{type:'atlas',pos:'75% 33.3333%',alt:'Post-apocalyptic pixel society scene.'},{type:'atlas',pos:'100% 33.3333%',alt:'Space optics simulation.'},{type:'atlas',pos:'0% 66.6667%',alt:'Saturn system exploration scene.'},{type:'atlas',pos:'25% 66.6667%',alt:'Space flight prototype.'},{type:'atlas',pos:'50% 66.6667%',alt:'Orbital digital world prototype.'},{type:'atlas',pos:'75% 66.6667%',alt:'Dark first-person prototype environment.'},{type:'atlas',pos:'100% 66.6667%',alt:'HoloVerse forest experiment.'},{type:'atlas',pos:'0% 100%',alt:'Neon prototype scene.'},{type:'atlas',pos:'25% 100%',alt:'GLITCHED MATRIX project interface.'},{type:'atlas',pos:'50% 100%',alt:'Minimal wireframe landscape experiment.'}];function shuffle(items){const out=items.slice();for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]]}return out}function render(pool){gallery.replaceChildren();const randomItems=shuffle(pool).slice(0,Math.min(Math.max(visibleCount-1,0),pool.length));[pinnedImage,...randomItems].forEach((item,index)=>{const frame=document.createElement('div');frame.className=`gallery-item ${item.type==='atlas'?'gallery-shot':'gallery-photo'}${index===0?' featured':''}`;if(item.type==='atlas'){frame.setAttribute('role','img');frame.setAttribute('aria-label',item.alt);frame.style.backgroundPosition=item.pos}else{const img=document.createElement('img');img.src=item.src;img.alt=item.alt;img.loading=index===0?'eager':'lazy';img.decoding='async';img.addEventListener('error',()=>frame.remove(),{once:true});frame.appendChild(img)}gallery.appendChild(frame)})}const atlasProbe=new Image();atlasProbe.onload=()=>render(imagePool);atlasProbe.onerror=()=>render(imagePool.filter(item=>item.type==='image'));atlasProbe.src='assets/images/gallery_current.jpg'})();
-    (()=>{const audio=document.getElementById('fragmentPlayer');const start=document.getElementById('fragmentStart');const nextButton=document.getElementById('fragmentNext');const status=document.getElementById('fragmentStatus');if(!audio||!start||!nextButton||!status)return;const STORAGE_VOLUME='gm-fragments-volume';const tracks=Array.from({length:40},(_,index)=>{const n=String(index+1).padStart(2,'0');return{name:`MCF ${n}`,src:`assets/audio/sound-fragments/${n}%20-%20MCF${n}.mp3`}});let queue=[];let cursor=-1;let failed=new Set();let lastTrack='';let activeTrack=null;const setStatus=(text,state='ready')=>{status.textContent=text;status.dataset.state=state};const shuffle=items=>{const out=items.slice();for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]]}if(out.length>1&&out[0].name===lastTrack)[out[0],out[1]]=[out[1],out[0]];return out};try{const saved=Number(localStorage.getItem(STORAGE_VOLUME));if(Number.isFinite(saved)&&saved>=0&&saved<=1)audio.volume=saved}catch{}audio.addEventListener('volumechange',()=>{try{localStorage.setItem(STORAGE_VOLUME,String(audio.volume))}catch{}});function mediaMetadata(track){if(!('mediaSession'in navigator)||!track)return;try{navigator.mediaSession.metadata=new MediaMetadata({title:track.name,artist:'GLITCHED MATRIX',album:'Sound Fragments'})}catch{}}function candidateTracks(){return tracks.filter(track=>!failed.has(track.src))}function refill(){queue=shuffle(candidateTracks());cursor=-1}function nextTrack(autoplay=true){if(candidateTracks().length===0){setStatus('Sound Fragments unavailable','offline');audio.hidden=true;start.disabled=true;nextButton.disabled=true;return}if(!queue.length||cursor>=queue.length-1)refill();cursor+=1;const track=queue[cursor];activeTrack=track;lastTrack=track.name;setStatus(`Now playing · ${track.name}`,'playing');audio.src=track.src;audio.hidden=false;audio.load();start.disabled=false;start.textContent='New shuffle';nextButton.disabled=false;mediaMetadata(track);if(autoplay)audio.play().catch(()=>setStatus(`Ready · ${track.name}`,'ready'))}function newShuffle(){failed.clear();queue=[];cursor=-1;nextTrack(true)}start.addEventListener('click',newShuffle);nextButton.addEventListener('click',()=>nextTrack(true));audio.addEventListener('play',()=>{if(activeTrack)setStatus(`Now playing · ${activeTrack.name}`,'playing')});audio.addEventListener('pause',()=>{if(activeTrack&&!audio.ended)setStatus(`Paused · ${activeTrack.name}`,'ready')});audio.addEventListener('ended',()=>nextTrack(true));audio.addEventListener('error',()=>{if(activeTrack)failed.add(activeTrack.src);if(candidateTracks().length)nextTrack(false);else{setStatus('Sound Fragments unavailable','offline');audio.hidden=true;start.disabled=true;nextButton.disabled=true}});if('mediaSession'in navigator){try{navigator.mediaSession.setActionHandler('nexttrack',()=>nextTrack(true));navigator.mediaSession.setActionHandler('play',()=>audio.play());navigator.mediaSession.setActionHandler('pause',()=>audio.pause())}catch{}}fetch(tracks[0].src,{method:'HEAD',cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('missing');setStatus('Shuffle ready','ready');start.disabled=false}).catch(()=>{setStatus('Sound Fragments offline','offline');start.disabled=true;nextButton.disabled=true})})();
-  </script>
-  <script src="assets/js/youtube_soundtrack.js" defer></script>
+  <script src="assets/js/youtube_soundtrack.js?v=20260916-direct" defer></script>
 </body>
 </html>
