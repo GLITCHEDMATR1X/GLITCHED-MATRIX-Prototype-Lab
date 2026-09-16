@@ -1,126 +1,186 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="GLITCHED MATRIX Prototype Lab — evolving games, creative tools, educational experiments, strange worlds, screenshots, and the latest development trailer.">
-  <meta name="color-scheme" content="dark">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GLITCHED MATRIX Prototype Lab — connected games, worlds, simulations, creative tools, experiments, patch notes, and current development work." />
+  <meta name="color-scheme" content="dark" />
   <title>GLITCHED MATRIX Prototype Lab</title>
+  <link rel="stylesheet" href="./style.css?v=20260916-restored" />
   <style>
-    :root{--bg:#020203;--panel:#08090b;--panel2:#0d0e12;--text:#f4f1f1;--muted:#aaa3a6;--accent:#e52630;--accent2:#ff5b64;--line:#241419;--shell:1220px}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;background:var(--bg)}
-    body{margin:0;background:radial-gradient(circle at 50% -12%,#160609 0,#080507 25rem,#020203 58rem);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.56}
-    a{color:inherit}
-    img{max-width:100%}
-    .shell{width:min(calc(100% - 32px),var(--shell));margin-inline:auto}
-    header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid var(--line)}
-    .brand{font-weight:900;letter-spacing:.08em;text-decoration:none}.brand span{color:var(--accent)}
-    nav{display:flex;flex-wrap:wrap;gap:16px}nav a{color:var(--muted);text-decoration:none;font-size:.92rem}nav a:hover{color:#fff}
-    main{padding:38px 0 56px}
-    .hero{position:relative;overflow:hidden;padding:clamp(28px,5vw,68px);border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,#110609,#060609 58%,#090a0c)}
-    .hero:after{content:"";position:absolute;right:-8rem;bottom:-11rem;width:28rem;height:28rem;border-radius:50%;background:radial-gradient(circle,rgba(229,38,48,.12),transparent 66%);pointer-events:none}
-    .eyebrow,.label,.card-label{color:var(--accent2);font-size:.76rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
-    h1{position:relative;z-index:1;max-width:960px;margin:.45rem 0 1rem;font-size:clamp(2.7rem,7vw,6rem);line-height:.91;letter-spacing:-.058em}
-    .lead{position:relative;z-index:1;max-width:820px;margin:0;color:var(--muted);font-size:clamp(1rem,2vw,1.22rem)}
-    .actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-    .button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 17px;border:1px solid #6d2026;border-radius:10px;background:#a91720;color:#fff;font:inherit;font-weight:800;text-decoration:none;cursor:pointer}.button.secondary{background:#0b0c0f;border-color:#2a2b31}.button:hover{filter:brightness(1.13)}.button:disabled{cursor:default;filter:none;opacity:.45}
-    section{margin-top:24px;padding:clamp(22px,3.2vw,36px);border:1px solid var(--line);border-radius:18px;background:rgba(7,8,10,.98)}
-    h2{margin:.35rem 0 .65rem;font-size:clamp(1.8rem,3vw,2.75rem);line-height:1.04}
-    .section-copy{max-width:850px;margin:0;color:var(--muted)}
-    .storefront{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:22px;margin-top:22px;padding:22px;border:1px solid #351b1f;border-radius:14px;background:linear-gradient(135deg,#12090b,#08090a)}
-    .storefront strong{display:block;margin-bottom:6px;font-size:1.15rem}.storefront p{max-width:780px;margin:0;color:var(--muted)}
-    .projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
-    .card{min-height:180px;padding:19px;border:1px solid #22232a;border-radius:13px;background:linear-gradient(180deg,#0d0e12,#08090b)}
-    .card.featured-project{grid-column:1/-1;display:grid;grid-template-columns:1fr;gap:20px;padding:0;overflow:hidden;border-color:#351b1f;background:linear-gradient(135deg,#10080a,#090a0d 60%,#060709)}
-    .featured-project-image{display:block;width:100%;height:auto;aspect-ratio:960/518;object-fit:contain;background:#020203;border-bottom:1px solid #351b1f}
-    .featured-project-copy{padding:0 22px 22px;max-width:1000px}
-    .card h3{margin:7px 0 8px;font-size:1.08rem}.card p{margin:0;color:var(--muted);font-size:.94rem}
-    .media-stack{display:grid;gap:18px;margin-top:22px}
-    .trailer{overflow:hidden;border:1px solid #2e1d20;border-radius:15px;background:#030305}
-    .trailer-frame{position:relative;aspect-ratio:16/9;background:#020203}
-    .trailer-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-    .trailer-copy{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 17px;color:var(--muted);font-size:.92rem}.trailer-copy strong{color:var(--text)}
-    .gallery{display:block}
-    .gallery-item{display:block;overflow:hidden;border:1px solid #24252b;border-radius:12px;background:#040507}
-    .gallery-photo img{display:block;width:100%;height:auto;object-fit:contain;background:#020203}
-    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-    .plain-link{padding:10px 13px;border:1px solid #27282e;border-radius:9px;background:#090a0d;text-decoration:none}.plain-link:hover{border-color:#7f242b}
-    footer{display:flex;justify-content:space-between;gap:20px;padding:24px 0 36px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-    @media(max-width:980px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}.storefront{grid-template-columns:1fr;justify-items:start}}
-    @media(max-width:720px){header{align-items:flex-start;flex-direction:column}.projects{grid-template-columns:1fr}.trailer-copy{align-items:flex-start;flex-direction:column}}
-    @media(max-width:560px){.shell{width:min(calc(100% - 20px),var(--shell))}.hero,section{border-radius:14px}footer{flex-direction:column}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    .brand-wordmark{font-weight:950;letter-spacing:.08em;font-size:1.05rem;white-space:nowrap}.brand-wordmark span{color:var(--accent-bright)}
+    .hero-visual{min-height:clamp(310px,42vw,500px)}
+    .hero-header-art{min-height:clamp(310px,42vw,500px);object-position:center}
+    .hero-copy{width:min(860px,calc(100% - 24px))}
+    .hero-copy .lead{max-width:780px}
+    .site-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .site-actions .btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+    .lab-showcase{padding:0;overflow:hidden}
+    .lab-showcase-image{width:100%;aspect-ratio:1438/810;object-fit:cover;border-bottom:1px solid var(--line);background:#030303}
+    .lab-showcase-copy{padding:24px}.lab-showcase-copy h2{margin:10px 0 12px;font-size:clamp(1.9rem,3.6vw,3rem)}
+    .project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+    .project-card{padding:18px;border-radius:14px;border:1px solid color-mix(in srgb,var(--accent) 13%,transparent);background:linear-gradient(180deg,rgba(20,9,9,.88),rgba(8,6,6,.94));min-height:150px}
+    .project-card h3{margin:8px 0 9px;font-size:1.05rem}.project-card p{margin:0;color:var(--muted);line-height:1.6;font-size:.93rem}
+    .project-type{color:var(--accent-bright);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .release-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;margin-top:18px;padding:20px;border:1px solid color-mix(in srgb,var(--accent) 18%,transparent);border-radius:14px;background:color-mix(in srgb,var(--accent) 5%,transparent)}
+    .release-card h3{margin:0 0 7px}.release-card p{margin:0;color:var(--muted)}
+    .media-video-card{position:relative}.media-main-card{position:static;min-height:0}
+    .media-grid.single-media{grid-template-columns:1fr}
+    .updates-panel{max-height:calc(100vh - 116px)}
+    .updates-list{padding-right:8px}
+    .updates-archive-label{margin:14px 0 2px;color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .update-card.current{border-color:color-mix(in srgb,var(--accent) 28%,transparent);box-shadow:inset 0 0 24px color-mix(in srgb,var(--accent) 5%,transparent)}
+    .footer-logo-text{font-weight:950;letter-spacing:.1em}.footer-logo-text span{color:var(--accent-bright)}
+    .link-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.link-row a{padding:10px 13px;border:1px solid var(--line);border-radius:10px;background:rgba(10,5,5,.82);color:var(--muted)}.link-row a:hover{color:var(--text);border-color:var(--line-strong)}
+    @media(max-width:1080px){.updates-panel{max-height:none}.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:720px){.project-grid{grid-template-columns:1fr}.release-card{grid-template-columns:1fr}.hero-copy{margin-top:-56px}.nav{font-size:.9rem}}
   </style>
 </head>
 <body>
-  <header class="shell">
-    <a class="brand" href="#top">GLITCHED <span>MATRIX</span></a>
-    <nav aria-label="Primary navigation"><a href="#about">About</a><a href="#games">Play</a><a href="#projects">Current Work</a><a href="#media">Media</a><a href="#archive">Links</a></nav>
+  <div class="page-backdrop"></div><div class="grid-overlay"></div><div class="noise-overlay"></div><div class="scanlines"></div>
+
+  <header class="topbar shell">
+    <div class="brand-block"><span class="micro overline">GLITCHED MATRIX</span><a class="brand-wordmark" href="#top">PROTOTYPE <span>LAB</span></a></div>
+    <nav class="nav" aria-label="Primary navigation"><a href="#about">About</a><a href="#projects">Prototypes</a><a href="#play">Play</a><a href="#media">Media</a><a href="#updatesPanel">Patch Notes</a><a href="#links">Links</a></nav>
   </header>
-  <main id="top" class="shell">
-    <div class="hero">
-      <div class="eyebrow">Play · Build · Experiment · Evolve</div>
-      <h1>GLITCHED MATRIX Prototype Lab</h1>
-      <p class="lead">A connected lab of games, simulations, creative tools, educational experiments, original worlds, and systems that keep changing as we build them.</p>
-      <div class="actions">
-        <a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse all games on itch.io</a>
-        <a class="button secondary" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch the latest trailer</a>
-        <a class="button secondary" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">View on Steam</a>
-        <a class="button secondary" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">The Utopia Project</a>
-        <button id="soundtrackButton" class="button secondary" type="button" aria-expanded="false" aria-controls="soundtrackPanel">Soundtrack</button>
-      </div>
-    </div>
 
-    <section id="about">
-      <div class="label">About</div><h2>One lab, many kinds of games</h2>
-      <p class="section-copy">GLITCHED MATRIX Prototype Lab is where we build and connect unusual games instead of forcing every experiment into one genre. Recent work ranges from voxel worlds and autonomous simulations to cyberpunk hacking, fantasy adventures, educational software, ecological observation, and tactical combat.</p>
-    </section>
-
-    <section id="games">
-      <div class="label">Play the releases</div><h2>The catalog lives on itch.io</h2>
-      <p class="section-copy">Public releases, experiments, updates, and standalone builds are collected on the GLITCHED MATRIX itch.io profile.</p>
-      <div class="storefront"><div><strong>GLITCHED MATRIX on itch.io</strong><p>Browse current games, prototypes, educational projects, and new standalone releases in one place.</p></div><a class="button" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Open the itch.io library ↗</a></div>
-    </section>
-
-    <section id="projects">
-      <div class="label">Current Lab Work</div><h2>What we have been building lately</h2>
-      <p class="section-copy">A selection of worlds, simulations, games, and experiments currently shaping the GLITCHED MATRIX universe.</p>
-      <div class="projects">
-        <article class="card featured-project">
-          <img class="featured-project-image" src="assets/images/gallery/afterlife_io.jpg" alt="Afterlife of IO — The Entropy Archives artwork." decoding="async">
-          <div class="featured-project-copy"><div class="card-label">Causal Afterlife Adventure</div><h3>Afterlife of IO — The Entropy Archives</h3><p>The Exile is trapped inside an artificial afterlife created by IO, an ancient species whose surviving data is discovered by Gleebs far later. The journey spans two persistent states of the same afterlife: its Beginning and a ruined far-future present hundreds of trillions of years later. Discoveries in the Future reveal what must be changed in the Past; stationary Entities can be confronted in dedicated turn-based lantern battles, and defeating them rewrites history so Shrines and Obelisks emerge in the Future. The archive builds toward escape, the truth of IO, and the events that precede Entropy.</p></div>
-        </article>
-        <article class="card"><div class="card-label">Voxel World</div><h3>The World Beneath</h3><p>An expanding voxel world with stacked biomes, mining and building, persistent companions, world-cell streaming, fast block updates, and an increasingly strict rendering-reliability standard.</p></article>
-        <article class="card"><div class="card-label">Education</div><h3>Osmosis University</h3><p>A standalone game-development school with 15 subjects, 150 certified lessons, Expert Workspace, R-01, real reference files, and 10 certified student games that appear in a personal Game Test Lab.</p></article>
-        <article class="card"><div class="card-label">Cyberpunk</div><h3>GHOST SIGNAL: UTOPIA</h3><p>Andrew exists inside Utopia's network and captures the city building by building while Gleebs counters dangerous intrusion methods with readable security rules, ejection, and persistent lockouts.</p></article>
-        <article class="card"><div class="card-label">Fantasy Adventure</div><h3>Swords &amp; Sorcery: World of Mythologies</h3><p>A lost Utopia adventure simulator set in Malor, with quests, roads, wild regions, combat, defensive companions, shoulder and first-person cameras, and region-specific audio and atmosphere.</p></article>
-        <article class="card"><div class="card-label">Tactical Simulation</div><h3>HEX CONTRACT</h3><p>Autonomous heroes take on dangerous contracts and sovereign bosses across authored broken-maze battlegrounds, with persistent strain, relationships, equipment choices, destructible routes, and tactical setpieces.</p></article>
-        <article class="card"><div class="card-label">Life Simulation</div><h3>Catnip Island</h3><p>A cat-centered island simulation with switchable residents, kittens, daily routines, favorite places, social behavior, playful interruptions, and personalities expressed through how each cat uses the world.</p></article>
-        <article class="card"><div class="card-label">Emergent Ecology</div><h3>Army Ants</h3><p>A two-colony survival simulation built around decentralized army-ant behavior, trails, prey, tunnels, bivouac survival, territory pressure, and conflicts that emerge from the colonies' needs rather than scripted war.</p></article>
-        <article class="card"><div class="card-label">Observation Game</div><h3>Alien Geographic</h3><p>A field-research game organized into ecological chapters, with camera sites, persistent evidence, environmental cycles, species behavior, and research questions that are resolved from what the player actually observes.</p></article>
-        <article class="card"><div class="card-label">Planetary Exploration</div><h3>Operation: StarFall</h3><p>Planetary fieldwork across Saturn's moons using drones, rovers, sampling, missions, resources, transport links, and world-specific environmental profiles rather than treating every destination as the same planet with a new color.</p></article>
-      </div>
-    </section>
-
-    <section id="media">
-      <div class="label">Media</div><h2>Latest trailer and Prototype Lab collage</h2>
-      <p class="section-copy">Watch the latest trailer and view the current Prototype Lab collage.</p>
-      <div class="media-stack">
-        <article class="trailer"><div class="trailer-frame"><iframe src="https://www.youtube-nocookie.com/embed/fhKmr05TEgU" title="GLITCHED MATRIX Prototype Lab latest trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="trailer-copy"><span><strong>Latest GLITCHED MATRIX trailer</strong></span><a class="button secondary" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></div></article>
-        <div class="gallery" aria-label="GLITCHED MATRIX Prototype Lab collage">
-          <div class="gallery-item gallery-photo"><img src="assets/images/gallery/prototype_lab_collage.jpg?v=20260916-direct" alt="GLITCHED MATRIX Prototype Lab collage showing worlds, tools, simulations, and game prototypes." loading="eager" decoding="async"></div>
+  <main id="top" class="shell main-shell">
+    <section class="hero panel">
+      <div class="hero-visual"><img class="hero-header-art" src="assets/images/library_hero.png" alt="GLITCHED MATRIX Prototype Lab artwork" /><div class="hero-gradient"></div></div>
+      <div class="hero-copy">
+        <div class="eyebrow">Play · Build · Experiment · Evolve</div>
+        <h1>GLITCHED MATRIX Prototype Lab</h1>
+        <p class="lead">A connected lab of games, simulations, creative tools, strange worlds, mod experiments, and systems that keep changing as they are tested.</p>
+        <div class="site-actions">
+          <a class="btn btn-primary" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse games on itch.io</a>
+          <a class="btn btn-secondary" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">View on Steam</a>
+          <a class="btn btn-secondary" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Latest trailer</a>
+          <a class="btn btn-secondary" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">The Utopia Project</a>
+          <button id="soundtrackButton" class="btn btn-secondary" type="button" aria-expanded="false" aria-controls="soundtrackPanel">Soundtrack</button>
         </div>
       </div>
     </section>
 
-    <section id="archive">
-      <div class="label">Continue Beyond the Site</div><h2>Games, story, trailer, and Steam</h2>
-      <p class="section-copy">Explore the wider GLITCHED MATRIX catalog, story, and releases.</p>
-      <div class="links"><a class="plain-link" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Browse all games on itch.io ↗</a><a class="plain-link" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch the latest trailer ↗</a><a class="plain-link" href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Open the Steam page ↗</a><a class="plain-link" href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">Open The Utopia Project ↗</a></div>
+    <section class="stats-grid" aria-label="Prototype Lab overview">
+      <article class="panel stat-card"><span class="stat-label">Structure</span><strong class="stat-value">Connected worlds + standalone experiments</strong></article>
+      <article class="panel stat-card"><span class="stat-label">Formats</span><strong class="stat-value">2D · 3D · simulation · tools · mods</strong></article>
+      <article class="panel stat-card"><span class="stat-label">Development</span><strong class="stat-value">Playable passes, testing, iteration</strong></article>
+      <article class="panel stat-card"><span class="stat-label">Core</span><strong class="stat-value">HoloVerse · MatrixCore · Prototype Lab</strong></article>
     </section>
+
+    <div class="main-grid">
+      <div class="content-flow">
+        <section id="about" class="split-grid">
+          <article class="panel content-card"><span class="section-label">About</span><h2>A lab built around experiments, not one genre</h2><p>GLITCHED MATRIX Prototype Lab is an evolving collection of playable ideas. Some grow into larger connected worlds, some become standalone games or tools, and some exist to test a mechanic, visual system, AI behavior, interface, or unusual concept before it is reused elsewhere.</p></article>
+          <aside class="panel content-card tone-card"><span class="section-label">Current Direction</span><h2>Build, test, keep what works</h2><p>The lab is increasingly organized around reusable systems and connected dimensions while still leaving room for small experimental games, simulation work, mod projects, and one-off technical prototypes.</p></aside>
+        </section>
+
+        <section id="projects" class="panel lab-showcase">
+          <img class="lab-showcase-image" src="assets/images/gallery/prototype_lab_collage.jpg?v=20260916-showcase" alt="A collage of GLITCHED MATRIX Prototype Lab projects, tools, worlds, simulations, and game experiments." decoding="async" />
+          <div class="lab-showcase-copy"><span class="section-label">Prototype Lab Overview</span><h2>Many prototypes, shown together</h2><p class="feature-body">This collage represents the Prototype Lab as a whole rather than one individual title. The work ranges from connected HoloVerse dimensions and Utopia experiments to liminal horror, strategy, simulation, development tools, modding, and smaller mechanical tests.</p></div>
+        </section>
+
+        <section class="panel content-card">
+          <span class="section-label">Recent + Ongoing Work</span><h2>Current prototype index</h2>
+          <p class="feature-body">A broader snapshot of recent and ongoing projects. This is intentionally not limited to public releases.</p>
+          <div class="project-grid">
+            <article class="project-card"><div class="project-type">Connected World</div><h3>HoloVerse / MatrixCore Observatory</h3><p>A connected dimension framework joining Prototype Lab worlds, artifacts, region runtimes, MatrixCore systems, and exploratory simulation spaces.</p></article>
+            <article class="project-card"><div class="project-type">Utopia Simulation</div><h3>Utopia Lens Tour</h3><p>An evolving Utopia environment with AR-controlled time, district ambience, interior work, day/night and weather systems, and wandering light-orb citizens visible through the lens.</p></article>
+            <article class="project-card"><div class="project-type">Liminal Horror</div><h3>Mirrors Limbo</h3><p>A first-person liminal world built around alternate interiors, mask trading, VOID encounters, FEAR escape logic, safe-room progression, and unsettling spatial loops.</p></article>
+            <article class="project-card"><div class="project-type">Worldbuilding</div><h3>Glyphbound</h3><p>A terrain-driven fantasy prototype focused on settlements that connect cleanly to the landscape, natural relief, foundations, and HoloVerse dimension integration.</p></article>
+            <article class="project-card"><div class="project-type">Strategy / Simulation</div><h3>Ant Wars</h3><p>A standalone ant-colony strategy simulation with panning controls, autonomous creature behavior, evolving AI, and a systems-first approach to colony conflict.</p></article>
+            <article class="project-card"><div class="project-type">Creation Tool</div><h3>Isometric World Machine</h3><p>A generator and editor for building, exploring, and iterating on isometric worlds and scene layouts.</p></article>
+            <article class="project-card"><div class="project-type">Browser Game</div><h3>Doomsday Battle</h3><p>A game project with a loss-conscious browser/WebAssembly build path for itch.io alongside its desktop development workflow.</p></article>
+            <article class="project-card"><div class="project-type">Developer Tool</div><h3>Prototype Debugger</h3><p>A dark-mode diagnostic interface intended to inspect Prototype Lab projects, smoke-test builds, surface likely problems, and support practical troubleshooting.</p></article>
+            <article class="project-card"><div class="project-type">Interface Tool</div><h3>UI / HUD Generator</h3><p>A 16:9 interface-building tool for HUDs, menus, panels, themes, text, texture replacement, reusable scenes, and exportable game UI layouts.</p></article>
+            <article class="project-card"><div class="project-type">Experimental Horror</div><h3>Data-Moshing Liminal Prototype</h3><p>A narrow-hall analogue-horror experiment using unstable rooms, distorted humanoid entities, changing color/texture states, and stabilizers that identify needed routes.</p></article>
+            <article class="project-card"><div class="project-type">Dimension</div><h3>The Archivist Dimension</h3><p>A zero-gravity archive space where floating orbs represent stories, surrounded by satellites, cyber textures, large spacing, and ambient exploration.</p></article>
+            <article class="project-card"><div class="project-type">Action / Survival</div><h3>Infinite Ocean Predator Prototype</h3><p>An open-water traversal and combat experiment with directional movement, jumping and waves, vessel wakes, enemy predators, collision spacing, and larger boss variants.</p></article>
+            <article class="project-card"><div class="project-type">Narrative Experiment</div><h3>Afterlife of IO — The Entropy Archives</h3><p>A causal afterlife adventure spanning linked past and future states, history-rewriting encounters, IO archives, shrines, obelisks, and long-form worldbuilding.</p></article>
+            <article class="project-card"><div class="project-type">Minecraft Mod Lab</div><h3>BoreRail · GrandVillages · StrongholdCities</h3><p>NeoForge experiments covering automated rail tunneling, large village expansion, fortified stronghold cities, warrior villagers, infrastructure, and autonomous mining systems.</p></article>
+            <article class="project-card"><div class="project-type">Minecraft Bedrock</div><h3>Shulker Bow</h3><p>A steerable shulker-projectile bow concept with camera control, boost behavior, duration stacking, enchantment support, lighting, and mob-lift effects.</p></article>
+            <article class="project-card"><div class="project-type">Published Minecraft Project</div><h3>Skyveil Biome</h3><p>A sky-island biome experiment built around elevated terrain and altered traversal, developed as part of the wider Minecraft prototype line.</p></article>
+          </div>
+        </section>
+
+        <section id="play" class="panel content-card">
+          <span class="section-label">Play the Releases</span><h2>The public catalog lives on itch.io</h2>
+          <p>Standalone releases and public experiments are collected on the GLITCHED MATRIX itch.io profile while larger connected work continues inside the Prototype Lab.</p>
+          <div class="release-card"><div><h3>GLITCHED MATRIX on itch.io</h3><p>Browse current games, experiments, educational projects, and downloadable builds.</p></div><a class="btn btn-primary" href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">Open the library ↗</a></div>
+        </section>
+
+        <section id="media" class="panel content-card media-section">
+          <div class="media-head"><div><span class="section-label">Media</span><h2>Latest development trailer</h2></div><a class="btn btn-audio" href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></div>
+          <div class="media-grid single-media"><figure class="media-card media-main-card media-video-card"><div class="video-shell"><iframe src="https://www.youtube-nocookie.com/embed/fhKmr05TEgU" title="GLITCHED MATRIX Prototype Lab latest trailer" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></figure></div>
+        </section>
+
+        <section id="links" class="panel content-card">
+          <span class="section-label">Continue Beyond the Site</span><h2>Games, story, trailer, and Steam</h2>
+          <p>Explore the wider GLITCHED MATRIX catalog, current public build, story material, and releases.</p>
+          <div class="link-row"><a href="https://glitched-matrix.itch.io/" target="_blank" rel="noopener noreferrer">itch.io ↗</a><a href="https://store.steampowered.com/app/4386390/Matrix_OS_Arcade_Evolution/" target="_blank" rel="noopener noreferrer">Steam ↗</a><a href="https://youtu.be/fhKmr05TEgU?si=8iBmlRRrQRwi22lu" target="_blank" rel="noopener noreferrer">Trailer ↗</a><a href="https://a.co/d/0aq9m4ip" target="_blank" rel="noopener noreferrer">The Utopia Project ↗</a></div>
+        </section>
+      </div>
+
+      <aside id="updatesPanel" class="panel updates-panel">
+        <div class="updates-head"><div><span class="section-label">Updates</span><h2>Patch Notes</h2></div></div>
+        <p class="updates-note">Current Lab notes are shown first; archived exported patch notes load underneath them.</p>
+        <div id="updatesList" class="updates-list" aria-live="polite">
+          <article class="update-card current"><span class="update-group">Website · 2026-09-16</span><h3 class="update-heading">Prototype Lab identity restored</h3><ul class="update-bullets"><li>Replaced the single Afterlife feature with the multi-prototype Lab collage.</li><li>Restored the layered grid, scanline, panel, and red-glow presentation from the older site.</li><li>Restored the dedicated scrolling Patch Notes panel instead of burying updates in a basic page.</li><li>Expanded the prototype index to reflect much more recent Lab work.</li></ul></article>
+          <article class="update-card current"><span class="update-group">HoloVerse + Utopia</span><h3 class="update-heading">Connected-world work continues</h3><ul class="update-bullets"><li>HoloVerse remains the connective framework for dimensions and recovered Prototype Lab systems.</li><li>Utopia work now includes AR time controls, natural exterior day/night behavior, dynamic ambience, district soundtracks, interior expansion, and wandering lens-visible light orbs.</li></ul></article>
+          <article class="update-card current"><span class="update-group">Mirrors Limbo</span><h3 class="update-heading">Liminal systems expanded</h3><ul class="update-bullets"><li>Alternate hostile interiors, VOID behavior, mask trading, FEAR recovery, safe-room progression, and launcher hardening remain part of the current direction.</li></ul></article>
+          <div class="updates-archive-label">Archived exported notes</div>
+          <div id="archivedUpdates"></div>
+        </div>
+      </aside>
+    </div>
   </main>
-  <footer class="shell"><span>© GLITCHED MATRIX — Prototype Lab</span><span>Games · worlds · experiments · stories</span></footer>
-  <script src="assets/js/youtube_soundtrack.js?v=20260916-direct" defer></script>
+
+  <footer class="shell footer"><div class="footer-left"><div class="footer-logo-text">GLITCHED <span>MATRIX</span> · PROTOTYPE LAB</div><p class="footer-copy">© GLITCHED MATRIX — games · worlds · tools · experiments</p></div><div class="footer-links"><a href="#projects">Prototypes</a><a href="#updatesPanel">Patch Notes</a><a href="#media">Media</a></div></footer>
+
+  <script>
+  (()=>{
+    const target=document.getElementById('archivedUpdates');
+    if(!target)return;
+    const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+    const parseNotes=text=>{
+      const lines=text.replace(/\r/g,'').split('\n');
+      const entries=[];
+      let group='';
+      for(let i=0;i<lines.length;i++){
+        const line=lines[i].trim();
+        const next=(lines[i+1]||'').trim();
+        if(!line)continue;
+        if(/^=+$/.test(next)){
+          if(!/Patch Note Summary Export|GLITCHED MATRIX Prototype Lab \(Main Directory\)/i.test(line))group=line;
+          i++;continue;
+        }
+        if(/^-{5,}$/.test(next)){
+          const heading=line;
+          const bullets=[];
+          i+=2;
+          while(i<lines.length){
+            const current=lines[i].trim();
+            const after=(lines[i+1]||'').trim();
+            if(current&&(/^-{5,}$/.test(after)||/^=+$/.test(after))){i--;break;}
+            if(current.startsWith('- '))bullets.push(current.slice(2));
+            i++;
+          }
+          if(bullets.length)entries.push({group,heading,bullets});
+        }
+        if(entries.length>=8)break;
+      }
+      return entries;
+    };
+    fetch('assets/data/combined_patch_notes.txt?v=20260916-restored',{cache:'no-store'})
+      .then(response=>{if(!response.ok)throw new Error('patch notes unavailable');return response.text();})
+      .then(text=>{
+        const entries=parseNotes(text);
+        if(!entries.length)throw new Error('no patch notes parsed');
+        target.innerHTML=entries.map(entry=>`<article class="update-card"><span class="update-group">${esc(entry.group||'Prototype Lab Archive')}</span><h3 class="update-heading">${esc(entry.heading)}</h3><ul class="update-bullets">${entry.bullets.slice(0,6).map(item=>`<li>${esc(item)}</li>`).join('')}</ul></article>`).join('');
+      })
+      .catch(()=>{target.innerHTML='<div class="update-empty">Archived patch notes could not be loaded right now. Current Lab notes above are still available.</div>';});
+  })();
+  </script>
+  <script src="assets/js/youtube_soundtrack.js?v=20260916-restored" defer></script>
 </body>
 </html>
